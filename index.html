@@ -1,34 +1,260 @@
 <!DOCTYPE html>
+<!-- Tells the browser that this document is written in modern HTML5 -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>simple code</title>
-  <style>
-    body {
-      background-color:rgb(3, 13, 63);
-      padding: 5px;
-      margin: 0px;
-      font-family: cursive;
-      font-size: small;
-      color:rgb(243, 137, 8);
-    }
-
-    .heading-box {
-      background-color:  rgb(246, 246, 247);
-    padding-top: 0cap;
-      margin:30x;
-      text-align: center;
-      border-radius: 6px;
-      width:360px;
-    }
-    </style>
-    </head>
-  <body>
-
-  <div class="heading-box">
-  <h1>this is my first one</h1>
-</div>
-  <p>really</p>
-  </body>
-</html>
+    <!-- Sets the character encoding to standard UTF-8 (supports all text symbols) -->
+    <meta charset="UTF-8">
     
+    <!-- Ensures the page displays at a proper size on mobile phones and tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title displayed in the browser tab -->
+    <title>Classic Chocolate Chip Cookies Recipe</title>
+    <style>
+      *{ 
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+
+      }
+      body {
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-color: rgb(225, 192, 148);
+        color: #333;
+        padding: 30px 20px;
+      }
+      /* HEADER BOX (Title & Cooking Meta Details) */
+      .header {
+        text-align: center;
+        background-color: rgba(167, 96, 10, 0.868);
+        color: white;
+        padding: 20px;
+        border-radius:11px;
+        max-width:11050px;
+        margin:o auto 30px auto;
+      }
+      .header h1 {
+        font-size: 2.2rem;
+        margin: 0.9;
+      }
+      .header p {
+        font-size: 1rem;
+        opacity: 0.9;
+      
+      }
+      /* MAIN 2-COLUMN GRID LAYOUT */
+      .recipe-grid {
+        display: flex;
+        gap: 25px;
+        max-width:11050px;
+        margin:0 auto;
+        align-items: flex-start;
+
+      }
+    /* LEFT SIDE BOX: Ingredients */
+    .ingredients-box {
+      flex:1;
+      background-color: rgb(240, 211, 174);
+      padding: 20px;
+      border-radius:12px;
+      border: 2px solid #cc8513de;
+      box-shadow:#e4ac45;
+
+    }
+    .h2 {
+      color:#5c4117;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom:8px;
+      border-bottom: 3px solid #7c4a21;
+
+    }
+    .ingredients-list  {
+     list-style: none;
+
+    }
+    .ingredients-list li  {
+      padding: 9px 0;
+      border-bottom: 1px solid white;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1rem;
+    
+    }
+    .step-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 19px;
+      padding: 14px;
+      background-color: rgb(247, 218, 179);
+      
+    }
+    .step-counter {
+      background-color:#7c4a21;
+      color:white;
+      font-weight: bold;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content: center;
+      flex-shrink: 0;
+    
+    }
+    .step-text h3{
+      font-size: 1.5rem;
+      color:rgb(46, 27, 3);
+      margin-bottom: 4px;
+
+    }
+    .step-text p {
+      line-height: 1.5;
+      color:#7c4a21;
+
+    }
+    .baker-tip {
+      margin-top: 19px;
+      background-color:#e0b461;
+      border-left:#e4ac45;
+      padding: 14px;
+      border-radius: 5px;
+      font-size: 0.94rem;
+
+    }
+    @media (max-width: 768px) {
+            .recipe-grid {
+                flex-direction: column;   /* Changes side-by-side into top-and-bottom */
+            }
+            .ingredients-box, .instructions-box {
+                width: 100%;             /* Boxes expand to full screen width */
+            }
+          }
+          </style>
+          </head>
+          </body>
+          <!-- TOP HEADER SECTION -->
+              <header class="header">
+                  <h1>Classic Chocolate Chip Cookies</h1>
+                  <p>Prep Time: 15 mins | Bake Time: 10 mins | Yield: 24 Cookies</p>
+              </header>
+          
+              <!-- MAIN TWO-COLUMN CONTAINER -->
+              <div class="recipe-grid">
+                  
+                  <!-- LEFT SIDE: INGREDIENTS BOX (flex: 1) -->
+                  <div class="ingredients-box">
+                      <h2>Ingredients</h2>
+                      <ul class="ingredient-list">
+                          <!-- <input type="checkbox"> creates clickable checkboxes for ingredients -->
+                          <li><input type="checkbox"> 1 cup (2 sticks) unsalted butter, softened</li>
+                          <li><input type="checkbox"> 3/4 cup granulated white sugar</li>
+                          <li><input type="checkbox"> 3/4 cup packed brown sugar</li>
+                          <li><input type="checkbox"> 2 large eggs</li>
+                          <li><input type="checkbox"> 1 teaspoon vanilla extract</li>
+                          <li><input type="checkbox"> 2 1/4 cups all-purpose flour</li>
+                          <li><input type="checkbox"> 1 teaspoon baking soda</li>
+                          <li><input type="checkbox"> 1/2 teaspoon salt</li>
+                          <li><input type="checkbox"> 2 cups semi-sweet chocolate chips</li>
+                      </ul>
+          
+                      <!-- Extra helpful tip box inside the ingredients container -->
+                      <div class="baker-tip">
+                          <strong>💡 Baker's Tip:</strong> Chill your dough in the fridge for 30 minutes before baking for thicker, extra-chewy cookies!
+                      </div>
+                  </div>
+          
+                  <!-- RIGHT SIDE: BIG INSTRUCTIONS BOX (flex: 1.5) -->
+                  <div class="instructions-box">
+                      <h2>Step-by-Step Instructions</h2>
+                      
+                      <ul class="step-list">
+                          <!-- STEP 1 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">1</div> <!-- Round Number Badge -->
+                              <div class="step-text">
+                                  <h3>Preheat Oven</h3>
+                                  <p>Set your oven to 375°F (190°C). Line two baking sheets with parchment paper.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 2 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">2</div>
+                              <div class="step-text">
+                                  <h3>Mix Dry Ingredients</h3>
+                                  <p>In a medium bowl, whisk together flour, baking soda, and salt. Set aside.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 3 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">3</div>
+                              <div class="step-text">
+                                  <h3>Cream Butter & Sugars</h3>
+                                  <p>In a large bowl, beat the softened butter, white sugar, and brown sugar together on medium speed for about 2 minutes until smooth and creamy.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 4 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">4</div>
+                              <div class="step-text">
+                                  <h3>Add Wet Ingredients</h3>
+                                  <p>Add eggs one at a time, beating well after each. Stir in the vanilla extract.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 5 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">5</div>
+                              <div class="step-text">
+                                  <h3>Combine Wet & Dry</h3>
+                                  <p>Gradually mix the dry flour mixture into the wet ingredients on low speed until just combined (don't overmix!).</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 6 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">6</div>
+                              <div class="step-text">
+                                  <h3>Fold in Chocolate Chips</h3>
+                                  <p>Gently stir in the chocolate chips using a spatula or wooden spoon.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 7 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">7</div>
+                              <div class="step-text">
+                                  <h3>Scoop Dough</h3>
+                                  <p>Drop rounded tablespoons of dough onto the baking sheets, leaving about 2 inches between cookies.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 8 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">8</div>
+                              <div class="step-text">
+                                  <h3>Bake</h3>
+                                  <p>Bake for 9 to 11 minutes until edges are golden brown and centers are slightly soft.</p>
+                              </div>
+                          </li>
+          
+                          <!-- STEP 9 CARD -->
+                          <li class="step-item">
+                              <div class="step-number">9</div>
+                              <div class="step-text">
+                                  <h3>Cool & Enjoy</h3>
+                                  <p>Let cookies cool on the sheet for 5 minutes, then move them to a wire rack to cool completely.</p>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+          
+              </div>
+          
+          </body>
+          </html>
+        
