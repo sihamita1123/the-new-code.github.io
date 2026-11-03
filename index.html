@@ -1,260 +1,897 @@
+
+
 <!DOCTYPE html>
-<!-- Tells the browser that this document is written in modern HTML5 -->
 <html lang="en">
 <head>
-    <!-- Sets the character encoding to standard UTF-8 (supports all text symbols) -->
-    <meta charset="UTF-8">
-    
-    <!-- Ensures the page displays at a proper size on mobile phones and tablets -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Title displayed in the browser tab -->
-    <title>Classic Chocolate Chip Cookies Recipe</title>
-    <style>
-      *{ 
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simple Delicious Snacks — My FoodSpace Project</title>
+<meta name="description" content="A taste of East Africa at our school pop-up stall: beef sanbusa, viazi karai, and a fresh mango smoothie. A My FoodSpace project by Siham for Intro to Culinary Arts (TOU1010)." />
+<meta name="author" content="Siham" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
-      }
-      body {
-        font-family:Georgia, 'Times New Roman', Times, serif;
-        background-color: rgb(225, 192, 148);
-        color: #333;
-        padding: 30px 20px;
-      }
-      /* HEADER BOX (Title & Cooking Meta Details) */
-      .header {
-        text-align: center;
-        background-color: rgba(167, 96, 10, 0.868);
-        color: white;
-        padding: 20px;
-        border-radius:11px;
-        max-width:11050px;
-        margin:o auto 30px auto;
-      }
-      .header h1 {
-        font-size: 2.2rem;
-        margin: 0.9;
-      }
-      .header p {
-        font-size: 1rem;
-        opacity: 0.9;
-      
-      }
-      /* MAIN 2-COLUMN GRID LAYOUT */
-      .recipe-grid {
-        display: flex;
-        gap: 25px;
-        max-width:11050px;
-        margin:0 auto;
-        align-items: flex-start;
+<style>
+/* ============================================================
+   SIMPLE DELICIOUS SNACKS — My FoodSpace project by Siham
+   One single file: HTML + CSS + JavaScript. No installs needed.
+   ============================================================ */
 
-      }
-    /* LEFT SIDE BOX: Ingredients */
-    .ingredients-box {
-      flex:1;
-      background-color: rgb(240, 211, 174);
-      padding: 20px;
-      border-radius:12px;
-      border: 2px solid #cc8513de;
-      box-shadow:#e4ac45;
+/* ---------- 1. COLOURS & BASE ---------- */
+:root {
+  --cream: #FFF8F0; /* page background */
+  --cream-2: #FFF1DE; /* darker section background */
+  --cream-3: #FFF3E2; /* boxes inside cards */
+  --ink: #451A03; /* darkest brown (headings) */
+  --brown: #7C4A21; /* soft brown (body text) */
+  --dark: #5B2E0E; /* medium brown (body text) */
+  --orange: #C2410C; /* main orange (buttons) */
+  --orange-2: #9A3412; /* darker orange (hover) */
+  --amber: #D97706; /* gold accent */
+  --amber-soft: #FEF3C7; /* pale gold box */
+  --line: #FED7AA; /* light orange border */
+}
 
-    }
-    .h2 {
-      color:#5c4117;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      padding-bottom:8px;
-      border-bottom: 3px solid #7c4a21;
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    }
-    .ingredients-list  {
-     list-style: none;
+html { scroll-behavior: smooth; }
 
-    }
-    .ingredients-list li  {
-      padding: 9px 0;
-      border-bottom: 1px solid white;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 1rem;
-    
-    }
-    .step-item {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 19px;
-      padding: 14px;
-      background-color: rgb(247, 218, 179);
-      
-    }
-    .step-counter {
-      background-color:#7c4a21;
-      color:white;
-      font-weight: bold;
-      width: 31px;
-      height: 31px;
-      border-radius: 50%;
-      display:flex;
-      align-items:center;
-      justify-content: center;
-      flex-shrink: 0;
-    
-    }
-    .step-text h3{
-      font-size: 1.5rem;
-      color:rgb(46, 27, 3);
-      margin-bottom: 4px;
+body {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
 
-    }
-    .step-text p {
-      line-height: 1.5;
-      color:#7c4a21;
+section { scroll-margin-top: 90px; } /* so anchors don't hide under the sticky nav */
 
-    }
-    .baker-tip {
-      margin-top: 19px;
-      background-color:#e0b461;
-      border-left:#e4ac45;
-      padding: 14px;
-      border-radius: 5px;
-      font-size: 0.94rem;
+img { max-width: 100%; display: block; }
 
+.wrap { max-width: 1150px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- 2. NAVIGATION ---------- */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 248, 240, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 20px; max-width: 1150px; margin: 0 auto;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 800; font-size: 18px; color: var(--ink);
+  text-decoration: none;
+}
+.brand .logo {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  font-size: 18px;
+}
+.brand em { color: var(--orange); font-style: normal; }
+.nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.nav-links a {
+  text-decoration: none; color: #7C2D12; font-weight: 600; font-size: 14px;
+  padding: 8px 12px; border-radius: 999px;
+}
+.nav-links a:hover { background: var(--amber-soft); color: var(--orange-2); }
+.nav-cta {
+  background: var(--orange); color: #fff !important; font-weight: 700;
+  padding: 8px 16px !important; box-shadow: 0 1px 3px rgba(69,26,3,.2);
+}
+.nav-cta:hover { background: var(--orange-2); }
+
+/* hamburger button (only visible on phones) */
+#hamburger {
+  display: none; background: none; border: 2px solid var(--line);
+  border-radius: 10px; font-size: 20px; padding: 4px 12px; cursor: pointer;
+  color: var(--ink);
+}
+
+/* ---------- 3. HERO ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #FFE8CC 0%, #FFF3E2 55%, var(--cream) 100%);
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px;
+  align-items: center; padding: 64px 0 72px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid #FCD34D; background: rgba(255,255,255,.7);
+  color: #92400E; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  padding: 6px 16px; border-radius: 999px;
+}
+.hero h1 {
+  margin-top: 20px;
+  font-size: 56px; font-weight: 900; line-height: 1.1; letter-spacing: -1px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, var(--orange), #EA580C, var(--amber));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--orange);
+}
+.tagline { margin-top: 16px; font-size: 20px; font-weight: 700; color: var(--orange-2); }
+.hero p.lead { margin-top: 12px; max-width: 480px; color: var(--brown); }
+.btn-row { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 700; font-size: 14px;
+  padding: 12px 24px; border-radius: 999px;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn-primary { background: var(--orange); color: #fff; box-shadow: 0 4px 10px rgba(194,65,12,.3); }
+.btn-primary:hover { background: var(--orange-2); transform: translateY(-2px); }
+.btn-outline { background: #fff; color: var(--orange-2); border: 2px solid var(--orange); }
+.btn-outline:hover { background: var(--amber-soft); transform: translateY(-2px); }
+.chips { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+.chips li {
+  background: #fff; border: 1px solid var(--line);
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; color: #7C2D12;
+  box-shadow: 0 1px 2px rgba(69,26,3,.06);
+}
+.hero-img { position: relative; max-width: 430px; margin: 0 auto; width: 100%; }
+.hero-img::before {
+  content: ""; position: absolute; inset: 0;
+  transform: rotate(-3deg); border-radius: 32px;
+  background: linear-gradient(135deg, #FBBF24, #EA580C); opacity: .3;
+}
+.hero-img img {
+  position: relative; border-radius: 32px; border: 8px solid #fff;
+  transform: rotate(1deg); box-shadow: 0 20px 40px rgba(69,26,3,.18);
+}
+.hero-caption {
+  position: absolute; left: 50%; bottom: -16px; transform: translateX(-50%);
+  background: var(--ink); color: #FDE68A;
+  padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 700;
+  white-space: nowrap; box-shadow: 0 8px 20px rgba(69,26,3,.3);
+}
+
+/* ---------- 4. SECTIONS ---------- */
+.section { padding: 80px 0; }
+.section.darker { background: var(--cream-2); }
+.kicker {
+  text-align: center; color: var(--amber);
+  font-size: 12px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase;
+}
+.section h2 { text-align: center; font-size: 34px; font-weight: 900; margin-top: 8px; }
+.subtitle {
+  text-align: center; color: var(--brown); max-width: 620px;
+  margin: 12px auto 0; font-size: 15px;
+}
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 44px; }
+
+/* concept */
+.concept-intro {
+  margin: 40px auto 0; max-width: 760px; text-align: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 20px;
+  padding: 24px 28px; color: var(--dark);
+  box-shadow: 0 1px 4px rgba(69,26,3,.06);
+}
+.concept-intro strong { color: var(--orange-2); }
+.card {
+  background: #fff; border: 1px solid #FFEDD5; border-radius: 24px;
+  padding: 24px; box-shadow: 0 1px 4px rgba(69,26,3,.06);
+  transition: transform .25s, box-shadow .25s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(69,26,3,.1); }
+.card .icon {
+  width: 48px; height: 48px; border-radius: 16px; margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  color: #fff; font-size: 22px;
+}
+.card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.card p { font-size: 14px; color: var(--brown); }
+
+/* menu cards */
+.menu-card {
+  background: #fff; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(69,26,3,.08); border: 1px solid #FFEDD5;
+  display: flex; flex-direction: column;
+  transition: transform .25s, box-shadow .25s;
+}
+.menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(69,26,3,.14); }
+.menu-card .photo { position: relative; height: 190px; overflow: hidden; }
+.menu-card .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.menu-card:hover .photo img { transform: scale(1.06); }
+.menu-card .cat {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(69,26,3,.85); color: #FDE68A;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  padding: 4px 12px; border-radius: 999px;
+}
+.menu-body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.menu-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.menu-top h3 { font-size: 20px; font-weight: 800; }
+.price { text-align: right; }
+.price b { color: var(--orange); font-size: 20px; font-weight: 900; display: block; }
+.price small { color: #A16207; font-size: 11px; font-weight: 600; }
+.menu-badge {
+  width: fit-content; background: var(--amber-soft); color: #92400E;
+  font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+}
+.menu-body > p { font-size: 14px; color: var(--dark); }
+.recipe {
+  background: var(--cream-3); border-radius: 18px; padding: 14px 16px; margin-top: auto;
+}
+.recipe h4 {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--orange-2); font-weight: 900;
+}
+.recipe p { font-size: 12px; color: var(--brown); margin-top: 4px; }
+.recipe h4 + p { margin-top: 4px; }
+.recipe .gap { margin-top: 12px; }
+.add-btn {
+  margin-top: 4px; width: 100%; border: none; cursor: pointer;
+  background: var(--orange); color: #fff; font-family: inherit;
+  font-size: 14px; font-weight: 700; padding: 10px; border-radius: 999px;
+  transition: background .2s;
+}
+.add-btn:hover { background: var(--orange-2); }
+
+/* filter buttons */
+.filters { display: flex; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+.filter-btn {
+  border: 2px solid var(--line); background: #fff; color: #7C2D12;
+  font-family: inherit; font-weight: 700; font-size: 13px;
+  padding: 8px 20px; border-radius: 999px; cursor: pointer;
+}
+.filter-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+/* combo banner */
+.combo {
+  margin: 44px auto 0; max-width: 680px;
+  background: linear-gradient(90deg, var(--orange), #D97706);
+  color: #fff; border-radius: 24px; padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  box-shadow: 0 10px 24px rgba(194,65,12,.3); flex-wrap: wrap;
+}
+.combo .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #FDE68A; }
+.combo .deal { font-size: 17px; font-weight: 800; margin-top: 2px; }
+.combo .deal span { color: #FDE68A; font-weight: 600; }
+.combo .perk {
+  background: rgba(255,255,255,.2); padding: 8px 16px;
+  border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap;
+}
+
+/* term cards */
+.term-card {
+  background: #fff; border: 1px solid #FFEDD5; border-radius: 24px;
+  padding: 22px; box-shadow: 0 1px 4px rgba(69,26,3,.06);
+}
+.term-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.term-icon {
+  width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  color: #fff; font-size: 20px;
+}
+.term-num { font-size: 11px; font-weight: 900; letter-spacing: 2px; color: var(--amber); text-transform: uppercase; }
+.term-head h3 { font-size: 17px; font-weight: 800; line-height: 1.3; }
+.term-card .def { font-size: 14px; color: var(--dark); }
+.app-box {
+  margin-top: 14px; background: #FFFBEB; border-left: 4px solid #FBBF24;
+  border-radius: 12px; padding: 12px 16px;
+}
+.app-box h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #B45309; font-weight: 900; }
+.app-box p { font-size: 14px; color: var(--brown); margin-top: 4px; }
+
+/* operations cards */
+.op-card {
+  background: #fff; border-radius: 24px; padding: 24px;
+  box-shadow: 0 1px 4px rgba(69,26,3,.08); border: 1px solid #FFEDD5;
+  display: flex; flex-direction: column;
+}
+.op-card .intro { font-size: 13px; font-style: italic; color: #A16207; margin-top: 6px; }
+.op-card ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.op-card li { display: flex; gap: 8px; font-size: 14px; color: var(--dark); }
+.op-card li::before { content: "✔"; color: var(--orange); font-weight: 900; flex-shrink: 0; }
+
+/* order bar (the JavaScript part!) */
+#order-bar {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+  width: min(680px, calc(100% - 32px));
+  background: var(--ink); color: #FFF7ED;
+  border-radius: 18px; padding: 14px 20px;
+  display: none; justify-content: space-between; align-items: center; gap: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35); z-index: 60; flex-wrap: wrap;
+}
+#order-bar.show { display: flex; }
+#order-bar .total b { color: #FDBA74; font-size: 18px; }
+#order-bar .items { font-size: 12.5px; color: #FDE68A; }
+#clear-order {
+  border: none; cursor: pointer; font-family: inherit;
+  background: rgba(255,255,255,.15); color: #fff;
+  padding: 8px 16px; border-radius: 999px; font-weight: 700; font-size: 13px;
+}
+#clear-order:hover { background: rgba(255,255,255,.3); }
+
+/* footer */
+footer { background: var(--ink); color: #FFFBEB; padding: 44px 0; }
+footer .inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+footer .fbrand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; }
+footer .fbrand .logo {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #F97316, #FBBF24); font-size: 18px;
+}
+footer p { max-width: 560px; font-size: 14px; color: rgba(254,243,233,.9); }
+footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+footer nav a {
+  color: #FDE68A; text-decoration: none; font-size: 14px; font-weight: 600;
+  padding: 8px 16px; border-radius: 999px;
+}
+footer nav a:hover { background: rgba(255,255,255,.1); }
+footer .fine { font-size: 12px; color: rgba(253,230,138,.6); }
+
+/* reveal-on-scroll animation */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- 5. MOBILE ---------- */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; padding: 44px 0 60px; }
+  .hero h1 { font-size: 40px; }
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  #hamburger { display: block; }
+  .nav-links {
+    display: none; width: 100%; flex-direction: column; align-items: stretch;
+    padding-bottom: 10px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { text-align: center; padding: 12px; }
+  .combo { justify-content: center; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#top">
+      <span class="logo">🥟</span>
+      Simple <em>Delicious Snacks</em>
+    </a>
+    <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="#concept">Concept</a>
+      <a href="#menu">Menu</a>
+      <a href="#terms">Key Terms</a>
+      <a href="#operations">Operations</a>
+      <a href="#menu" class="nav-cta">Order at lunch →</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="badge">🔥 My FoodSpace Project • Culinary Arts (TOU1010)</span>
+        <h1>Simple <span>Delicious Snacks</span></h1>
+        <p class="tagline">A taste of East Africa — one bite at a time. 🌍</p>
+        <p class="lead">
+          Real street food from the markets of Mogadishu &amp; Mombasa, made fresh at our
+          school pop-up stall: crispy beef sanbusa, golden viazi karai, and a cold mango
+          smoothie. Quick, tasty, and everything is under $5.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#menu">See the Menu →</a>
+          <a class="btn btn-outline" href="#terms">Learn the Key Terms</a>
+        </div>
+        <ul class="chips" aria-label="Highlights">
+          <li>🧡 Made by Siham</li>
+          <li>🍗 Halal friendly</li>
+          <li>🌱 Vegetarian option</li>
+          <li>💸 Everything under $5</li>
+        </ul>
+      </div>
+      <div class="hero-img">
+        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/aa1dab8d773f.jpg"
+             alt="A golden fried beef sanbusa broken open showing the spiced meat filling" />
+        <span class="hero-caption">Fresh every lunch hour 🔥</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONCEPT ============ -->
+  <section class="section" id="concept">
+    <div class="wrap">
+      <p class="kicker">Part 2 • Concept &amp; Brand</p>
+      <h2>Our Concept</h2>
+      <p class="subtitle">What is Simple Delicious Snacks, and who is it for? Here is the big idea in three pieces.</p>
+
+      <div class="concept-intro reveal">
+        <strong>Simple Delicious Snacks</strong> brings the street markets of East Africa —
+        from Mogadishu to Mombasa — to our school hallway. Warm spices, crispy fried snacks,
+        and ice-cold mango smoothies, served fast and friendly. It is a
+        <strong>pop-up micro-food stall</strong>: small, temporary, and full of flavour.
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="icon">🎨</div>
+          <h3>Theme &amp; Vibe</h3>
+          <p>A mini East African street market: warm terracotta and gold colours, a market-stall
+          style counter, a chalkboard menu, and an African music playlist. Fun, colourful, and
+          welcoming — you feel the market the second you walk up.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🤲</div>
+          <h3>Service Style</h3>
+          <p>Counter service &amp; grab-and-go. You order at the window and get your food hot in
+          2–3 minutes — perfect for a short lunch break. Morning pre-orders skip the line completely.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🧑‍🤝‍🧑</div>
+          <h3>Target Market</h3>
+          <p>High school students &amp; teachers — especially athletes who need snacks after
+          practice, students who keep halal (our beef is halal), adventurous eaters, and anyone
+          with $5 who wants something better than chips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="section darker" id="menu">
+    <div class="wrap">
+      <p class="kicker">Part 2 • Menu Design</p>
+      <h2>The Menu</h2>
+      <p class="subtitle">Three items, made fresh, priced for students. Snack, snack, and a drink — the perfect lunch combo.</p>
+
+      <!-- Filter buttons (JavaScript) -->
+      <div class="filters" role="group" aria-label="Filter menu">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="snack">Snacks 🥟</button>
+        <button class="filter-btn" data-filter="drink">Drinks 🥤</button>
+      </div>
+
+      <div class="grid-3" id="menu-grid">
+
+        <article class="menu-card reveal" data-category="snack">
+          <div class="photo">
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/68f99dc81a35.jpg"
+                 alt="A platter piled high with golden crispy fried sanbusa pastries" loading="lazy" />
+            <span class="cat">Snack</span>
+          </div>
+          <div class="menu-body">
+            <div class="menu-top">
+              <h3>Beef Sanbusa</h3>
+              <div class="price"><b>$4.00</b><small>2 pieces</small></div>
+            </div>
+            <span class="menu-badge">⭐ Most Popular • Halal</span>
+            <p>Crispy golden pastry triangles stuffed with juicy spiced ground beef and sweet
+            onions — the king of East African street snacks.</p>
+            <div class="recipe">
+              <h4>What's inside</h4>
+              <p>Beef mince • Onion • Garlic • Cumin • Coriander • Sanbusa pastry</p>
+              <h4 class="gap">How we make it</h4>
+              <p>Cook the spiced beef filling → fold into triangles → deep-fry until golden and
+              crunchy → drain → serve hot.</p>
+            </div>
+            <button class="add-btn" data-item="Beef Sanbusa" data-price="4.00">+ Add to order</button>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="snack">
+          <div class="photo">
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/de6946206a3a.jpg"
+                 alt="Golden fried viazi karai potato bites in a basket with dipping sauce" loading="lazy" />
+            <span class="cat">Snack</span>
+          </div>
+          <div class="menu-body">
+            <div class="menu-top">
+              <h3>Viazi Karai</h3>
+              <div class="price"><b>$4.00</b><small>6 pieces</small></div>
+            </div>
+            <span class="menu-badge">🌱 100% Vegetarian</span>
+            <p>Crispy fried potato bites in a golden spiced chickpea-flour batter, served with a
+            tangy tamarind (ukwaju) dip — street food straight from the coast of Kenya.</p>
+            <div class="recipe">
+              <h4>What's inside</h4>
+              <p>Potatoes • Chickpea (gram) flour • Garlic • Chilli • Turmeric • Tamarind sauce</p>
+              <h4 class="gap">How we make it</h4>
+              <p>Boil &amp; cube the potatoes → dip in spiced batter → deep-fry until crispy
+              outside, soft inside → serve with dip.</p>
+            </div>
+            <button class="add-btn" data-item="Viazi Karai" data-price="4.00">+ Add to order</button>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="drink">
+          <div class="photo">
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a42e9da81076.jpg"
+                 alt="A cold creamy mango smoothie topped with fresh mango chunks" loading="lazy" />
+            <span class="cat">Drink</span>
+          </div>
+          <div class="menu-body">
+            <div class="menu-top">
+              <h3>Mango Smoothie</h3>
+              <div class="price"><b>$2.00</b><small>one cup</small></div>
+            </div>
+            <span class="menu-badge">🥭 100% Real Fruit</span>
+            <p>Cold, creamy blended mango drink — sweet, sunny, and super refreshing after gym
+            class or on a hot day.</p>
+            <div class="recipe">
+              <h4>What's inside</h4>
+              <p>Ripe mango • Milk • A little sugar • Ice</p>
+              <h4 class="gap">How we make it</h4>
+              <p>Peel &amp; cube the mango → blend with milk, sugar &amp; ice until smooth →
+              pour → serve cold.</p>
+            </div>
+            <button class="add-btn" data-item="Mango Smoothie" data-price="2.00">+ Add to order</button>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="combo reveal">
+        <div>
+          <p class="label">Combo deal</p>
+          <p class="deal">Beef Sanbusa (2 pcs) + Mango Smoothie = $5.50 <span>(save $0.50!)</span></p>
+        </div>
+        <span class="perk">Buy 5 lunches → free smoothie 🎉</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section class="section" id="terms">
+    <div class="wrap">
+      <p class="kicker">Part 1 • Industry Terms Research</p>
+      <h2>10 Words Every Food Business Uses</h2>
+      <p class="subtitle">Each term is defined in simple words, then shown the way we actually use it at Simple Delicious Snacks.</p>
+
+      <div class="grid-2">
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🌐</span>
+            <div><p class="term-num">Term 1</p><h3>Tourism</h3></div>
+          </div>
+          <p class="def">When people travel to new places for fun, culture, or food — and spend money while they are there.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>Food is one of the top reasons travellers explore a new culture. Our stall is like a
+          mini trip to East Africa for students, teachers, and visitors at school events.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🤝</span>
+            <div><p class="term-num">Term 2</p><h3>Hospitality</h3></div>
+          </div>
+          <p class="def">Making guests feel welcome and taking good care of them from the moment they arrive.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>We greet every customer with a smile, keep the stall spotless, and make the wait fun
+          with music and the smell of fresh sanbusa.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🍽️</span>
+            <div><p class="term-num">Term 3</p><h3>Food &amp; Beverage (F&amp;B) Operations</h3></div>
+          </div>
+          <p class="def">All the work behind making and serving food and drinks — prepping, cooking, serving, and cleaning up.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>Every lunch hour we prep ingredients, fry sanbusa and viazi karai fresh, blend mango
+          smoothies, serve customers fast, and clean everything before the next class.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🎯</span>
+            <div><p class="term-num">Term 4</p><h3>Target Market</h3></div>
+          </div>
+          <p class="def">The specific group of people a business wants to sell to.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>High school students and teachers who want a quick, tasty lunch under $5 — especially
+          athletes after practice, students who eat halal, and anyone who loves new flavours.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">😊</span>
+            <div><p class="term-num">Term 5</p><h3>Customer Experience (GX / CX)</h3></div>
+          </div>
+          <p class="def">How a customer feels during every step of buying from you — before, during, and after.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>Fast service so nobody misses lunch, a cold mango smoothie after gym class, clear
+          prices, and a friendly "see you tomorrow!" so every student leaves happy and comes back.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🏪</span>
+            <div><p class="term-num">Term 6</p><h3>Pop-Up Retail / Micro-Food Stall</h3></div>
+          </div>
+          <p class="def">A small, temporary shop that opens for a short time instead of renting a permanent space.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>Simple Delicious Snacks is a pop-up! We set up at lunch, school events, and sports
+          days — low cost, no lease, and we go where the customers are.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">📊</span>
+            <div><p class="term-num">Term 7</p><h3>Menu Engineering</h3></div>
+          </div>
+          <p class="def">Designing your menu with smart placement, photos, and pricing so the most profitable items sell the most.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>Our "star" item is the Beef Sanbusa — popular AND profitable — so it sits at the top
+          of the menu with a big photo. The $2 mango smoothie is the low-cost add-on that makes
+          our combo deal an easy yes.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🧮</span>
+            <div><p class="term-num">Term 8</p><h3>Cost of Goods Sold (COGS)</h3></div>
+          </div>
+          <p class="def">The total cost of the ingredients and materials used to make the food you sell.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>One beef sanbusa costs us about $0.60 in ingredients (pastry, beef, onion, spices,
+          oil). We sell it for $4.00, so we keep about $3.40. Knowing our COGS helps us price
+          fairly and still make a profit.</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">🛡️</span>
+            <div><p class="term-num">Term 9</p><h3>Food Safety &amp; Sanitation Standards</h3></div>
+          </div>
+          <p class="def">Official rules — like Alberta Health Services guidelines and Foodsafe training — that keep food clean and safe to eat.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>We follow AHS basics: wash hands and wear gloves, tie hair back, keep raw beef away
+          from ready-to-eat food, keep cold food under 4°C and hot food over 60°C, and sanitize
+          every surface. (Full plan below!)</p></div>
+        </article>
+
+        <article class="term-card reveal">
+          <div class="term-head">
+            <span class="term-icon">✨</span>
+            <div><p class="term-num">Term 10</p><h3>Value Proposition</h3></div>
+          </div>
+          <p class="def">The special promise that makes customers choose you instead of somewhere else.</p>
+          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
+          <p>"Real East African street food, made fresh at school, for under $5." No one else in
+          our school — or the mall — offers that.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPERATIONS ============ -->
+  <section class="section darker" id="operations">
+    <div class="wrap">
+      <p class="kicker">Part 3 • Operations &amp; Tourism Plan</p>
+      <h2>How We Run the Stall</h2>
+      <p class="subtitle">Tourism, safety, and marketing — the plan behind the food.</p>
+
+      <div class="grid-3">
+
+        <div class="op-card reveal">
+          <div class="icon" style="margin-bottom:14px;">🌐</div>
+          <h3 style="font-size:18px;font-weight:800;">Tourism Connection</h3>
+          <p class="intro">Food is the fastest way to experience another culture — that is the heart of tourism.</p>
+          <ul>
+            <li>Food tourism is huge — travellers plan whole trips around what they will eat.</li>
+            <li>Our school welcomes international students, families, and visitors — Simple
+            Delicious Snacks gives them a real taste of East Africa without leaving the building.</li>
+            <li>Every dish has a story: sanbusa travelled ancient trade routes from the Middle
+            East and India to the Horn of Africa — we print that story on our stall sign.</li>
+            <li>At cultural nights we hand out "food passport" cards with one fun fact about each
+            dish — a mini vacation for your taste buds.</li>
+          </ul>
+        </div>
+
+        <div class="op-card reveal">
+          <div class="icon" style="margin-bottom:14px;">🛡️</div>
+          <h3 style="font-size:18px;font-weight:800;">Food Safety &amp; Hygiene</h3>
+          <p class="intro">We follow Alberta Health Services food safety basics — no shortcuts.</p>
+          <ul>
+            <li>Wash hands for 20 seconds before prep, after raw meat, and after touching your
+            face or phone; wear gloves for ready-to-eat food.</li>
+            <li>Hair tied back, clean apron, no jewellery — anyone feeling sick stays home.</li>
+            <li>No cross-contamination: separate boards &amp; containers for raw beef; raw meat
+            always on the bottom fridge shelf.</li>
+            <li>Temperature control: fridge at or below 4°C, hot food held above 60°C, beef
+            cooked fully — no pink inside.</li>
+            <li>Fryer safety: dry potatoes before frying, never leave hot oil unattended, keep a
+            lid close by.</li>
+            <li>Allergens labelled (gluten in pastry, milk in the mango smoothie) and we always
+            ask about allergies before serving.</li>
+            <li>Clean-as-you-go: sanitize counters before &amp; after service, wash dishes in hot
+            soapy water, take out garbage daily.</li>
+          </ul>
+        </div>
+
+        <div class="op-card reveal">
+          <div class="icon" style="margin-bottom:14px;">📣</div>
+          <h3 style="font-size:18px;font-weight:800;">Marketing Plan</h3>
+          <p class="intro">Get students excited before we even open the window.</p>
+          <ul>
+            <li>Posters with big food photos, prices, and our stall location — up one week before
+            launch day.</li>
+            <li>Morning announcements + free mini sanbusa samples on launch day to create buzz.</li>
+            <li>Instagram &amp; TikTok: @SimpleDeliciousSnacks — daily menu stories,
+            behind-the-scenes cooking videos, customer shout-outs.</li>
+            <li>Combo deal (Sanbusa + Mango Smoothie for $5.50) and a loyalty card: buy 5
+            lunches, get a free smoothie.</li>
+            <li>Pre-order slips in homeroom so students with short breaks skip the line.</li>
+            <li>Word of mouth — happy students are the best advertising we could ask for.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap inner">
+    <div class="fbrand"><span class="logo">🥟</span> Simple Delicious Snacks</div>
+    <p>A "My FoodSpace" project by <strong>Siham</strong> — Intro to Culinary Arts (TOU1010), <span id="year">2026</span>–2027.</p>
+    <nav aria-label="Footer navigation">
+      <a href="#concept">Concept</a>
+      <a href="#menu">Menu</a>
+      <a href="#terms">Key Terms</a>
+      <a href="#operations">Operations</a>
+    </nav>
+    <p class="fine">Sample prices in Canadian dollars (CAD) — created for a school project. Karibu! (Welcome!)</p>
+  </div>
+</footer>
+
+<!-- ============ ORDER BAR (JavaScript) ============ -->
+<div id="order-bar" role="status" aria-live="polite">
+  <div>
+    <div class="items" id="order-items">Your order:</div>
+    <div class="total">Total: <b id="order-total">$0.00</b> <span id="order-discount" style="color:#FDE68A;font-size:12px;font-weight:700;"></span></div>
+  </div>
+  <button id="clear-order">Clear ✕</button>
+</div>
+
+<script>
+/* ============================================================
+   SIMPLE DELICIOUS SNACKS — JavaScript
+   Three simple features:
+     1. Mobile hamburger menu
+     2. Menu filter (All / Snacks / Drinks)
+     3. "Add to order" calculator with the combo discount
+   ============================================================ */
+
+/* ---------- 1. MOBILE HAMBURGER MENU ---------- */
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+
+hamburger.addEventListener("click", function () {
+  const isOpen = navLinks.classList.toggle("open");
+  hamburger.setAttribute("aria-expanded", isOpen);
+});
+
+/* close the mobile menu after tapping a link */
+navLinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navLinks.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+  });
+});
+
+/* ---------- 2. MENU FILTER (All / Snacks / Drinks) ---------- */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const menuCards = document.querySelectorAll(".menu-card");
+
+filterButtons.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    // highlight the clicked button
+    filterButtons.forEach(function (b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+
+    // show/hide cards by their data-category
+    const chosen = btn.dataset.filter; // "all", "snack" or "drink"
+    menuCards.forEach(function (card) {
+      card.style.display = (chosen === "all" || card.dataset.category === chosen) ? "" : "none";
+    });
+  });
+});
+
+/* ---------- 3. "ADD TO ORDER" CALCULATOR ---------- */
+const order = {}; // e.g. { "Beef Sanbusa": 2 }
+const PRICES = { "Beef Sanbusa": 4.0, "Viazi Karai": 4.0, "Mango Smoothie": 2.0 };
+const COMBO_SAVE = 0.50; // save $0.50 for each Sanbusa + Mango Smoothie pair
+
+const orderBar = document.getElementById("order-bar");
+const orderItemsEl = document.getElementById("order-items");
+const orderTotalEl = document.getElementById("order-total");
+const orderDiscEl = document.getElementById("order-discount");
+const clearBtn = document.getElementById("clear-order");
+
+function money(n) { return "$" + n.toFixed(2); }
+
+function updateOrderBar() {
+  const names = Object.keys(order);
+  if (names.length === 0) { // nothing in the order → hide the bar
+    orderBar.classList.remove("show");
+    return;
+  }
+
+  // build text like: "2 × Beef Sanbusa, 1 × Mango Smoothie"
+  const parts = [];
+  names.forEach(function (name) {
+    parts.push(order[name] + " × " + name);
+  });
+  orderItemsEl.textContent = "Your order: " + parts.join(", ");
+
+  // add up the total
+  let total = 0;
+  names.forEach(function (name) {
+    total += order[name] * PRICES[name];
+  });
+
+  // apply the combo discount (Sanbusa + Mango Smoothie pairs)
+  const sanbusa = order["Beef Sanbusa"] || 0;
+  const smoothie = order["Mango Smoothie"] || 0;
+  const pairs = Math.min(sanbusa, smoothie);
+  const discount = pairs * COMBO_SAVE;
+  total -= discount;
+
+  orderTotalEl.textContent = money(total);
+  orderDiscEl.textContent = discount > 0 ? "(combo −" + money(discount) + " 🎉)" : "";
+  orderBar.classList.add("show");
+}
+
+// every "+ Add to order" button on the menu cards
+document.querySelectorAll(".add-btn").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    const name = btn.dataset.item;
+    order[name] = (order[name] || 0) + 1;
+    updateOrderBar();
+  });
+});
+
+clearBtn.addEventListener("click", function () {
+  Object.keys(order).forEach(function (k) { delete order[k]; });
+  updateOrderBar();
+});
+
+/* ---------- 4. REVEAL-ON-SCROLL ANIMATION ---------- */
+const observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target); // animate only once
     }
-    @media (max-width: 768px) {
-            .recipe-grid {
-                flex-direction: column;   /* Changes side-by-side into top-and-bottom */
-            }
-            .ingredients-box, .instructions-box {
-                width: 100%;             /* Boxes expand to full screen width */
-            }
-          }
-          </style>
-          </head>
-          </body>
-          <!-- TOP HEADER SECTION -->
-              <header class="header">
-                  <h1>Classic Chocolate Chip Cookies</h1>
-                  <p>Prep Time: 15 mins | Bake Time: 10 mins | Yield: 24 Cookies</p>
-              </header>
-          
-              <!-- MAIN TWO-COLUMN CONTAINER -->
-              <div class="recipe-grid">
-                  
-                  <!-- LEFT SIDE: INGREDIENTS BOX (flex: 1) -->
-                  <div class="ingredients-box">
-                      <h2>Ingredients</h2>
-                      <ul class="ingredient-list">
-                          <!-- <input type="checkbox"> creates clickable checkboxes for ingredients -->
-                          <li><input type="checkbox"> 1 cup (2 sticks) unsalted butter, softened</li>
-                          <li><input type="checkbox"> 3/4 cup granulated white sugar</li>
-                          <li><input type="checkbox"> 3/4 cup packed brown sugar</li>
-                          <li><input type="checkbox"> 2 large eggs</li>
-                          <li><input type="checkbox"> 1 teaspoon vanilla extract</li>
-                          <li><input type="checkbox"> 2 1/4 cups all-purpose flour</li>
-                          <li><input type="checkbox"> 1 teaspoon baking soda</li>
-                          <li><input type="checkbox"> 1/2 teaspoon salt</li>
-                          <li><input type="checkbox"> 2 cups semi-sweet chocolate chips</li>
-                      </ul>
-          
-                      <!-- Extra helpful tip box inside the ingredients container -->
-                      <div class="baker-tip">
-                          <strong>💡 Baker's Tip:</strong> Chill your dough in the fridge for 30 minutes before baking for thicker, extra-chewy cookies!
-                      </div>
-                  </div>
-          
-                  <!-- RIGHT SIDE: BIG INSTRUCTIONS BOX (flex: 1.5) -->
-                  <div class="instructions-box">
-                      <h2>Step-by-Step Instructions</h2>
-                      
-                      <ul class="step-list">
-                          <!-- STEP 1 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">1</div> <!-- Round Number Badge -->
-                              <div class="step-text">
-                                  <h3>Preheat Oven</h3>
-                                  <p>Set your oven to 375°F (190°C). Line two baking sheets with parchment paper.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 2 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">2</div>
-                              <div class="step-text">
-                                  <h3>Mix Dry Ingredients</h3>
-                                  <p>In a medium bowl, whisk together flour, baking soda, and salt. Set aside.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 3 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">3</div>
-                              <div class="step-text">
-                                  <h3>Cream Butter & Sugars</h3>
-                                  <p>In a large bowl, beat the softened butter, white sugar, and brown sugar together on medium speed for about 2 minutes until smooth and creamy.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 4 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">4</div>
-                              <div class="step-text">
-                                  <h3>Add Wet Ingredients</h3>
-                                  <p>Add eggs one at a time, beating well after each. Stir in the vanilla extract.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 5 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">5</div>
-                              <div class="step-text">
-                                  <h3>Combine Wet & Dry</h3>
-                                  <p>Gradually mix the dry flour mixture into the wet ingredients on low speed until just combined (don't overmix!).</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 6 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">6</div>
-                              <div class="step-text">
-                                  <h3>Fold in Chocolate Chips</h3>
-                                  <p>Gently stir in the chocolate chips using a spatula or wooden spoon.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 7 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">7</div>
-                              <div class="step-text">
-                                  <h3>Scoop Dough</h3>
-                                  <p>Drop rounded tablespoons of dough onto the baking sheets, leaving about 2 inches between cookies.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 8 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">8</div>
-                              <div class="step-text">
-                                  <h3>Bake</h3>
-                                  <p>Bake for 9 to 11 minutes until edges are golden brown and centers are slightly soft.</p>
-                              </div>
-                          </li>
-          
-                          <!-- STEP 9 CARD -->
-                          <li class="step-item">
-                              <div class="step-number">9</div>
-                              <div class="step-text">
-                                  <h3>Cool & Enjoy</h3>
-                                  <p>Let cookies cool on the sheet for 5 minutes, then move them to a wire rack to cool completely.</p>
-                              </div>
-                          </li>
-                      </ul>
-                  </div>
-          
-              </div>
-          
-          </body>
-          </html>
-        
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
+
+/* ---------- 5. CURRENT YEAR IN THE FOOTER ---------- */
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
+
+
