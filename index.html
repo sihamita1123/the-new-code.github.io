@@ -1,897 +1,1865 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Simple Delicious Snacks — My FoodSpace Project</title>
-<meta name="description" content="A taste of East Africa at our school pop-up stall: beef sanbusa, viazi karai, and a fresh mango smoothie. A My FoodSpace project by Siham for Intro to Culinary Arts (TOU1010)." />
-<meta name="author" content="Siham" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Locker Letters</title>
 <style>
-/* ============================================================
-   SIMPLE DELICIOUS SNACKS — My FoodSpace project by Siham
-   One single file: HTML + CSS + JavaScript. No installs needed.
-   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f5f3ef; --ink:#1f2433; --muted:#69707f; --line:#e6e2d8;
+  --brand:#4f46e5; --brand2:#7c3aed; --brand-soft:#eef0ff;
+  --gold:#b45309; --goldbg:#fef3c7; --green:#0e9f6e; --greenbg:#def7ec;
+  --red:#c81e1e; --redbg:#fee2e2;
+  --shadow:0 8px 24px rgba(31,36,51,.08);
+  --font:'Segoe UI',system-ui,-apple-system,'Noto Sans',Roboto,'Helvetica Neue',Arial,sans-serif;
+}
+html,body{min-height:100%}
+body{
+  font-family:var(--font); color:var(--ink); line-height:1.55;
+  background:
+    radial-gradient(1100px 480px at 88% -60px,#e9e5ff 0%,transparent 60%),
+    radial-gradient(900px 420px at -10% 25%,#fdf1d8 0%,transparent 55%),
+    var(--bg);
+}
+button{font:inherit}
+b{font-weight:700}
+h1,h2,h3,h4{line-height:1.25}
 
-/* ---------- 1. COLOURS & BASE ---------- */
-:root {
-  --cream: #FFF8F0; /* page background */
-  --cream-2: #FFF1DE; /* darker section background */
-  --cream-3: #FFF3E2; /* boxes inside cards */
-  --ink: #451A03; /* darkest brown (headings) */
-  --brown: #7C4A21; /* soft brown (body text) */
-  --dark: #5B2E0E; /* medium brown (body text) */
-  --orange: #C2410C; /* main orange (buttons) */
-  --orange-2: #9A3412; /* darker orange (hover) */
-  --amber: #D97706; /* gold accent */
-  --amber-soft: #FEF3C7; /* pale gold box */
-  --line: #FED7AA; /* light orange border */
-}
+/* layout */
+.page{max-width:980px;margin:0 auto;padding:6px 16px 50px}
+.landing{max-width:880px;margin:0 auto;padding:10px 16px 50px}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 0 40px}
+.topbar{display:flex;justify-content:space-between;align-items:center;max-width:980px;margin:0 auto;padding:14px 16px 4px;flex-wrap:wrap;gap:10px}
+.brandrow{display:flex;align-items:center;gap:10px;font-size:17px}
+.tright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* brand */
+.logo{display:inline-flex;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:13px;flex:0 0 auto}
+.logo.big{width:64px;height:64px;font-size:26px;border-radius:16px}
+.hero{text-align:center;padding:44px 0 24px}
+.hero h1{font-size:34px;margin:14px 0 6px}
+.tag{color:var(--muted);font-size:16px}
 
-html { scroll-behavior: smooth; }
+/* cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.chead h3{font-size:17px}
+.card h4{margin:4px 0 6px}
+.muted{color:var(--muted)}
 
-body {
-  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.6;
-}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.role{cursor:pointer;transition:transform .15s}
+.role:hover{transform:translateY(-3px)}
+.role p{color:var(--muted);font-size:14px;margin:6px 0 16px}
+.role-ic{width:44px;height:44px;border-radius:12px;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.role-ic.stud{background:linear-gradient(135deg,#4f46e5,#7c3aed)}
+.role-ic.vol{background:linear-gradient(135deg,#f59e0b,#ef4444)}
 
-section { scroll-margin-top: 90px; } /* so anchors don't hide under the sticky nav */
+/* buttons, badges, inputs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:12px;border:1px solid transparent;cursor:pointer;font-weight:600;background:#e8e5dd;color:var(--ink)}
+.btn:hover{filter:brightness(.96)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.primary{background:var(--brand);color:#fff}
+.btn.gold{background:var(--goldbg);color:var(--gold);border-color:#fcd34d}
+.btn.danger{background:var(--redbg);color:var(--red)}
+.btn.ghost{background:transparent;border-color:var(--line)}
+.btn.sm{padding:7px 12px;font-size:13px}
+.btnrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#ece9e0;color:var(--muted)}
+.badge.brand{background:var(--brand-soft);color:var(--brand)}
+.badge.gold{background:var(--goldbg);color:var(--gold)}
+.badge.green{background:var(--greenbg);color:var(--green)}
+.badge.red{background:var(--redbg);color:var(--red)}
+.in{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--ink)}
+.in:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+textarea.in{min-height:72px;resize:vertical;margin-bottom:6px}
+.qlbl{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
+.sel{padding:8px 10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink);max-width:180px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{flex:1;padding:9px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:600}
+.tab.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.auth{max-width:460px;margin:0 auto}
 
-img { max-width: 100%; display: block; }
+/* student dashboard */
+.pts-big{font-size:44px;font-weight:800;color:var(--brand);line-height:1}
+.hero-card{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.goals{flex:1;min-width:240px}
+.goal{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;margin-bottom:4px}
+.pbar{height:10px;background:#ece9e0;border-radius:99px;overflow:hidden;margin:8px 0 12px}
+.pbar>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2));border-radius:99px;transition:width .4s}
+.pbar.gold>div{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.cyclechip{display:flex;align-items:center;gap:9px;background:var(--greenbg);color:#065f46;padding:10px 14px;border-radius:12px;font-size:14px;margin:0 0 6px;flex-wrap:wrap}
+.banner{padding:12px 16px;border-radius:14px;font-weight:600;margin:14px 0}
+.goldb{background:var(--goldbg);color:var(--gold);border:1px solid #fcd34d}
+.stitle{font-size:18px;font-weight:800;margin:26px 0 12px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.tasks{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.span2{grid-column:1/-1}
+.ldot{width:9px;height:9px;border-radius:50%;background:var(--green);display:inline-block;flex:0 0 auto}
+.ldot.red{background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-.wrap { max-width: 1150px; margin: 0 auto; padding: 0 20px; }
+/* riddle */
+.timer{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
+.timer b{font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.tbar{height:8px;background:#ece9e0;border-radius:99px;overflow:hidden;margin:8px 0 12px}
+.tbar>div{height:100%;background:linear-gradient(90deg,#f59e0b,#ef4444);border-radius:99px;transition:width .6s linear}
+.q{font-weight:700;font-size:16px;margin-bottom:4px}
+.opt{display:block;width:100%;text-align:left;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;margin-top:8px}
+.opt:hover{border-color:#c9c4f7}
+.opt.sel{border-color:var(--brand);background:var(--brand-soft);font-weight:600}
+.lockbox{background:var(--redbg);color:var(--red);padding:12px 14px;border-radius:12px;font-weight:600}
+.code{font-family:Consolas,Menlo,monospace;font-size:19px;font-weight:700;letter-spacing:1.5px;background:#fffbeb;border:1px dashed #f59e0b;border-radius:10px;padding:8px 10px;margin:10px 0;display:inline-block}
 
-/* ---------- 2. NAVIGATION ---------- */
-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 248, 240, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line);
-}
-.nav {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; padding: 12px 20px; max-width: 1150px; margin: 0 auto;
-  flex-wrap: wrap;
-}
-.brand {
-  display: flex; align-items: center; gap: 8px;
-  font-weight: 800; font-size: 18px; color: var(--ink);
-  text-decoration: none;
-}
-.brand .logo {
-  width: 36px; height: 36px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  font-size: 18px;
-}
-.brand em { color: var(--orange); font-style: normal; }
-.nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.nav-links a {
-  text-decoration: none; color: #7C2D12; font-weight: 600; font-size: 14px;
-  padding: 8px 12px; border-radius: 999px;
-}
-.nav-links a:hover { background: var(--amber-soft); color: var(--orange-2); }
-.nav-cta {
-  background: var(--orange); color: #fff !important; font-weight: 700;
-  padding: 8px 16px !important; box-shadow: 0 1px 3px rgba(69,26,3,.2);
-}
-.nav-cta:hover { background: var(--orange-2); }
+/* stars + reviews */
+.stars{display:flex;gap:4px;direction:ltr;margin:6px 0 10px}
+.st{font-size:30px;background:none;border:none;cursor:pointer;color:#d8d3c4;line-height:1;padding:0 2px}
+.st.on{color:#f59e0b}
+.revwall{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.rcard{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fffdf7}
+.rhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.rlock{color:var(--muted)}
+.rtime{margin-left:auto;color:var(--muted)}
+.stars-s{color:#f59e0b;letter-spacing:2px}
+.rcard p{font-size:14px;margin-top:4px;white-space:pre-wrap}
+.rewgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sochips{display:flex;flex-wrap:wrap;gap:8px}
+.sochip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.sochip small{color:var(--muted);font-weight:500}
 
-/* hamburger button (only visible on phones) */
-#hamburger {
-  display: none; background: none; border: 2px solid var(--line);
-  border-radius: 10px; font-size: 20px; padding: 4px 12px; cursor: pointer;
-  color: var(--ink);
-}
+/* volunteer */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.stat b{font-size:26px;display:block}
+.stat span{font-size:12px;color:var(--muted)}
+table.vt{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.vt th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px;border-bottom:2px solid var(--line)}
+.vt td{padding:10px 10px;border-bottom:1px solid var(--line)}
+.vt tr:last-child td{border-bottom:none}
+.vwrap{overflow-x:auto}
 
-/* ---------- 3. HERO ---------- */
-.hero {
-  position: relative; overflow: hidden;
-  background: linear-gradient(180deg, #FFE8CC 0%, #FFF3E2 55%, var(--cream) 100%);
-}
-.hero-inner {
-  display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px;
-  align-items: center; padding: 64px 0 72px;
-}
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid #FCD34D; background: rgba(255,255,255,.7);
-  color: #92400E; font-size: 12px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px;
-  padding: 6px 16px; border-radius: 999px;
-}
-.hero h1 {
-  margin-top: 20px;
-  font-size: 56px; font-weight: 900; line-height: 1.1; letter-spacing: -1px;
-}
-.hero h1 span {
-  background: linear-gradient(90deg, var(--orange), #EA580C, var(--amber));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: var(--orange);
-}
-.tagline { margin-top: 16px; font-size: 20px; font-weight: 700; color: var(--orange-2); }
-.hero p.lead { margin-top: 12px; max-width: 480px; color: var(--brown); }
-.btn-row { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-.btn {
-  display: inline-block; text-decoration: none; font-weight: 700; font-size: 14px;
-  padding: 12px 24px; border-radius: 999px;
-  transition: transform .2s, box-shadow .2s, background .2s;
-}
-.btn-primary { background: var(--orange); color: #fff; box-shadow: 0 4px 10px rgba(194,65,12,.3); }
-.btn-primary:hover { background: var(--orange-2); transform: translateY(-2px); }
-.btn-outline { background: #fff; color: var(--orange-2); border: 2px solid var(--orange); }
-.btn-outline:hover { background: var(--amber-soft); transform: translateY(-2px); }
-.chips { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
-.chips li {
-  background: #fff; border: 1px solid var(--line);
-  padding: 6px 14px; border-radius: 999px;
-  font-size: 12px; font-weight: 600; color: #7C2D12;
-  box-shadow: 0 1px 2px rgba(69,26,3,.06);
-}
-.hero-img { position: relative; max-width: 430px; margin: 0 auto; width: 100%; }
-.hero-img::before {
-  content: ""; position: absolute; inset: 0;
-  transform: rotate(-3deg); border-radius: 32px;
-  background: linear-gradient(135deg, #FBBF24, #EA580C); opacity: .3;
-}
-.hero-img img {
-  position: relative; border-radius: 32px; border: 8px solid #fff;
-  transform: rotate(1deg); box-shadow: 0 20px 40px rgba(69,26,3,.18);
-}
-.hero-caption {
-  position: absolute; left: 50%; bottom: -16px; transform: translateX(-50%);
-  background: var(--ink); color: #FDE68A;
-  padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 700;
-  white-space: nowrap; box-shadow: 0 8px 20px rgba(69,26,3,.3);
-}
+/* language picker */
+.langgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:14px 0 4px;max-height:300px;overflow-y:auto;padding:2px}
+.chip{text-align:left;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:#fff;cursor:pointer;line-height:1.3}
+.chip b{display:block;font-size:14px}
+.chip small{color:var(--muted);font-size:11px}
+.chip.sel{border-color:var(--brand);background:var(--brand-soft)}
+.chip.sel b{color:var(--brand)}
 
-/* ---------- 4. SECTIONS ---------- */
-.section { padding: 80px 0; }
-.section.darker { background: var(--cream-2); }
-.kicker {
-  text-align: center; color: var(--amber);
-  font-size: 12px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase;
-}
-.section h2 { text-align: center; font-size: 34px; font-weight: 900; margin-top: 8px; }
-.subtitle {
-  text-align: center; color: var(--brown); max-width: 620px;
-  margin: 12px auto 0; font-size: 15px;
-}
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 44px; }
+/* toast */
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#111827;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;max-width:90vw;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#toast.show{opacity:1}
 
-/* concept */
-.concept-intro {
-  margin: 40px auto 0; max-width: 760px; text-align: center;
-  background: #fff; border: 1px solid var(--line); border-radius: 20px;
-  padding: 24px 28px; color: var(--dark);
-  box-shadow: 0 1px 4px rgba(69,26,3,.06);
-}
-.concept-intro strong { color: var(--orange-2); }
-.card {
-  background: #fff; border: 1px solid #FFEDD5; border-radius: 24px;
-  padding: 24px; box-shadow: 0 1px 4px rgba(69,26,3,.06);
-  transition: transform .25s, box-shadow .25s;
-}
-.card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(69,26,3,.1); }
-.card .icon {
-  width: 48px; height: 48px; border-radius: 16px; margin-bottom: 14px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  color: #fff; font-size: 22px;
-}
-.card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-.card p { font-size: 14px; color: var(--brown); }
-
-/* menu cards */
-.menu-card {
-  background: #fff; border-radius: 24px; overflow: hidden;
-  box-shadow: 0 1px 4px rgba(69,26,3,.08); border: 1px solid #FFEDD5;
-  display: flex; flex-direction: column;
-  transition: transform .25s, box-shadow .25s;
-}
-.menu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(69,26,3,.14); }
-.menu-card .photo { position: relative; height: 190px; overflow: hidden; }
-.menu-card .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.menu-card:hover .photo img { transform: scale(1.06); }
-.menu-card .cat {
-  position: absolute; top: 14px; left: 14px;
-  background: rgba(69,26,3,.85); color: #FDE68A;
-  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-  padding: 4px 12px; border-radius: 999px;
-}
-.menu-body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.menu-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
-.menu-top h3 { font-size: 20px; font-weight: 800; }
-.price { text-align: right; }
-.price b { color: var(--orange); font-size: 20px; font-weight: 900; display: block; }
-.price small { color: #A16207; font-size: 11px; font-weight: 600; }
-.menu-badge {
-  width: fit-content; background: var(--amber-soft); color: #92400E;
-  font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
-}
-.menu-body > p { font-size: 14px; color: var(--dark); }
-.recipe {
-  background: var(--cream-3); border-radius: 18px; padding: 14px 16px; margin-top: auto;
-}
-.recipe h4 {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
-  color: var(--orange-2); font-weight: 900;
-}
-.recipe p { font-size: 12px; color: var(--brown); margin-top: 4px; }
-.recipe h4 + p { margin-top: 4px; }
-.recipe .gap { margin-top: 12px; }
-.add-btn {
-  margin-top: 4px; width: 100%; border: none; cursor: pointer;
-  background: var(--orange); color: #fff; font-family: inherit;
-  font-size: 14px; font-weight: 700; padding: 10px; border-radius: 999px;
-  transition: background .2s;
-}
-.add-btn:hover { background: var(--orange-2); }
-
-/* filter buttons */
-.filters { display: flex; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
-.filter-btn {
-  border: 2px solid var(--line); background: #fff; color: #7C2D12;
-  font-family: inherit; font-weight: 700; font-size: 13px;
-  padding: 8px 20px; border-radius: 999px; cursor: pointer;
-}
-.filter-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
-
-/* combo banner */
-.combo {
-  margin: 44px auto 0; max-width: 680px;
-  background: linear-gradient(90deg, var(--orange), #D97706);
-  color: #fff; border-radius: 24px; padding: 24px 28px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  box-shadow: 0 10px 24px rgba(194,65,12,.3); flex-wrap: wrap;
-}
-.combo .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #FDE68A; }
-.combo .deal { font-size: 17px; font-weight: 800; margin-top: 2px; }
-.combo .deal span { color: #FDE68A; font-weight: 600; }
-.combo .perk {
-  background: rgba(255,255,255,.2); padding: 8px 16px;
-  border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap;
+@media(max-width:760px){
+  .grid2,.tasks,.rewgrid,.revwall{grid-template-columns:1fr}
+  .span2{grid-column:auto}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:28px}
 }
 
-/* term cards */
-.term-card {
-  background: #fff; border: 1px solid #FFEDD5; border-radius: 24px;
-  padding: 22px; box-shadow: 0 1px 4px rgba(69,26,3,.06);
+/* print */
+#printArea{display:none}
+@media print{
+  body{background:#fff!important}
+  #app,#toast{display:none!important}
+  #printArea{display:block!important}
 }
-.term-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.term-icon {
-  width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  color: #fff; font-size: 20px;
-}
-.term-num { font-size: 11px; font-weight: 900; letter-spacing: 2px; color: var(--amber); text-transform: uppercase; }
-.term-head h3 { font-size: 17px; font-weight: 800; line-height: 1.3; }
-.term-card .def { font-size: 14px; color: var(--dark); }
-.app-box {
-  margin-top: 14px; background: #FFFBEB; border-left: 4px solid #FBBF24;
-  border-radius: 12px; padding: 12px 16px;
-}
-.app-box h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #B45309; font-weight: 900; }
-.app-box p { font-size: 14px; color: var(--brown); margin-top: 4px; }
-
-/* operations cards */
-.op-card {
-  background: #fff; border-radius: 24px; padding: 24px;
-  box-shadow: 0 1px 4px rgba(69,26,3,.08); border: 1px solid #FFEDD5;
-  display: flex; flex-direction: column;
-}
-.op-card .intro { font-size: 13px; font-style: italic; color: #A16207; margin-top: 6px; }
-.op-card ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
-.op-card li { display: flex; gap: 8px; font-size: 14px; color: var(--dark); }
-.op-card li::before { content: "✔"; color: var(--orange); font-weight: 900; flex-shrink: 0; }
-
-/* order bar (the JavaScript part!) */
-#order-bar {
-  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
-  width: min(680px, calc(100% - 32px));
-  background: var(--ink); color: #FFF7ED;
-  border-radius: 18px; padding: 14px 20px;
-  display: none; justify-content: space-between; align-items: center; gap: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.35); z-index: 60; flex-wrap: wrap;
-}
-#order-bar.show { display: flex; }
-#order-bar .total b { color: #FDBA74; font-size: 18px; }
-#order-bar .items { font-size: 12.5px; color: #FDE68A; }
-#clear-order {
-  border: none; cursor: pointer; font-family: inherit;
-  background: rgba(255,255,255,.15); color: #fff;
-  padding: 8px 16px; border-radius: 999px; font-weight: 700; font-size: 13px;
-}
-#clear-order:hover { background: rgba(255,255,255,.3); }
-
-/* footer */
-footer { background: var(--ink); color: #FFFBEB; padding: 44px 0; }
-footer .inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-footer .fbrand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; }
-footer .fbrand .logo {
-  width: 36px; height: 36px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #F97316, #FBBF24); font-size: 18px;
-}
-footer p { max-width: 560px; font-size: 14px; color: rgba(254,243,233,.9); }
-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-footer nav a {
-  color: #FDE68A; text-decoration: none; font-size: 14px; font-weight: 600;
-  padding: 8px 16px; border-radius: 999px;
-}
-footer nav a:hover { background: rgba(255,255,255,.1); }
-footer .fine { font-size: 12px; color: rgba(253,230,138,.6); }
-
-/* reveal-on-scroll animation */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* ---------- 5. MOBILE ---------- */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; padding: 44px 0 60px; }
-  .hero h1 { font-size: 40px; }
-  .grid-3, .grid-2 { grid-template-columns: 1fr; }
-  #hamburger { display: block; }
-  .nav-links {
-    display: none; width: 100%; flex-direction: column; align-items: stretch;
-    padding-bottom: 10px;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { text-align: center; padding: 12px; }
-  .combo { justify-content: center; text-align: center; }
-}
+.vdoc{width:360px;margin:40px auto;border:3px dashed #b45309;border-radius:16px;overflow:hidden;font-family:var(--font);color:#3d2704}
+.vhead{background:#f59e0b;color:#3d2704;text-align:center;font-weight:800;padding:14px;letter-spacing:2px;font-size:16px}
+.vbody{padding:18px;text-align:center}
+.vcode{font-family:Consolas,Menlo,monospace;font-size:22px;font-weight:700;letter-spacing:2px;margin:10px 0}
+.vrow{font-size:14px;margin:8px 0}
+.vnote{font-size:12px;color:#7c5a1e;margin-top:10px}
+.vdate{font-size:12px;color:#7c5a1e;margin-top:6px}
+.cdoc{width:700px;max-width:96%;margin:30px auto;border:10px double #b45309;border-radius:6px;padding:8px;background:#fffdf6}
+.cinner{border:2px solid #b45309;padding:42px 30px;text-align:center;font-family:Georgia,'Times New Roman',serif;color:#3d2704}
+.cbrand{font-family:var(--font);font-weight:800;letter-spacing:3px;font-size:13px;text-transform:uppercase;color:#b45309}
+.ctitle{font-size:34px;margin:14px 0;letter-spacing:1px}
+.cpres{margin-top:16px;font-size:14px;color:#7c5a1e}
+.cname{font-size:32px;font-style:italic;margin:8px 0}
+.clock{font-size:15px;margin-bottom:14px}
+.cfor{font-size:15px;max-width:420px;margin:0 auto 14px}
+.cpts{font-size:15px;margin-bottom:26px}
+.cfoot{display:flex;justify-content:space-between;align-items:flex-end;font-size:13px;color:#7c5a1e;border-top:1px solid #e7d9b8;padding-top:14px}
+.csig{font-style:italic}
 </style>
 </head>
-
 <body>
-
-<!-- ============ NAVIGATION ============ -->
-<header>
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top">
-      <span class="logo">🥟</span>
-      Simple <em>Delicious Snacks</em>
-    </a>
-    <button id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <div class="nav-links" id="nav-links">
-      <a href="#concept">Concept</a>
-      <a href="#menu">Menu</a>
-      <a href="#terms">Key Terms</a>
-      <a href="#operations">Operations</a>
-      <a href="#menu" class="nav-cta">Order at lunch →</a>
-    </div>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div>
-        <span class="badge">🔥 My FoodSpace Project • Culinary Arts (TOU1010)</span>
-        <h1>Simple <span>Delicious Snacks</span></h1>
-        <p class="tagline">A taste of East Africa — one bite at a time. 🌍</p>
-        <p class="lead">
-          Real street food from the markets of Mogadishu &amp; Mombasa, made fresh at our
-          school pop-up stall: crispy beef sanbusa, golden viazi karai, and a cold mango
-          smoothie. Quick, tasty, and everything is under $5.
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#menu">See the Menu →</a>
-          <a class="btn btn-outline" href="#terms">Learn the Key Terms</a>
-        </div>
-        <ul class="chips" aria-label="Highlights">
-          <li>🧡 Made by Siham</li>
-          <li>🍗 Halal friendly</li>
-          <li>🌱 Vegetarian option</li>
-          <li>💸 Everything under $5</li>
-        </ul>
-      </div>
-      <div class="hero-img">
-        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/aa1dab8d773f.jpg"
-             alt="A golden fried beef sanbusa broken open showing the spiced meat filling" />
-        <span class="hero-caption">Fresh every lunch hour 🔥</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONCEPT ============ -->
-  <section class="section" id="concept">
-    <div class="wrap">
-      <p class="kicker">Part 2 • Concept &amp; Brand</p>
-      <h2>Our Concept</h2>
-      <p class="subtitle">What is Simple Delicious Snacks, and who is it for? Here is the big idea in three pieces.</p>
-
-      <div class="concept-intro reveal">
-        <strong>Simple Delicious Snacks</strong> brings the street markets of East Africa —
-        from Mogadishu to Mombasa — to our school hallway. Warm spices, crispy fried snacks,
-        and ice-cold mango smoothies, served fast and friendly. It is a
-        <strong>pop-up micro-food stall</strong>: small, temporary, and full of flavour.
-      </div>
-
-      <div class="grid-3">
-        <div class="card reveal">
-          <div class="icon">🎨</div>
-          <h3>Theme &amp; Vibe</h3>
-          <p>A mini East African street market: warm terracotta and gold colours, a market-stall
-          style counter, a chalkboard menu, and an African music playlist. Fun, colourful, and
-          welcoming — you feel the market the second you walk up.</p>
-        </div>
-        <div class="card reveal">
-          <div class="icon">🤲</div>
-          <h3>Service Style</h3>
-          <p>Counter service &amp; grab-and-go. You order at the window and get your food hot in
-          2–3 minutes — perfect for a short lunch break. Morning pre-orders skip the line completely.</p>
-        </div>
-        <div class="card reveal">
-          <div class="icon">🧑‍🤝‍🧑</div>
-          <h3>Target Market</h3>
-          <p>High school students &amp; teachers — especially athletes who need snacks after
-          practice, students who keep halal (our beef is halal), adventurous eaters, and anyone
-          with $5 who wants something better than chips.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MENU ============ -->
-  <section class="section darker" id="menu">
-    <div class="wrap">
-      <p class="kicker">Part 2 • Menu Design</p>
-      <h2>The Menu</h2>
-      <p class="subtitle">Three items, made fresh, priced for students. Snack, snack, and a drink — the perfect lunch combo.</p>
-
-      <!-- Filter buttons (JavaScript) -->
-      <div class="filters" role="group" aria-label="Filter menu">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="snack">Snacks 🥟</button>
-        <button class="filter-btn" data-filter="drink">Drinks 🥤</button>
-      </div>
-
-      <div class="grid-3" id="menu-grid">
-
-        <article class="menu-card reveal" data-category="snack">
-          <div class="photo">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/68f99dc81a35.jpg"
-                 alt="A platter piled high with golden crispy fried sanbusa pastries" loading="lazy" />
-            <span class="cat">Snack</span>
-          </div>
-          <div class="menu-body">
-            <div class="menu-top">
-              <h3>Beef Sanbusa</h3>
-              <div class="price"><b>$4.00</b><small>2 pieces</small></div>
-            </div>
-            <span class="menu-badge">⭐ Most Popular • Halal</span>
-            <p>Crispy golden pastry triangles stuffed with juicy spiced ground beef and sweet
-            onions — the king of East African street snacks.</p>
-            <div class="recipe">
-              <h4>What's inside</h4>
-              <p>Beef mince • Onion • Garlic • Cumin • Coriander • Sanbusa pastry</p>
-              <h4 class="gap">How we make it</h4>
-              <p>Cook the spiced beef filling → fold into triangles → deep-fry until golden and
-              crunchy → drain → serve hot.</p>
-            </div>
-            <button class="add-btn" data-item="Beef Sanbusa" data-price="4.00">+ Add to order</button>
-          </div>
-        </article>
-
-        <article class="menu-card reveal" data-category="snack">
-          <div class="photo">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/de6946206a3a.jpg"
-                 alt="Golden fried viazi karai potato bites in a basket with dipping sauce" loading="lazy" />
-            <span class="cat">Snack</span>
-          </div>
-          <div class="menu-body">
-            <div class="menu-top">
-              <h3>Viazi Karai</h3>
-              <div class="price"><b>$4.00</b><small>6 pieces</small></div>
-            </div>
-            <span class="menu-badge">🌱 100% Vegetarian</span>
-            <p>Crispy fried potato bites in a golden spiced chickpea-flour batter, served with a
-            tangy tamarind (ukwaju) dip — street food straight from the coast of Kenya.</p>
-            <div class="recipe">
-              <h4>What's inside</h4>
-              <p>Potatoes • Chickpea (gram) flour • Garlic • Chilli • Turmeric • Tamarind sauce</p>
-              <h4 class="gap">How we make it</h4>
-              <p>Boil &amp; cube the potatoes → dip in spiced batter → deep-fry until crispy
-              outside, soft inside → serve with dip.</p>
-            </div>
-            <button class="add-btn" data-item="Viazi Karai" data-price="4.00">+ Add to order</button>
-          </div>
-        </article>
-
-        <article class="menu-card reveal" data-category="drink">
-          <div class="photo">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a42e9da81076.jpg"
-                 alt="A cold creamy mango smoothie topped with fresh mango chunks" loading="lazy" />
-            <span class="cat">Drink</span>
-          </div>
-          <div class="menu-body">
-            <div class="menu-top">
-              <h3>Mango Smoothie</h3>
-              <div class="price"><b>$2.00</b><small>one cup</small></div>
-            </div>
-            <span class="menu-badge">🥭 100% Real Fruit</span>
-            <p>Cold, creamy blended mango drink — sweet, sunny, and super refreshing after gym
-            class or on a hot day.</p>
-            <div class="recipe">
-              <h4>What's inside</h4>
-              <p>Ripe mango • Milk • A little sugar • Ice</p>
-              <h4 class="gap">How we make it</h4>
-              <p>Peel &amp; cube the mango → blend with milk, sugar &amp; ice until smooth →
-              pour → serve cold.</p>
-            </div>
-            <button class="add-btn" data-item="Mango Smoothie" data-price="2.00">+ Add to order</button>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="combo reveal">
-        <div>
-          <p class="label">Combo deal</p>
-          <p class="deal">Beef Sanbusa (2 pcs) + Mango Smoothie = $5.50 <span>(save $0.50!)</span></p>
-        </div>
-        <span class="perk">Buy 5 lunches → free smoothie 🎉</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ KEY TERMS ============ -->
-  <section class="section" id="terms">
-    <div class="wrap">
-      <p class="kicker">Part 1 • Industry Terms Research</p>
-      <h2>10 Words Every Food Business Uses</h2>
-      <p class="subtitle">Each term is defined in simple words, then shown the way we actually use it at Simple Delicious Snacks.</p>
-
-      <div class="grid-2">
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🌐</span>
-            <div><p class="term-num">Term 1</p><h3>Tourism</h3></div>
-          </div>
-          <p class="def">When people travel to new places for fun, culture, or food — and spend money while they are there.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>Food is one of the top reasons travellers explore a new culture. Our stall is like a
-          mini trip to East Africa for students, teachers, and visitors at school events.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🤝</span>
-            <div><p class="term-num">Term 2</p><h3>Hospitality</h3></div>
-          </div>
-          <p class="def">Making guests feel welcome and taking good care of them from the moment they arrive.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>We greet every customer with a smile, keep the stall spotless, and make the wait fun
-          with music and the smell of fresh sanbusa.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🍽️</span>
-            <div><p class="term-num">Term 3</p><h3>Food &amp; Beverage (F&amp;B) Operations</h3></div>
-          </div>
-          <p class="def">All the work behind making and serving food and drinks — prepping, cooking, serving, and cleaning up.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>Every lunch hour we prep ingredients, fry sanbusa and viazi karai fresh, blend mango
-          smoothies, serve customers fast, and clean everything before the next class.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🎯</span>
-            <div><p class="term-num">Term 4</p><h3>Target Market</h3></div>
-          </div>
-          <p class="def">The specific group of people a business wants to sell to.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>High school students and teachers who want a quick, tasty lunch under $5 — especially
-          athletes after practice, students who eat halal, and anyone who loves new flavours.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">😊</span>
-            <div><p class="term-num">Term 5</p><h3>Customer Experience (GX / CX)</h3></div>
-          </div>
-          <p class="def">How a customer feels during every step of buying from you — before, during, and after.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>Fast service so nobody misses lunch, a cold mango smoothie after gym class, clear
-          prices, and a friendly "see you tomorrow!" so every student leaves happy and comes back.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🏪</span>
-            <div><p class="term-num">Term 6</p><h3>Pop-Up Retail / Micro-Food Stall</h3></div>
-          </div>
-          <p class="def">A small, temporary shop that opens for a short time instead of renting a permanent space.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>Simple Delicious Snacks is a pop-up! We set up at lunch, school events, and sports
-          days — low cost, no lease, and we go where the customers are.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">📊</span>
-            <div><p class="term-num">Term 7</p><h3>Menu Engineering</h3></div>
-          </div>
-          <p class="def">Designing your menu with smart placement, photos, and pricing so the most profitable items sell the most.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>Our "star" item is the Beef Sanbusa — popular AND profitable — so it sits at the top
-          of the menu with a big photo. The $2 mango smoothie is the low-cost add-on that makes
-          our combo deal an easy yes.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🧮</span>
-            <div><p class="term-num">Term 8</p><h3>Cost of Goods Sold (COGS)</h3></div>
-          </div>
-          <p class="def">The total cost of the ingredients and materials used to make the food you sell.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>One beef sanbusa costs us about $0.60 in ingredients (pastry, beef, onion, spices,
-          oil). We sell it for $4.00, so we keep about $3.40. Knowing our COGS helps us price
-          fairly and still make a profit.</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">🛡️</span>
-            <div><p class="term-num">Term 9</p><h3>Food Safety &amp; Sanitation Standards</h3></div>
-          </div>
-          <p class="def">Official rules — like Alberta Health Services guidelines and Foodsafe training — that keep food clean and safe to eat.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>We follow AHS basics: wash hands and wear gloves, tie hair back, keep raw beef away
-          from ready-to-eat food, keep cold food under 4°C and hot food over 60°C, and sanitize
-          every surface. (Full plan below!)</p></div>
-        </article>
-
-        <article class="term-card reveal">
-          <div class="term-head">
-            <span class="term-icon">✨</span>
-            <div><p class="term-num">Term 10</p><h3>Value Proposition</h3></div>
-          </div>
-          <p class="def">The special promise that makes customers choose you instead of somewhere else.</p>
-          <div class="app-box"><h4>At Simple Delicious Snacks</h4>
-          <p>"Real East African street food, made fresh at school, for under $5." No one else in
-          our school — or the mall — offers that.</p></div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ OPERATIONS ============ -->
-  <section class="section darker" id="operations">
-    <div class="wrap">
-      <p class="kicker">Part 3 • Operations &amp; Tourism Plan</p>
-      <h2>How We Run the Stall</h2>
-      <p class="subtitle">Tourism, safety, and marketing — the plan behind the food.</p>
-
-      <div class="grid-3">
-
-        <div class="op-card reveal">
-          <div class="icon" style="margin-bottom:14px;">🌐</div>
-          <h3 style="font-size:18px;font-weight:800;">Tourism Connection</h3>
-          <p class="intro">Food is the fastest way to experience another culture — that is the heart of tourism.</p>
-          <ul>
-            <li>Food tourism is huge — travellers plan whole trips around what they will eat.</li>
-            <li>Our school welcomes international students, families, and visitors — Simple
-            Delicious Snacks gives them a real taste of East Africa without leaving the building.</li>
-            <li>Every dish has a story: sanbusa travelled ancient trade routes from the Middle
-            East and India to the Horn of Africa — we print that story on our stall sign.</li>
-            <li>At cultural nights we hand out "food passport" cards with one fun fact about each
-            dish — a mini vacation for your taste buds.</li>
-          </ul>
-        </div>
-
-        <div class="op-card reveal">
-          <div class="icon" style="margin-bottom:14px;">🛡️</div>
-          <h3 style="font-size:18px;font-weight:800;">Food Safety &amp; Hygiene</h3>
-          <p class="intro">We follow Alberta Health Services food safety basics — no shortcuts.</p>
-          <ul>
-            <li>Wash hands for 20 seconds before prep, after raw meat, and after touching your
-            face or phone; wear gloves for ready-to-eat food.</li>
-            <li>Hair tied back, clean apron, no jewellery — anyone feeling sick stays home.</li>
-            <li>No cross-contamination: separate boards &amp; containers for raw beef; raw meat
-            always on the bottom fridge shelf.</li>
-            <li>Temperature control: fridge at or below 4°C, hot food held above 60°C, beef
-            cooked fully — no pink inside.</li>
-            <li>Fryer safety: dry potatoes before frying, never leave hot oil unattended, keep a
-            lid close by.</li>
-            <li>Allergens labelled (gluten in pastry, milk in the mango smoothie) and we always
-            ask about allergies before serving.</li>
-            <li>Clean-as-you-go: sanitize counters before &amp; after service, wash dishes in hot
-            soapy water, take out garbage daily.</li>
-          </ul>
-        </div>
-
-        <div class="op-card reveal">
-          <div class="icon" style="margin-bottom:14px;">📣</div>
-          <h3 style="font-size:18px;font-weight:800;">Marketing Plan</h3>
-          <p class="intro">Get students excited before we even open the window.</p>
-          <ul>
-            <li>Posters with big food photos, prices, and our stall location — up one week before
-            launch day.</li>
-            <li>Morning announcements + free mini sanbusa samples on launch day to create buzz.</li>
-            <li>Instagram &amp; TikTok: @SimpleDeliciousSnacks — daily menu stories,
-            behind-the-scenes cooking videos, customer shout-outs.</li>
-            <li>Combo deal (Sanbusa + Mango Smoothie for $5.50) and a loyalty card: buy 5
-            lunches, get a free smoothie.</li>
-            <li>Pre-order slips in homeroom so students with short breaks skip the line.</li>
-            <li>Word of mouth — happy students are the best advertising we could ask for.</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap inner">
-    <div class="fbrand"><span class="logo">🥟</span> Simple Delicious Snacks</div>
-    <p>A "My FoodSpace" project by <strong>Siham</strong> — Intro to Culinary Arts (TOU1010), <span id="year">2026</span>–2027.</p>
-    <nav aria-label="Footer navigation">
-      <a href="#concept">Concept</a>
-      <a href="#menu">Menu</a>
-      <a href="#terms">Key Terms</a>
-      <a href="#operations">Operations</a>
-    </nav>
-    <p class="fine">Sample prices in Canadian dollars (CAD) — created for a school project. Karibu! (Welcome!)</p>
-  </div>
-</footer>
-
-<!-- ============ ORDER BAR (JavaScript) ============ -->
-<div id="order-bar" role="status" aria-live="polite">
-  <div>
-    <div class="items" id="order-items">Your order:</div>
-    <div class="total">Total: <b id="order-total">$0.00</b> <span id="order-discount" style="color:#FDE68A;font-size:12px;font-weight:700;"></span></div>
-  </div>
-  <button id="clear-order">Clear ✕</button>
-</div>
-
+<div id="app"><main id="view"></main></div>
+<div id="toast" role="status"></div>
+<div id="printArea"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ============================================================
-   SIMPLE DELICIOUS SNACKS — JavaScript
-   Three simple features:
-     1. Mobile hamburger menu
-     2. Menu filter (All / Snacks / Drinks)
-     3. "Add to order" calculator with the combo discount
+   LOCKER LETTERS - single-file app (plain JavaScript, no server)
+   ------------------------------------------------------------
+   HOW TO RUN: just open this file in any browser. Double-click it.
+   No Node.js, no install, no build step needed.
+
+   SETTINGS YOU MAY EDIT:
+   - Volunteer password: see VOLUNTEER_PASSWORD below.
+   - Locker numbers: students register a locker from 1 to MAX_LOCKER.
+   - If the month-end lands on a weekend, tasks reset on the next
+     school day (Monday). Set WEEKEND_SHIFT to "previous" instead
+     if you prefer the Friday before.
    ============================================================ */
 
-/* ---------- 1. MOBILE HAMBURGER MENU ---------- */
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("nav-links");
+/* ---------- settings ---------- */
+var VOLUNTEER_PASSWORD = "Siham$muna2";   // <- volunteer panel password (fixed)
+var WEEKEND_SHIFT = "next";               // "next" = Saturday/Sunday moves to Monday, "previous" = moves to Friday
+var MAX_LOCKER = 1700;                    // students can register lockers 1 .. MAX_LOCKER only
 
-hamburger.addEventListener("click", function () {
-  const isOpen = navLinks.classList.toggle("open");
-  hamburger.setAttribute("aria-expanded", isOpen);
-});
+var POINTS = { claim: 12, story: 2, fact: 2, riddle: 2, feedback: 2 };
+var VOUCHER_AT = 50;
+var CERT_AT = 100;
+var DB_KEY = "lockerLettersDB_v1";
+var SES_KEY = "lockerLettersSession_v1";
+var RTL = { ar: 1, ur: 1, fa: 1, ps: 1, he: 1 };
 
-/* close the mobile menu after tapping a link */
-navLinks.querySelectorAll("a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    navLinks.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", "false");
-  });
-});
-
-/* ---------- 2. MENU FILTER (All / Snacks / Drinks) ---------- */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const menuCards = document.querySelectorAll(".menu-card");
-
-filterButtons.forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    // highlight the clicked button
-    filterButtons.forEach(function (b) { b.classList.remove("active"); });
-    btn.classList.add("active");
-
-    // show/hide cards by their data-category
-    const chosen = btn.dataset.filter; // "all", "snack" or "drink"
-    menuCards.forEach(function (card) {
-      card.style.display = (chosen === "all" || card.dataset.category === chosen) ? "" : "none";
-    });
-  });
-});
-
-/* ---------- 3. "ADD TO ORDER" CALCULATOR ---------- */
-const order = {}; // e.g. { "Beef Sanbusa": 2 }
-const PRICES = { "Beef Sanbusa": 4.0, "Viazi Karai": 4.0, "Mango Smoothie": 2.0 };
-const COMBO_SAVE = 0.50; // save $0.50 for each Sanbusa + Mango Smoothie pair
-
-const orderBar = document.getElementById("order-bar");
-const orderItemsEl = document.getElementById("order-items");
-const orderTotalEl = document.getElementById("order-total");
-const orderDiscEl = document.getElementById("order-discount");
-const clearBtn = document.getElementById("clear-order");
-
-function money(n) { return "$" + n.toFixed(2); }
-
-function updateOrderBar() {
-  const names = Object.keys(order);
-  if (names.length === 0) { // nothing in the order → hide the bar
-    orderBar.classList.remove("show");
-    return;
+/* ---------- monthly cycle engine ------------------------------
+   Not a 30-day timer: tasks reset at the END OF EVERY MONTH.
+   If the last day of the month is a Saturday or Sunday, the
+   reset is moved to a school day (default: the next Monday).
+   Example: Oct 31, 2026 is a Saturday -> reset on Mon Nov 2.  */
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+function isoDate(d){ return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate()); }
+function addDays(d, n){ var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+function lastDayOfMonth(y, m){ return new Date(y, m + 1, 0); }
+function shiftToSchoolDay(d){
+  var wd = d.getDay(); // 0=Sun ... 6=Sat
+  if (wd === 6) return addDays(d, WEEKEND_SHIFT === "next" ? 2 : -1); // Sat -> Mon (+2) or Fri (-1)
+  if (wd === 0) return addDays(d, WEEKEND_SHIFT === "next" ? 1 : -2); // Sun -> Mon (+1) or Fri (-2)
+  return d;
+}
+function resetDateFor(y, m){ return shiftToSchoolDay(lastDayOfMonth(y, m)); }
+function nextResetDate(from){
+  var y = from.getFullYear(), m = from.getMonth();
+  for (var i = 0; i < 3; i++){
+    var r = resetDateFor(y, m + i);
+    if (r.getTime() > from.getTime()) return r;
   }
+  return resetDateFor(y, m + 3);
+}
+function cycleKeyFor(from){ return isoDate(nextResetDate(from || new Date())); }
 
-  // build text like: "2 × Beef Sanbusa, 1 × Mango Smoothie"
-  const parts = [];
-  names.forEach(function (name) {
-    parts.push(order[name] + " × " + name);
-  });
-  orderItemsEl.textContent = "Your order: " + parts.join(", ");
+/* ---------- the 60 languages ---------- */
+var LANGUAGES = [
+  {c:"en",  n:"English",         e:"English"},
+  {c:"es",  n:"Español",         e:"Spanish"},
+  {c:"fr",  n:"Français",        e:"French"},
+  {c:"de",  n:"Deutsch",         e:"German"},
+  {c:"it",  n:"Italiano",        e:"Italian"},
+  {c:"pt",  n:"Português",       e:"Portuguese"},
+  {c:"nl",  n:"Nederlands",      e:"Dutch"},
+  {c:"sv",  n:"Svenska",         e:"Swedish"},
+  {c:"no",  n:"Norsk",           e:"Norwegian"},
+  {c:"ru",  n:"Русский",         e:"Russian"},
+  {c:"uk",  n:"Українська",      e:"Ukrainian"},
+  {c:"pl",  n:"Polski",          e:"Polish"},
+  {c:"tr",  n:"Türkçe",          e:"Turkish"},
+  {c:"ro",  n:"Română",          e:"Romanian"},
+  {c:"hu",  n:"Magyar",          e:"Hungarian"},
+  {c:"cs",  n:"Čeština",         e:"Czech"},
+  {c:"sk",  n:"Slovenčina",      e:"Slovak"},
+  {c:"bg",  n:"Български",       e:"Bulgarian"},
+  {c:"sr",  n:"Српски",          e:"Serbian"},
+  {c:"hr",  n:"Hrvatski",        e:"Croatian"},
+  {c:"el",  n:"Ελληνικά",        e:"Greek"},
+  {c:"he",  n:"עברית",           e:"Hebrew"},
+  {c:"ar",  n:"العربية",         e:"Arabic"},
+  {c:"ur",  n:"اردو",            e:"Urdu"},
+  {c:"fa",  n:"فارسی",           e:"Persian"},
+  {c:"ps",  n:"پښتو",            e:"Pashto"},
+  {c:"ku",  n:"Kurdî",           e:"Kurdish"},
+  {c:"hi",  n:"हिन्दी",           e:"Hindi"},
+  {c:"bn",  n:"বাংলা",           e:"Bengali"},
+  {c:"pa",  n:"ਪੰਜਾਬੀ",          e:"Punjabi"},
+  {c:"ta",  n:"தமிழ்",           e:"Tamil"},
+  {c:"te",  n:"తెలుగు",          e:"Telugu"},
+  {c:"mr",  n:"मराठी",            e:"Marathi"},
+  {c:"gu",  n:"ગુજરાતી",          e:"Gujarati"},
+  {c:"kn",  n:"ಕನ್ನಡ",           e:"Kannada"},
+  {c:"ml",  n:"മലയാളം",          e:"Malayalam"},
+  {c:"si",  n:"සිංහල",           e:"Sinhala"},
+  {c:"ne",  n:"नेपाली",          e:"Nepali"},
+  {c:"zh",  n:"简体中文",         e:"Chinese (Simplified)"},
+  {c:"tw",  n:"繁體中文",         e:"Chinese (Traditional)"},
+  {c:"ja",  n:"日本語",          e:"Japanese"},
+  {c:"ko",  n:"한국어",          e:"Korean"},
+  {c:"vi",  n:"Tiếng Việt",      e:"Vietnamese"},
+  {c:"th",  n:"ไทย",             e:"Thai"},
+  {c:"id",  n:"Bahasa Indonesia",e:"Indonesian"},
+  {c:"ms",  n:"Bahasa Melayu",   e:"Malay"},
+  {c:"fil", n:"Filipino",        e:"Filipino"},
+  {c:"my",  n:"မြန်မာ",           e:"Burmese"},
+  {c:"km",  n:"ខ្មែរ",            e:"Khmer"},
+  {c:"lo",  n:"ລາວ",             e:"Lao"},
+  {c:"mn",  n:"Монгол",          e:"Mongolian"},
+  {c:"sw",  n:"Kiswahili",       e:"Swahili"},
+  {c:"am",  n:"አማርኛ",            e:"Amharic"},
+  {c:"ha",  n:"Hausa",           e:"Hausa"},
+  {c:"yo",  n:"Yorùbá",          e:"Yoruba"},
+  {c:"ig",  n:"Igbo",            e:"Igbo"},
+  {c:"zu",  n:"isiZulu",         e:"Zulu"},
+  {c:"af",  n:"Afrikaans",       e:"Afrikaans"},
+  {c:"so",  n:"Soomaali",        e:"Somali"},
+  {c:"ti",  n:"ትግርኛ",            e:"Tigrinya"}
+];
 
-  // add up the total
-  let total = 0;
-  names.forEach(function (name) {
-    total += order[name] * PRICES[name];
-  });
+/* ---------- translations ------------------------------------
+   Fully translated: en, es, fr, de, pt, ru, ar, ur, hi, bn, zh, ja.
+   All other languages fall back to English automatically (the app
+   still lists and accepts all 60 in the picker). To add one, copy
+   the "en" block, change the strings, and add its code as a key. */
+var I18N = {
 
-  // apply the combo discount (Sanbusa + Mango Smoothie pairs)
-  const sanbusa = order["Beef Sanbusa"] || 0;
-  const smoothie = order["Mango Smoothie"] || 0;
-  const pairs = Math.min(sanbusa, smoothie);
-  const discount = pairs * COMBO_SAVE;
-  total -= discount;
+en: {
+  "appName":"Locker Letters",
+  "tagline":"Write. Read. Earn points. Get celebrated.",
+  "studentArea":"Student Area",
+  "studentDesc":"Sign in with your locker number to collect points and rewards.",
+  "volunteerArea":"Volunteer Panel",
+  "volunteerDesc":"For distribution volunteers managing letters and rewards.",
+  "continue":"Continue","back":"Back","login":"Log in","signup":"First time? Sign up",
+  "locker":"Locker number","lockerPh":"e.g. 42","name":"Your name","namePh":"e.g. Amina",
+  "choosePw":"Create a password","pwPh":"At least 4 characters","lockerHint":"Allowed locker numbers: 1 to 1700","errorPw":"Password must be at least 4 characters.","errorLockerRange":"Locker number must be between 1 and 1700.","errorWrongPw":"Wrong password for this locker. Ask a volunteer if you forgot it.","errorNeedPw":"Please enter your password.","show":"Show","hide":"Hide",
+  "chooseLangTitle":"Choose your preferred language",
+  "chooseLangSub":"The app, stories, facts and riddles will be shown in this language. You can change it anytime.",
+  "searchLang":"Search languages...",
+  "welcomeBack":"Welcome back","logout":"Log out","myPoints":"My points",
+  "toVoucher":"to the food voucher","toCertificate":"to the certificate",
+  "monthlyTasks":"This month's tasks","tasksResetOn":"New tasks unlock on",
+  "maxMonthly":"You can earn up to 20 points per month.","done":"Done",
+  "claimTitle":"Main achievements",
+  "q1":"What did you achieve this month?","q2":"What are you planning to achieve next month?",
+  "q1Ph":"e.g. I improved my reading and finished my science project.",
+  "q2Ph":"e.g. I want to read two books and join the chess club.",
+  "submitClaim":"Submit answers (+12 pts)",
+  "claimDone":"+12 points! New tasks unlock on {d}.",
+  "contentHub":"Interactive content hub",
+  "storyTitle":"Encouraging story","storyRead":"I read it (+2 pts)","storyDone":"Story read",
+  "factTitle":"Fun fact","factGot":"Got it (+2 pts)","factDone":"Fact collected",
+  "riddleTitle":"Timed riddle",
+  "riddleDesc":"Answer correctly within 120 seconds. Winners get a shout-out in next month's letter.",
+  "riddleStart":"Start the riddle","timeLeft":"Time left","riddleSubmit":"Submit answer",
+  "riddleCorrect":"Correct! +2 points and you are in next month's letter.",
+  "riddleWrong":"Not quite. You can try again tomorrow.",
+  "riddleTimeUp":"Time's up! You can try again tomorrow.",
+  "retryIn":"Try again in",
+  "feedbackTitle":"Feedback and review","ratePrompt":"How did this month's letter help you?",
+  "reviewPh":"Share how the letter helped you...",
+  "submitReview":"Send review (+2 pts)",
+  "reviewDone":"Thank you! Your review is now live.",
+  "rewardsTitle":"Rewards",
+  "voucherTitle":"Food treat voucher","voucherAt":"Unlocks at 50 points",
+  "voucherReady":"Your voucher is ready!","printVoucher":"Print voucher",
+  "certTitle":"Certificate of Achievement","certAt":"Unlocks at 100 points",
+  "certReady":"Your certificate is ready!","printCertificate":"Print certificate",
+  "liveReviews":"Live reviews","live":"LIVE","noReviews":"No reviews yet. Be the first!",
+  "justNow":"just now","mAgo":"{n}m ago","hAgo":"{n}h ago","dAgo":"{n}d ago",
+  "shoutouts":"Shout-out board",
+  "shoutoutsDesc":"Riddle winners who will appear in next month's letter",
+  "onTheList":"You are on next month's shout-out list!",
+  "changeLang":"Language",
+  "volunteerLogin":"Volunteer login","password":"Password",
+  "enterPassword":"Enter the volunteer password","wrongPassword":"Wrong password. Try again.",
+  "voucherNote":"Show this voucher to a distribution volunteer to claim your treat.",
+  "voucherFood":"FOOD TREAT VOUCHER","voucherLocker":"Locker",
+  "certPresented":"Presented to",
+  "certFor":"for outstanding engagement in the monthly Locker Letters program",
+  "certPoints":"Total points earned","certSignature":"Volunteer signature",
+  "errorLocker":"Please enter your locker number.","errorName":"Please enter your name.",
+  "errorTaken":"This locker is already registered. Try logging in.",
+  "errorNotFound":"No student with this locker number yet. Sign up first.",
+  "errorPickLang":"Please choose a language to continue.",
+  "errorBoth":"Please answer both questions.",
+  "errorReview":"Please pick stars and write a short review first.",
+  "pts":"pts",
+  "localNote":"All data stays in this browser (localStorage). Works offline; only the voucher QR code needs internet.",
+  "vTitle":"Volunteer dashboard","vOverview":"Overview",
+  "vStatStudents":"Students","vStatPoints":"Points awarded","vStatReviews":"Reviews","vStatShoutouts":"Riddle winners",
+  "vTable":"Students","vLocker":"Locker","vName":"Name","vLang":"Language","vPoints":"Points",
+  "vCycleTasks":"Tasks this cycle","vLastActive":"Last active","vNever":"never",
+  "vNoStudents":"No students registered yet.",
+  "vReviews":"All reviews (live)","vShoutouts":"Shout-out list for next month's letter",
+  "vNoShoutouts":"No riddle winners yet this cycle.",
+  "vReset":"Reset all data","vConfirm":"Delete ALL student data? This cannot be undone.",
+  "vYes":"Yes, delete everything","vNo":"Cancel","vResetDone":"All data cleared."
+},
 
-  orderTotalEl.textContent = money(total);
-  orderDiscEl.textContent = discount > 0 ? "(combo −" + money(discount) + " 🎉)" : "";
-  orderBar.classList.add("show");
+es: {
+  "appName":"Locker Letters",
+  "tagline":"Escribe. Lee. Gana puntos. Siéntete celebrado.",
+  "studentArea":"Área de estudiantes",
+  "studentDesc":"Inicia sesión con tu número de casilla para ganar puntos y premios.",
+  "volunteerArea":"Panel de voluntarios",
+  "volunteerDesc":"Para voluntarios que gestionan cartas y premios.",
+  "continue":"Continuar","back":"Volver","login":"Iniciar sesión","signup":"¿Primera vez? Regístrate",
+  "locker":"Número de casilla","lockerPh":"p. ej. 42","name":"Tu nombre","namePh":"p. ej. Amina",
+  "choosePw":"Crea una contraseña","pwPh":"Mínimo 4 caracteres","lockerHint":"Números de casilla permitidos: del 1 al 1700","errorPw":"La contraseña debe tener al menos 4 caracteres.","errorLockerRange":"El número de casilla debe estar entre 1 y 1700.","errorWrongPw":"Contraseña incorrecta para esta casilla. Si la olvidaste, pide ayuda a un voluntario.","errorNeedPw":"Escribe tu contraseña.","show":"Mostrar","hide":"Ocultar",
+  "chooseLangTitle":"Elige tu idioma preferido",
+  "chooseLangSub":"La app, las historias, los datos y las adivinanzas se mostrarán en este idioma. Puedes cambiarlo cuando quieras.",
+  "searchLang":"Buscar idiomas...",
+  "welcomeBack":"Bienvenido de nuevo","logout":"Salir","myPoints":"Mis puntos",
+  "toVoucher":"para el cupón de comida","toCertificate":"para el certificado",
+  "monthlyTasks":"Tareas de este mes","tasksResetOn":"Nuevas tareas disponibles el",
+  "maxMonthly":"Puedes ganar hasta 20 puntos al mes.","done":"Hecho",
+  "claimTitle":"Logros principales",
+  "q1":"¿Qué lograste este mes?","q2":"¿Qué planeas lograr el próximo mes?",
+  "q1Ph":"p. ej. Mejoré mi lectura y terminé mi proyecto de ciencias.",
+  "q2Ph":"p. ej. Quiero leer dos libros y unirme al club de ajedrez.",
+  "submitClaim":"Enviar respuestas (+12 pts)",
+  "claimDone":"+12 puntos. Nuevas tareas el {d}.",
+  "contentHub":"Centro de contenido interactivo",
+  "storyTitle":"Historia motivadora","storyRead":"La leí (+2 pts)","storyDone":"Historia leída",
+  "factTitle":"Dato curioso","factGot":"¡Entendido! (+2 pts)","factDone":"Dato guardado",
+  "riddleTitle":"Adivinanza con tiempo",
+  "riddleDesc":"Responde correctamente en 120 segundos. Los ganadores aparecerán en la carta del próximo mes.",
+  "riddleStart":"Comenzar","timeLeft":"Tiempo","riddleSubmit":"Enviar respuesta",
+  "riddleCorrect":"¡Correcto! +2 puntos y estarás en la carta del próximo mes.",
+  "riddleWrong":"Casi. Puedes intentarlo mañana.",
+  "riddleTimeUp":"Se acabó el tiempo. Puedes intentarlo mañana.",
+  "retryIn":"Reintentar en",
+  "feedbackTitle":"Opinión y reseña","ratePrompt":"¿Cómo te ayudó la carta de este mes?",
+  "reviewPh":"Cuenta cómo te ayudó la carta...",
+  "submitReview":"Enviar reseña (+2 pts)",
+  "reviewDone":"¡Gracias! Tu reseña ya está publicada.",
+  "rewardsTitle":"Premios",
+  "voucherTitle":"Cupón de comida","voucherAt":"Se desbloquea con 50 puntos",
+  "voucherReady":"¡Tu cupón está listo!","printVoucher":"Imprimir cupón",
+  "certTitle":"Certificado de Logro","certAt":"Se desbloquea con 100 puntos",
+  "certReady":"¡Tu certificado está listo!","printCertificate":"Imprimir certificado",
+  "liveReviews":"Reseñas en vivo","live":"EN VIVO","noReviews":"Aún no hay reseñas. ¡Sé el primero!",
+  "justNow":"ahora mismo","mAgo":"hace {n} min","hAgo":"hace {n} h","dAgo":"hace {n} d",
+  "shoutouts":"Muro de felicitaciones",
+  "shoutoutsDesc":"Ganadores de la adivinanza que aparecerán en la carta del próximo mes",
+  "onTheList":"¡Estás en la lista del próximo mes!",
+  "changeLang":"Idioma",
+  "volunteerLogin":"Acceso voluntarios","password":"Contraseña",
+  "enterPassword":"Escribe la contraseña de voluntario","wrongPassword":"Contraseña incorrecta. Intenta de nuevo.",
+  "voucherNote":"Muestra este cupón a un voluntario para recibir tu premio.",
+  "voucherFood":"CUPÓN DE COMIDA","voucherLocker":"Casilla",
+  "certPresented":"Otorgado a",
+  "certFor":"por su destacada participación en el programa mensual Locker Letters",
+  "certPoints":"Puntos totales","certSignature":"Firma del voluntario",
+  "errorLocker":"Escribe tu número de casilla.","errorName":"Escribe tu nombre.",
+  "errorTaken":"Esta casilla ya está registrada. Inicia sesión.",
+  "errorNotFound":"No hay ningún estudiante con esa casilla. Regístrate primero.",
+  "errorPickLang":"Elige un idioma para continuar.",
+  "errorBoth":"Responde las dos preguntas.",
+  "errorReview":"Elige estrellas y escribe una reseña corta primero.",
+  "pts":"pts",
+  "localNote":"Todos los datos quedan en este navegador (localStorage). Funciona sin internet; solo el código QR del cupón necesita red."
+},
+
+fr: {
+  "appName":"Locker Letters",
+  "tagline":"Écris. Lis. Gagne des points. Sois célébré.",
+  "studentArea":"Espace élève",
+  "studentDesc":"Connecte-toi avec ton numéro de casier pour gagner des points et des récompenses.",
+  "volunteerArea":"Espace bénévole",
+  "volunteerDesc":"Pour les bénévoles qui gèrent les lettres et les récompenses.",
+  "continue":"Continuer","back":"Retour","login":"Se connecter","signup":"Première visite ? Inscris-toi",
+  "locker":"Numéro de casier","lockerPh":"ex. 42","name":"Ton prénom","namePh":"ex. Amina",
+  "choosePw":"Crée un mot de passe","pwPh":"Au moins 4 caractères","lockerHint":"Numéros de casier autorisés : de 1 à 1700","errorPw":"Le mot de passe doit contenir au moins 4 caractères.","errorLockerRange":"Le numéro de casier doit être entre 1 et 1700.","errorWrongPw":"Mot de passe incorrect pour ce casier. Demande à un bénévole si tu l'as oublié.","errorNeedPw":"Tape ton mot de passe.","show":"Afficher","hide":"Masquer",
+  "chooseLangTitle":"Choisis ta langue préférée",
+  "chooseLangSub":"L'appli, les histoires, les anecdotes et les énigmes s'afficheront dans cette langue. Tu pourras la changer à tout moment.",
+  "searchLang":"Rechercher une langue...",
+  "welcomeBack":"Bon retour","logout":"Se déconnecter","myPoints":"Mes points",
+  "toVoucher":"pour le bon gourmandise","toCertificate":"pour le certificat",
+  "monthlyTasks":"Tâches de ce mois","tasksResetOn":"Nouvelles tâches le",
+  "maxMonthly":"Tu peux gagner jusqu'à 20 points par mois.","done":"Fait",
+  "claimTitle":"Réussites principales",
+  "q1":"Qu'as-tu accompli ce mois-ci ?","q2":"Que prévois-tu d'accomplir le mois prochain ?",
+  "q1Ph":"ex. J'ai progressé en lecture et terminé mon projet de sciences.",
+  "q2Ph":"ex. Je veux lire deux livres et rejoindre le club d'échecs.",
+  "submitClaim":"Envoyer les réponses (+12 pts)",
+  "claimDone":"+12 points ! Nouvelles tâches le {d}.",
+  "contentHub":"Espace contenu interactif",
+  "storyTitle":"Histoire encourageante","storyRead":"Je l'ai lue (+2 pts)","storyDone":"Histoire lue",
+  "factTitle":"Le sais-tu ?","factGot":"Compris (+2 pts)","factDone":"Anecdote collectée",
+  "riddleTitle":"Énigme chronométrée",
+  "riddleDesc":"Réponds correctement en 120 secondes. Les gagnants seront salués dans la lettre du mois prochain.",
+  "riddleStart":"Commencer","timeLeft":"Temps","riddleSubmit":"Valider la réponse",
+  "riddleCorrect":"Correct ! +2 points et tu seras dans la lettre du mois prochain.",
+  "riddleWrong":"Pas tout à fait. Réessaie demain.",
+  "riddleTimeUp":"Temps écoulé ! Réessaie demain.",
+  "retryIn":"Réessayer dans",
+  "feedbackTitle":"Avis et commentaires","ratePrompt":"Comment la lettre de ce mois t'a-t-elle aidé ?",
+  "reviewPh":"Raconte comment la lettre t'a aidé...",
+  "submitReview":"Envoyer l'avis (+2 pts)",
+  "reviewDone":"Merci ! Ton avis est publié en direct.",
+  "rewardsTitle":"Récompenses",
+  "voucherTitle":"Bon gourmandise","voucherAt":"Débloqué à 50 points",
+  "voucherReady":"Ton bon est prêt !","printVoucher":"Imprimer le bon",
+  "certTitle":"Certificat de Réussite","certAt":"Débloqué à 100 points",
+  "certReady":"Ton certificat est prêt !","printCertificate":"Imprimer le certificat",
+  "liveReviews":"Avis en direct","live":"EN DIRECT","noReviews":"Pas encore d'avis. Sois le premier !",
+  "justNow":"à l'instant","mAgo":"il y a {n} min","hAgo":"il y a {n} h","dAgo":"il y a {n} j",
+  "shoutouts":"Tableau des félicitations",
+  "shoutoutsDesc":"Gagnants de l'énigme qui apparaîtront dans la lettre du mois prochain",
+  "onTheList":"Tu es sur la liste du mois prochain !",
+  "changeLang":"Langue",
+  "volunteerLogin":"Accès bénévole","password":"Mot de passe",
+  "enterPassword":"Entre le mot de passe bénévole","wrongPassword":"Mot de passe incorrect. Réessaie.",
+  "voucherNote":"Montre ce bon à un bénévole pour recevoir ta gourmandise.",
+  "voucherFood":"BON GOURMANDISE","voucherLocker":"Casier",
+  "certPresented":"Décerné à",
+  "certFor":"pour son engagement remarquable dans le programme mensuel Locker Letters",
+  "certPoints":"Points totaux","certSignature":"Signature du bénévole",
+  "errorLocker":"Écris ton numéro de casier.","errorName":"Écris ton prénom.",
+  "errorTaken":"Ce casier est déjà inscrit. Connecte-toi.",
+  "errorNotFound":"Aucun élève avec ce numéro de casier. Inscris-toi d'abord.",
+  "errorPickLang":"Choisis une langue pour continuer.",
+  "errorBoth":"Réponds aux deux questions.",
+  "errorReview":"Choisis des étoiles et écris d'abord un court avis.",
+  "pts":"pts",
+  "localNote":"Toutes les données restent dans ce navigateur (localStorage). Fonctionne hors ligne ; seul le code QR du bon demande Internet."
+},
+
+de: {
+  "appName":"Locker Letters",
+  "tagline":"Schreiben. Lesen. Punkte sammeln. Gefeiert werden.",
+  "studentArea":"Schülerbereich",
+  "studentDesc":"Melde dich mit deiner Schließfachnummer an und sammle Punkte und Belohnungen.",
+  "volunteerArea":"Betreuungsbereich",
+  "volunteerDesc":"Für Betreuer, die Briefe und Belohnungen verwalten.",
+  "continue":"Weiter","back":"Zurück","login":"Anmelden","signup":"Erstes Mal? Registrieren",
+  "locker":"Schließfachnummer","lockerPh":"z. B. 42","name":"Dein Name","namePh":"z. B. Amina",
+  "choosePw":"Erstelle ein Passwort","pwPh":"Mindestens 4 Zeichen","lockerHint":"Erlaubte Fachnummern: 1 bis 1700","errorPw":"Das Passwort muss mindestens 4 Zeichen haben.","errorLockerRange":"Die Schließfachnummer muss zwischen 1 und 1700 liegen.","errorWrongPw":"Falsches Passwort für dieses Fach. Frag eine Betreuungsperson, wenn du es vergessen hast.","errorNeedPw":"Bitte gib dein Passwort ein.","show":"Anzeigen","hide":"Verbergen",
+  "chooseLangTitle":"Wähle deine Sprache",
+  "chooseLangSub":"App, Geschichten, Fakten und Rätsel erscheinen in dieser Sprache. Du kannst sie jederzeit ändern.",
+  "searchLang":"Sprache suchen...",
+  "welcomeBack":"Willkommen zurück","logout":"Abmelden","myPoints":"Meine Punkte",
+  "toVoucher":"bis zum Essensgutschein","toCertificate":"bis zur Urkunde",
+  "monthlyTasks":"Aufgaben dieses Monats","tasksResetOn":"Neue Aufgaben am",
+  "maxMonthly":"Du kannst pro Monat bis zu 20 Punkte verdienen.","done":"Erledigt",
+  "claimTitle":"Haupterfolge",
+  "q1":"Was hast du diesen Monat erreicht?","q2":"Was möchtest du nächsten Monat erreichen?",
+  "q1Ph":"z. B. Ich habe besser gelesen und mein Naturprojekt fertiggestellt.",
+  "q2Ph":"z. B. Ich möchte zwei Bücher lesen und in den Schachclub gehen.",
+  "submitClaim":"Antworten senden (+12 Pkt)",
+  "claimDone":"+12 Punkte! Neue Aufgaben am {d}.",
+  "contentHub":"Interaktive Inhalte",
+  "storyTitle":"Mutmach-Geschichte","storyRead":"Gelesen (+2 Pkt)","storyDone":"Geschichte gelesen",
+  "factTitle":"Fun-Fakt","factGot":"Verstanden (+2 Pkt)","factDone":"Fakt gesammelt",
+  "riddleTitle":"Rätsel mit Timer",
+  "riddleDesc":"Antworte richtig innerhalb von 120 Sekunden. Gewinner werden im Brief des nächsten Monats genannt.",
+  "riddleStart":"Starten","timeLeft":"Zeit","riddleSubmit":"Antwort senden",
+  "riddleCorrect":"Richtig! +2 Punkte und du stehst im Brief des nächsten Monats.",
+  "riddleWrong":"Fast! Versuche es morgen wieder.",
+  "riddleTimeUp":"Zeit abgelaufen! Versuche es morgen wieder.",
+  "retryIn":"Neuer Versuch in",
+  "feedbackTitle":"Feedback und Bewertung","ratePrompt":"Wie hat dir der Brief dieses Monats geholfen?",
+  "reviewPh":"Schreib, wie dir der Brief geholfen hat...",
+  "submitReview":"Bewertung senden (+2 Pkt)",
+  "reviewDone":"Danke! Deine Bewertung ist jetzt live.",
+  "rewardsTitle":"Belohnungen",
+  "voucherTitle":"Essensgutschein","voucherAt":"Ab 50 Punkten",
+  "voucherReady":"Dein Gutschein ist bereit!","printVoucher":"Gutschein drucken",
+  "certTitle":"Urkunde für Leistungen","certAt":"Ab 100 Punkten",
+  "certReady":"Deine Urkunde ist bereit!","printCertificate":"Urkunde drucken",
+  "liveReviews":"Live-Bewertungen","live":"LIVE","noReviews":"Noch keine Bewertungen. Schreib die erste!",
+  "justNow":"gerade eben","mAgo":"vor {n} Min.","hAgo":"vor {n} Std.","dAgo":"vor {n} Tg.",
+  "shoutouts":"Ruhmestafel",
+  "shoutoutsDesc":"Rätsel-Gewinner, die im Brief des nächsten Monats erscheinen",
+  "onTheList":"Du stehst auf der Liste für nächsten Monat!",
+  "changeLang":"Sprache",
+  "volunteerLogin":"Betreuungs-Login","password":"Passwort",
+  "enterPassword":"Betreuungs-Passwort eingeben","wrongPassword":"Falsches Passwort. Bitte noch einmal.",
+  "voucherNote":"Zeige diesen Gutschein einer Betreuungsperson, um deine Belohnung zu bekommen.",
+  "voucherFood":"ESSENSGUTSCHEIN","voucherLocker":"Fach",
+  "certPresented":"Verliehen an",
+  "certFor":"für herausragende Beteiligung am monatlichen Programm Locker Letters",
+  "certPoints":"Gesamtpunkte","certSignature":"Unterschrift der Betreuung",
+  "errorLocker":"Bitte Schließfachnummer eingeben.","errorName":"Bitte Namen eingeben.",
+  "errorTaken":"Dieses Fach ist schon registriert. Melde dich an.",
+  "errorNotFound":"Kein Schüler mit dieser Fachnummer. Registriere dich zuerst.",
+  "errorPickLang":"Bitte wähle eine Sprache.",
+  "errorBoth":"Bitte beantworte beide Fragen.",
+  "errorReview":"Bitte zuerst Sterne wählen und eine kurze Bewertung schreiben.",
+  "pts":"Pkt",
+  "localNote":"Alle Daten bleiben in diesem Browser (localStorage). Offline nutzbar; nur der QR-Code des Gutscheins braucht Internet."
+},
+
+pt: {
+  "appName":"Locker Letters",
+  "tagline":"Escreva. Leia. Ganhe pontos. Comemore-se.",
+  "studentArea":"Área do aluno",
+  "studentDesc":"Entre com seu número de armário para ganhar pontos e prêmios.",
+  "volunteerArea":"Painel do voluntário",
+  "volunteerDesc":"Para voluntários que organizam as cartas e os prêmios.",
+  "continue":"Continuar","back":"Voltar","login":"Entrar","signup":"Primeira vez? Cadastre-se",
+  "locker":"Número do armário","lockerPh":"ex.: 42","name":"Seu nome","namePh":"ex.: Amina",
+  "choosePw":"Crie uma senha","pwPh":"Pelo menos 4 caracteres","lockerHint":"Números de armário permitidos: 1 a 1700","errorPw":"A senha deve ter pelo menos 4 caracteres.","errorLockerRange":"O número do armário deve estar entre 1 e 1700.","errorWrongPw":"Senha incorreta para este armário. Se esqueceu, peça ajuda a um voluntário.","errorNeedPw":"Digite sua senha.","show":"Mostrar","hide":"Ocultar",
+  "chooseLangTitle":"Escolha seu idioma preferido",
+  "chooseLangSub":"O app, as histórias, os fatos e as charadas aparecerão neste idioma. Você pode mudar quando quiser.",
+  "searchLang":"Buscar idiomas...",
+  "welcomeBack":"Bem-vindo de volta","logout":"Sair","myPoints":"Meus pontos",
+  "toVoucher":"para o vale-refeição","toCertificate":"para o certificado",
+  "monthlyTasks":"Tarefas deste mês","tasksResetOn":"Novas tarefas em",
+  "maxMonthly":"Você pode ganhar até 20 pontos por mês.","done":"Feito",
+  "claimTitle":"Conquistas principais",
+  "q1":"O que você conquistou neste mês?","q2":"O que você planeja conquistar no próximo mês?",
+  "q1Ph":"ex.: melhorei minha leitura e terminei meu projeto de ciências.",
+  "q2Ph":"ex.: quero ler dois livros e entrar no clube de xadrez.",
+  "submitClaim":"Enviar respostas (+12 pts)",
+  "claimDone":"+12 pontos! Novas tarefas em {d}.",
+  "contentHub":"Central de conteúdo interativo",
+  "storyTitle":"História motivadora","storyRead":"Li a história (+2 pts)","storyDone":"História lida",
+  "factTitle":"Curiosidade","factGot":"Entendi (+2 pts)","factDone":"Curiosidade coletada",
+  "riddleTitle":"Charada cronometrada",
+  "riddleDesc":"Responda certo em 120 segundos. Os vencedores serão citados na carta do próximo mês.",
+  "riddleStart":"Começar","timeLeft":"Tempo","riddleSubmit":"Enviar resposta",
+  "riddleCorrect":"Certo! +2 pontos e você entra na carta do próximo mês.",
+  "riddleWrong":"Quase! Tente novamente amanhã.",
+  "riddleTimeUp":"Tempo esgotado! Tente novamente amanhã.",
+  "retryIn":"Tentar de novo em",
+  "feedbackTitle":"Feedback e avaliação","ratePrompt":"Como a carta deste mês ajudou você?",
+  "reviewPh":"Conte como a carta ajudou você...",
+  "submitReview":"Enviar avaliação (+2 pts)",
+  "reviewDone":"Obrigado! Sua avaliação já está no ar.",
+  "rewardsTitle":"Prêmios",
+  "voucherTitle":"Vale-refeição","voucherAt":"Desbloqueia com 50 pontos",
+  "voucherReady":"Seu vale está pronto!","printVoucher":"Imprimir vale",
+  "certTitle":"Certificado de Conquista","certAt":"Desbloqueia com 100 pontos",
+  "certReady":"Seu certificado está pronto!","printCertificate":"Imprimir certificado",
+  "liveReviews":"Avaliações ao vivo","live":"AO VIVO","noReviews":"Ainda sem avaliações. Seja o primeiro!",
+  "justNow":"agora mesmo","mAgo":"há {n} min","hAgo":"há {n} h","dAgo":"há {n} d",
+  "shoutouts":"Mural de destaque",
+  "shoutoutsDesc":"Vencedores da charada que aparecerão na carta do próximo mês",
+  "onTheList":"Você está na lista do próximo mês!",
+  "changeLang":"Idioma",
+  "volunteerLogin":"Acesso do voluntário","password":"Senha",
+  "enterPassword":"Digite a senha do voluntário","wrongPassword":"Senha incorreta. Tente de novo.",
+  "voucherNote":"Mostre este vale a um voluntário para receber seu prêmio.",
+  "voucherFood":"VALE-REFEIÇÃO","voucherLocker":"Armário",
+  "certPresented":"Concedido a",
+  "certFor":"pela participação excepcional no programa mensal Locker Letters",
+  "certPoints":"Pontos totais","certSignature":"Assinatura do voluntário",
+  "errorLocker":"Digite seu número de armário.","errorName":"Digite seu nome.",
+  "errorTaken":"Este armário já está cadastrado. Entre com ele.",
+  "errorNotFound":"Nenhum aluno com esse número de armário. Cadastre-se primeiro.",
+  "errorPickLang":"Escolha um idioma para continuar.",
+  "errorBoth":"Responda as duas perguntas.",
+  "errorReview":"Escolha estrelas e escreva uma avaliação curta primeiro.",
+  "pts":"pts",
+  "localNote":"Todos os dados ficam neste navegador (localStorage). Funciona offline; só o código QR do vale precisa de internet."
+},
+
+ru: {
+  "appName":"Locker Letters",
+  "tagline":"Пиши. Читай. Зарабатывай баллы. Будь на виду.",
+  "studentArea":"Кабинет ученика",
+  "studentDesc":"Войдите по номеру шкафчика, чтобы копить баллы и награды.",
+  "volunteerArea":"Панель волонтёра",
+  "volunteerDesc":"Для волонтёров, которые готовят письма и награды.",
+  "continue":"Продолжить","back":"Назад","login":"Войти","signup":"Первый раз? Регистрация",
+  "locker":"Номер шкафчика","lockerPh":"напр. 42","name":"Ваше имя","namePh":"напр. Амина",
+  "choosePw":"Придумайте пароль","pwPh":"Минимум 4 символа","lockerHint":"Разрешённые номера шкафчиков: от 1 до 1700","errorPw":"Пароль должен быть не короче 4 символов.","errorLockerRange":"Номер шкафчика должен быть от 1 до 1700.","errorWrongPw":"Неверный пароль для этого шкафчика. Если забыли — обратитесь к волонтёру.","errorNeedPw":"Введите пароль.","show":"Показать","hide":"Скрыть",
+  "chooseLangTitle":"Выберите предпочитаемый язык",
+  "chooseLangSub":"Приложение, истории, факты и загадки будут на этом языке. Его можно изменить в любой момент.",
+  "searchLang":"Найти язык...",
+  "welcomeBack":"С возвращением","logout":"Выйти","myPoints":"Мои баллы",
+  "toVoucher":"до купона на угощение","toCertificate":"до сертификата",
+  "monthlyTasks":"Задания этого месяца","tasksResetOn":"Новые задания с",
+  "maxMonthly":"Можно получить до 20 баллов за месяц.","done":"Готово",
+  "claimTitle":"Главные достижения",
+  "q1":"Чего вы достигли в этом месяце?","q2":"Что планируете достичь в следующем месяце?",
+  "q1Ph":"напр. стал лучше читать и закончил проект по естествознанию.",
+  "q2Ph":"напр. прочитаю две книги и запишусь в шахматный клуб.",
+  "submitClaim":"Отправить ответы (+12 б.)",
+  "claimDone":"+12 баллов! Новые задания с {d}.",
+  "contentHub":"Интерактивный раздел",
+  "storyTitle":"Вдохновляющая история","storyRead":"Прочитал (+2 б.)","storyDone":"История прочитана",
+  "factTitle":"Интересный факт","factGot":"Понятно (+2 б.)","factDone":"Факт получен",
+  "riddleTitle":"Загадка на время",
+  "riddleDesc":"Ответьте правильно за 120 секунд. Победителей назовут в письме следующего месяца.",
+  "riddleStart":"Начать","timeLeft":"Время","riddleSubmit":"Отправить ответ",
+  "riddleCorrect":"Верно! +2 балла и вы попадёте в письмо следующего месяца.",
+  "riddleWrong":"Почти! Попробуйте завтра.",
+  "riddleTimeUp":"Время вышло! Попробуйте завтра.",
+  "retryIn":"Повторить через",
+  "feedbackTitle":"Отзыв и оценка","ratePrompt":"Как письмо этого месяца помогло вам?",
+  "reviewPh":"Расскажите, как письмо помогло...",
+  "submitReview":"Отправить отзыв (+2 б.)",
+  "reviewDone":"Спасибо! Ваш отзыв уже в эфире.",
+  "rewardsTitle":"Награды",
+  "voucherTitle":"Купон на угощение","voucherAt":"Откроется на 50 баллах",
+  "voucherReady":"Купон готов!","printVoucher":"Распечатать купон",
+  "certTitle":"Сертификат достижений","certAt":"Откроется на 100 баллах",
+  "certReady":"Сертификат готов!","printCertificate":"Распечатать сертификат",
+  "liveReviews":"Отзывы онлайн","live":"ОНЛАЙН","noReviews":"Отзывов пока нет. Будьте первым!",
+  "justNow":"только что","mAgo":"{n} мин назад","hAgo":"{n} ч назад","dAgo":"{n} дн назад",
+  "shoutouts":"Доска отличившихся",
+  "shoutoutsDesc":"Победители загадки, которые попадут в письмо следующего месяца",
+  "onTheList":"Вы в списке на следующий месяц!",
+  "changeLang":"Язык",
+  "volunteerLogin":"Вход для волонтёров","password":"Пароль",
+  "enterPassword":"Введите пароль волонтёра","wrongPassword":"Неверный пароль. Попробуйте ещё раз.",
+  "voucherNote":"Покажите этот купон волонтёру, чтобы получить угощение.",
+  "voucherFood":"КУПОН НА УГОЩЕНИЕ","voucherLocker":"Шкафчик",
+  "certPresented":"Выдан",
+  "certFor":"за выдающееся участие в ежемесячной программе Locker Letters",
+  "certPoints":"Всего баллов","certSignature":"Подпись волонтёра",
+  "errorLocker":"Введите номер шкафчика.","errorName":"Введите имя.",
+  "errorTaken":"Этот шкафчик уже зарегистрирован. Войдите.",
+  "errorNotFound":"Ученика с таким шкафчиком нет. Сначала зарегистрируйтесь.",
+  "errorPickLang":"Выберите язык, чтобы продолжить.",
+  "errorBoth":"Ответьте на оба вопроса.",
+  "errorReview":"Сначала выберите звёзды и напишите короткий отзыв.",
+  "pts":"б.",
+  "localNote":"Все данные хранятся в этом браузере (localStorage). Работает без интернета; только QR-код купона требует сети."
+},
+
+ar: {
+  "appName":"Locker Letters",
+  "tagline":"اكتب. اقرأ. اجمع النقاط. احتفِ بإنجازاتك.",
+  "studentArea":"منطقة الطلاب",
+  "studentDesc":"سجّل الدخول برقم خزانتك لتجمع النقاط والجوائز.",
+  "volunteerArea":"لوحة المتطوعين",
+  "volunteerDesc":"للمتطوعين الذين يوزّعون الرسائل والجوائز.",
+  "continue":"متابعة","back":"رجوع","login":"تسجيل الدخول","signup":"أول مرة؟ أنشئ حسابًا",
+  "locker":"رقم الخزانة","lockerPh":"مثال: 42","name":"اسمك","namePh":"مثال: أمينة",
+  "choosePw":"أنشئ كلمة المرور","pwPh":"4 أحرف على الأقل","lockerHint":"أرقام الخزائن المسموحة: من 1 إلى 1700","errorPw":"يجب أن تكون كلمة المرور 4 أحرف على الأقل.","errorLockerRange":"يجب أن يكون رقم الخزانة بين 1 و1700.","errorWrongPw":"كلمة المرور غير صحيحة لهذه الخزانة. إذا نسيتها فاطلب المساعدة من متطوع.","errorNeedPw":"أدخل كلمة المرور.","show":"إظهار","hide":"إخفاء",
+  "chooseLangTitle":"اختر لغتك المفضلة",
+  "chooseLangSub":"ستظهر الواجهة والقصص والمعلومات والألغاز بهذه اللغة. يمكنك تغييرها في أي وقت.",
+  "searchLang":"ابحث عن لغة...",
+  "welcomeBack":"مرحبًا بعودتك","logout":"خروج","myPoints":"نقاطي",
+  "toVoucher":"للحصول على قسيمة الطعام","toCertificate":"للحصول على الشهادة",
+  "monthlyTasks":"مهام هذا الشهر","tasksResetOn":"مهام جديدة في",
+  "maxMonthly":"يمكنك كسب 20 نقطة كحد أقصى شهريًا.","done":"تم",
+  "claimTitle":"الإنجازات الرئيسية",
+  "q1":"ما الذي حققته هذا الشهر؟","q2":"ما الذي تخطط لتحقيقه الشهر القادم؟",
+  "q1Ph":"مثال: تحسّنت في القراءة وأنهيت مشروع العلوم.",
+  "q2Ph":"مثال: أريد قراءة كتابين والانضمام إلى نادي الشطرنج.",
+  "submitClaim":"إرسال الإجابات (+12 نقطة)",
+  "claimDone":"+12 نقطة! مهام جديدة في {d}.",
+  "contentHub":"قسم المحتوى التفاعلي",
+  "storyTitle":"قصة مشجعة","storyRead":"قرأتها (+2 نقطة)","storyDone":"تمت قراءة القصة",
+  "factTitle":"معلومة طريفة","factGot":"حصلت عليها (+2 نقطة)","factDone":"تم جمع المعلومة",
+  "riddleTitle":"لغز بالوقت",
+  "riddleDesc":"أجب إجابة صحيحة خلال 120 ثانية. سيُذكر الفائزون في رسالة الشهر القادم.",
+  "riddleStart":"ابدأ","timeLeft":"الوقت","riddleSubmit":"إرسال الإجابة",
+  "riddleCorrect":"صحيح! +2 نقطة وسيظهر اسمك في رسالة الشهر القادم.",
+  "riddleWrong":"ليست الإجابة! حاول غدًا مرة أخرى.",
+  "riddleTimeUp":"انتهى الوقت! حاول غدًا مرة أخرى.",
+  "retryIn":"إعادة المحاولة بعد",
+  "feedbackTitle":"التقييم والمراجعة","ratePrompt":"كيف ساعدتك رسالة هذا الشهر؟",
+  "reviewPh":"اكتب كيف ساعدتك الرسالة...",
+  "submitReview":"إرسال التقييم (+2 نقطة)",
+  "reviewDone":"شكرًا! تقييمك منشور الآن مباشرة.",
+  "rewardsTitle":"الجوائز",
+  "voucherTitle":"قسيمة طعام","voucherAt":"تُفتح عند 50 نقطة",
+  "voucherReady":"قسيمتك جاهزة!","printVoucher":"اطبع القسيمة",
+  "certTitle":"شهادة الإنجاز","certAt":"تُفتح عند 100 نقطة",
+  "certReady":"شهادتك جاهزة!","printCertificate":"اطبع الشهادة",
+  "liveReviews":"التقييمات المباشرة","live":"مباشر","noReviews":"لا توجد تقييمات بعد. كن الأول!",
+  "justNow":"الآن","mAgo":"قبل {n} د","hAgo":"قبل {n} س","dAgo":"قبل {n} يوم",
+  "shoutouts":"لوحة التهانينا",
+  "shoutoutsDesc":"الفائزون باللغز الذين ستظهر أسماؤهم في رسالة الشهر القادم",
+  "onTheList":"أنت في قائمة الشهر القادم!",
+  "changeLang":"اللغة",
+  "volunteerLogin":"دخول المتطوعين","password":"كلمة المرور",
+  "enterPassword":"أدخل كلمة مرور المتطوعين","wrongPassword":"كلمة المرور خاطئة. حاول مرة أخرى.",
+  "voucherNote":"أظهر هذه القسيمة لأحد المتطوعين لتستلم جائزتك.",
+  "voucherFood":"قسيمة طعام","voucherLocker":"الخزانة",
+  "certPresented":"مُنحت إلى",
+  "certFor":"عن مشاركته المتميزة في برنامج الرسائل الشهرية Locker Letters",
+  "certPoints":"مجموع النقاط","certSignature":"توقيع المتطوع",
+  "errorLocker":"اكتب رقم خزانتك.","errorName":"اكتب اسمك.",
+  "errorTaken":"هذه الخزانة مسجلة بالفعل. سجّل الدخول.",
+  "errorNotFound":"لا يوجد طالب بهذا الرقم. أنشئ حسابًا أولًا.",
+  "errorPickLang":"اختر لغة للمتابعة.",
+  "errorBoth":"أجب على السؤالين.",
+  "errorReview":"اختر النجوم واكتب تقييمًا قصيرًا أولًا.",
+  "pts":"نقطة",
+  "localNote":"تُحفظ جميع البيانات في هذا المتصفح (localStorage). يعمل دون إنترنت؛ باستثناء رمز QR للقسيمة."
+},
+
+ur: {
+  "appName":"Locker Letters",
+  "tagline":"لکھیں۔ پڑھیں۔ پوائنٹس کمائیں۔ داد پائیں۔",
+  "studentArea":"طالب علم سیکشن",
+  "studentDesc":"اپنے لاکر نمبر سے لاگ اِن کریں اور پوائنٹس اور انعامات کمائیں۔",
+  "volunteerArea":"وائرنٹی پینل",
+  "volunteerDesc":"ان وائرنٹیز کے لیے جو خط اور انعامات سنبھالتے ہیں۔",
+  "continue":"جاری رکھیں","back":"واپس","login":"لاگ اِن","signup":"پہلی بار؟ سائن اپ",
+  "locker":"لاکر نمبر","lockerPh":"مثلاً 42","name":"آپ کا نام","namePh":"مثلاً امینہ",
+  "choosePw":"اپنا پاس ورڈ بنائیں","pwPh":"کم از کم 4 حروف","lockerHint":"مجاز لاکر نمبر: 1 سے 1700","errorPw":"پاس ورڈ کم از کم 4 حروف کا ہونا چاہیے۔","errorLockerRange":"لاکر نمبر 1 سے 1700 کے درمیان ہونا چاہیے۔","errorWrongPw":"اس لاکر کا پاس ورڈ غلط ہے۔ اگر بھول گئے ہیں تو رضاکار سے مدد لیں۔","errorNeedPw":"براہ کرم اپنا پاس ورڈ لکھیں۔","show":"دکھائیں","hide":"چھپائیں",
+  "chooseLangTitle":"اپنی پسندیدہ زبان منتخب کریں",
+  "chooseLangSub":"ایپ، کہانیاں، معلومات اور پہیلیاں اسی زبان میں دکھائی جائیں گی۔ آپ کبھی بھی تبدیل کر سکتے ہیں۔",
+  "searchLang":"زبان تلاش کریں...",
+  "welcomeBack":"خوش آمدید","logout":"لاگ آؤٹ","myPoints":"میرے پوائنٹس",
+  "toVoucher":"فوڈ واؤچر تک","toCertificate":"سرٹیفکیٹ تک",
+  "monthlyTasks":"اس ماہ کے کام","tasksResetOn":"نئے کام شروع ہوں گے",
+  "maxMonthly":"آپ ماہانہ زیادہ سے زیادہ 20 پوائنٹس کما سکتے ہیں۔","done":"مکمل",
+  "claimTitle":"اہم کارنامے",
+  "q1":"اس ماہ آپ نے کیا حاصل کیا؟","q2":"اگلے ماہ آپ کیا حاصل کرنا چاہتے ہیں؟",
+  "q1Ph":"مثلاً میری پڑھائی بہتر ہوئی اور سائنس کا پروجیکٹ مکمل کیا۔",
+  "q2Ph":"مثلاً دو کتابیں پڑھنا چاہتا ہوں اور شطرنج کلب میں شامل ہونا چاہتا ہوں۔",
+  "submitClaim":"جوابات بھیجیں (+12 پوائنٹس)",
+  "claimDone":"+12 پوائنٹس! نئے کام {d} کو شروع ہوں گے۔",
+  "contentHub":"انٹرایکٹو کنٹینٹ",
+  "storyTitle":"حوصلہ افزا کہانی","storyRead":"پڑھ لی (+2 پوائنٹس)","storyDone":"کہانی پڑھ لی گئی",
+  "factTitle":"دلچسپ معلوم","factGot":"مل گیا (+2 پوائنٹس)","factDone":"معلومہ محفوظ",
+  "riddleTitle":"وقت والی پہیلی",
+  "riddleDesc":"120 سیکنڈ میں صحیح جواب دیں۔ جیتنے والوں کا نام اگلے ماہ کے خط میں آئے گا۔",
+  "riddleStart":"شروع کریں","timeLeft":"وقت","riddleSubmit":"جواب بھیجیں",
+  "riddleCorrect":"صحیح! +2 پوائنٹس اور آپ کا نام اگلے ماہ کے خط میں آئے گا۔",
+  "riddleWrong":"قریب تھا! کل دوبارہ کوشش کریں۔",
+  "riddleTimeUp":"وقت ختم! کل دوبارہ کوشش کریں۔",
+  "retryIn":"دوبارہ کوشش",
+  "feedbackTitle":"تاثرات اور جائزہ","ratePrompt":"اس ماہ کے خط نے آپ کی کیسے مدد کی؟",
+  "reviewPh":"لکھیں کہ خط نے آپ کی کیسے مدد کی...",
+  "submitReview":"جائزہ بھیجیں (+2 پوائنٹس)",
+  "reviewDone":"شکریہ! آپ کا جائزہ اب براہِ راست شائع ہے۔",
+  "rewardsTitle":"انعامات",
+  "voucherTitle":"فوڈ واؤچر","voucherAt":"50 پوائنٹس پر کھلے گا",
+  "voucherReady":"آپ کا واؤچر تیار ہے!","printVoucher":"واؤچر پرنٹ کریں",
+  "certTitle":"کامیابی کا سرٹیفکیٹ","certAt":"100 پوائنٹس پر کھلے گا",
+  "certReady":"آپ کا سرٹیفکیٹ تیار ہے!","printCertificate":"سرٹیفکیٹ پرنٹ کریں",
+  "liveReviews":"براہِ راست جائزے","live":"لائیو","noReviews":"ابھی کوئی جائزہ نہیں۔ پہلے آپ ہی کریں!",
+  "justNow":"ابھی","mAgo":"{n} منٹ پہلے","hAgo":"{n} گھنٹے پہلے","dAgo":"{n} دن پہلے",
+  "shoutouts":"شاباش بورڈ",
+  "shoutoutsDesc":"پہیلی کے جیتنے والے جو اگلے ماہ کے خط میں شامل ہوں گے",
+  "onTheList":"آپ اگلے ماہ کی فہرست میں شامل ہیں!",
+  "changeLang":"زبان",
+  "volunteerLogin":"وائرنٹی لاگ اِن","password":"پاس ورڈ",
+  "enterPassword":"وائرنٹی پاس ورڈ درج کریں","wrongPassword":"پاس ورڈ غلط ہے۔ دوبارہ کوشش کریں۔",
+  "voucherNote":"انعام لینے کے لیے یہ واؤچر کسی وائرنٹی کو دکھائیں۔",
+  "voucherFood":"فوڈ واؤچر","voucherLocker":"لاکر",
+  "certPresented":"عطا کیا گیا",
+  "certFor":"ماہانہ Locker Letters پروگرام میں شاندار شرکت پر",
+  "certPoints":"کل پوائنٹس","certSignature":"وائرنٹی کے دستخط",
+  "errorLocker":"اپنا لاکر نمبر لکھیں۔","errorName":"اپنا نام لکھیں۔",
+  "errorTaken":"یہ لاکر پہلے سے رجسٹرڈ ہے۔ لاگ اِن کریں۔",
+  "errorNotFound":"اس لاکر نمبر کا کوئی طالب علم نہیں۔ پہلے سائن اپ کریں۔",
+  "errorPickLang":"جاری رکھنے کے لیے زبان منتخب کریں۔",
+  "errorBoth":"دونوں سوالوں کے جواب دیں۔",
+  "errorReview":"پہلے ستارے منتخب کریں اور مختصر جائزہ لکھیں۔",
+  "pts":"پوائنٹس",
+  "localNote":"تمام ڈیٹا اسی براؤزر میں محفوظ رہتا ہے (localStorage)۔ انٹرنیٹ کے بغیر بھی چلتا ہے؛ صرف واؤچر کا QR کوڈ چاہتا ہے۔"
+},
+
+hi: {
+  "appName":"Locker Letters",
+  "tagline":"लिखो। पढ़ो। पॉइंट कमाओ। शाबाशी पाओ।",
+  "studentArea":"छात्र क्षेत्र",
+  "studentDesc":"अपने लॉकर नंबर से लॉग इन करें और पॉइंट व इनाम कमाएँ।",
+  "volunteerArea":"वॉलंटियर पैनल",
+  "volunteerDesc":"पत्र और इनाम संभालने वाले वॉलंटियर के लिए।",
+  "continue":"जारी रखें","back":"पीछे","login":"लॉग इन","signup":"पहली बार? साइन अप",
+  "locker":"लॉकर नंबर","lockerPh":"जैसे 42","name":"आपका नाम","namePh":"जैसे आमिना",
+  "choosePw":"अपना पासवर्ड बनाएँ","pwPh":"कम से कम 4 अक्षर","lockerHint":"मान्य लॉकर नंबर: 1 से 1700","errorPw":"पासवर्ड कम से कम 4 अक्षर का होना चाहिए।","errorLockerRange":"लॉकर नंबर 1 से 1700 के बीच होना चाहिए।","errorWrongPw":"इस लॉकर का पासवर्ड गलत है। भूल गए तो स्वयंसेवक से मदद लें।","errorNeedPw":"कृपया अपना पासवर्ड लिखें।","show":"दिखाएँ","hide":"छिपाएँ",
+  "chooseLangTitle":"अपनी पसंदीदा भाषा चुनें",
+  "chooseLangSub":"ऐप, कहानियाँ, तथ्य और पहेलियाँ इसी भाषा में दिखेंगी। आप कभी भी बदल सकते हैं।",
+  "searchLang":"भाषा खोजें...",
+  "welcomeBack":"वापस स्वागत है","logout":"लॉग आउट","myPoints":"मेरे पॉइंट",
+  "toVoucher":"फूड वाउचर तक","toCertificate":"सर्टिफिकेट तक",
+  "monthlyTasks":"इस महीने के काम","tasksResetOn":"नए काम शुरू होंगे",
+  "maxMonthly":"आप हर महीने अधिकतम 20 पॉइंट कमा सकते हैं।","done":"पूर्ण",
+  "claimTitle":"मुख्य उपलब्धियाँ",
+  "q1":"इस महीने आपने क्या हासिल किया?","q2":"अगले महीने आप क्या हासिल करना चाहते हैं?",
+  "q1Ph":"जैसे: मेरी पढ़ाई बेहतर हुई और साइंस प्रोजेक्ट पूरा किया।",
+  "q2Ph":"जैसे: दो किताबें पढ़ूँगा और शतरंज क्लब से जुड़ूँगा।",
+  "submitClaim":"जवाब भेजें (+12 अंक)",
+  "claimDone":"+12 अंक! नए काम {d} को शुरू होंगे।",
+  "contentHub":"इंटरैक्टिव कंटेंट",
+  "storyTitle":"हौसला बढ़ाने वाली कहानी","storyRead":"पढ़ लिया (+2 अंक)","storyDone":"कहानी पढ़ ली",
+  "factTitle":"मज़ेदार तथ्य","factGot":"मिल गया (+2 अंक)","factDone":"तथ्य संग्रहित",
+  "riddleTitle":"समय वाली पहेली",
+  "riddleDesc":"120 सेकंड में सही जवाब दें। विजेताओं का नाम अगले महीने के पत्र में आएगा।",
+  "riddleStart":"शुरू करें","timeLeft":"समय","riddleSubmit":"जवाब भेजें",
+  "riddleCorrect":"सही! +2 अंक और आपका नाम अगले महीने के पत्र में आएगा।",
+  "riddleWrong":"बहुत करीब! कल फिर कोशिश करें।",
+  "riddleTimeUp":"समय समाप्त! कल फिर कोशिश करें।",
+  "retryIn":"दोबारा कोशिश",
+  "feedbackTitle":"फीडबैक और समीक्षा","ratePrompt":"इस महीने की चिट्ठी ने आपकी कैसे मदद की?",
+  "reviewPh":"लिखें कि चिट्ठी ने आपकी कैसे मदद की...",
+  "submitReview":"समीक्षा भेजें (+2 अंक)",
+  "reviewDone":"धन्यवाद! आपकी समीक्षा अब लाइव है।",
+  "rewardsTitle":"इनाम",
+  "voucherTitle":"फूड वाउचर","voucherAt":"50 पॉइंट पर खुलेगा",
+  "voucherReady":"आपका वाउचर तैयार है!","printVoucher":"वाउचर प्रिंट करें",
+  "certTitle":"उपलब्धि प्रमाणपत्र","certAt":"100 पॉइंट पर खुलेगा",
+  "certReady":"आपका प्रमाणपत्र तैयार है!","printCertificate":"प्रमाणपत्र प्रिंट करें",
+  "liveReviews":"लाइव समीक्षाएँ","live":"लाइव","noReviews":"अभी कोई समीक्षा नहीं। पहले आप करें!",
+  "justNow":"अभी","mAgo":"{n} मि पहले","hAgo":"{n} घं पहले","dAgo":"{n} दि पहले",
+  "shoutouts":"शाबाशी बोर्ड",
+  "shoutoutsDesc":"पहेली विजेता जो अगले महीने के पत्र में शामिल होंगे",
+  "onTheList":"आप अगले महीने की सूची में हैं!",
+  "changeLang":"भाषा",
+  "volunteerLogin":"वॉलंटियर लॉग इन","password":"पासवर्ड",
+  "enterPassword":"वॉलंटियर पासवर्ड डालें","wrongPassword":"पासवर्ड गलत है। फिर कोशिश करें।",
+  "voucherNote":"इनाम पाने के लिए यह वाउचर किसी वॉलंटियर को दिखाएँ।",
+  "voucherFood":"फूड वाउचर","voucherLocker":"लॉकर",
+  "certPresented":"प्रदान किया गया",
+  "certFor":"मासिक Locker Letters कार्यक्रम में उत्कृष्ट भागीदारी के लिए",
+  "certPoints":"कुल पॉइंट","certSignature":"वॉलंटियर के हस्ताक्षर",
+  "errorLocker":"अपना लॉकर नंबर लिखें।","errorName":"अपना नाम लिखें।",
+  "errorTaken":"यह लॉकर पहले से रजिस्टर्ड है। लॉग इन करें।",
+  "errorNotFound":"इस लॉकर नंबर का कोई छात्र नहीं मिला। पहले साइन अप करें।",
+  "errorPickLang":"जारी रखने के लिए भाषा चुनें।",
+  "errorBoth":"दोनों सवालों के जवाब दें।",
+  "errorReview":"पहले स्टार चुनें और छोटी समीक्षा लिखें।",
+  "pts":"अंक",
+  "localNote":"सारा डेटा इसी ब्राउज़र में सुरक्षित रहता है (localStorage)। बिना इंटरनेट भी चलता है; सिर्फ वाउचर का QR कोड चाहिए।"
+},
+
+bn: {
+  "appName":"Locker Letters",
+  "tagline":"লেখো। পড়ো। পয়েন্ট জমাও। সম্মান পাও।",
+  "studentArea":"শিক্ষার্থীর অংশ",
+  "studentDesc":"তোমার লকার নম্বর দিয়ে লগ ইন করো এবং পয়েন্ট ও পুরস্কার জমাও।",
+  "volunteerArea":"ভলান্টিয়ার প্যানেল",
+  "volunteerDesc":"চিঠি ও পুরস্কার সামলানো ভলান্টিয়ারদের জন্য।",
+  "continue":"চালিয়ে যাও","back":"পেছনে","login":"লগ ইন","signup":"প্রথমবার? সাইন আপ",
+  "locker":"লকার নম্বর","lockerPh":"যেমন 42","name":"তোমার নাম","namePh":"যেমন আমিনা",
+  "choosePw":"একটি পাসওয়ার্ড তৈরি করো","pwPh":"কমপক্ষে ৪ অক্ষর","lockerHint":"অনুমোদিত লকার নম্বর: ১ থেকে ১৭০০","errorPw":"পাসওয়ার্ড কমপক্ষে ৪ অক্ষরের হতে হবে।","errorLockerRange":"লকার নম্বর ১ থেকে ১৭০০ এর মধ্যে হতে হবে।","errorWrongPw":"এই লকারের পাসওয়ার্ড ভুল। ভুলে গেলে স্বেচ্ছাসেবকের কাছে সাহায্য নাও।","errorNeedPw":"তোমার পাসওয়ার্ড লেখো।","show":"দেখাও","hide":"লুকাও",
+  "chooseLangTitle":"তোমার পছন্দের ভাষা বাছো",
+  "chooseLangSub":"অ্যাপ, গল্প, তথ্য ও ধাঁধা এই ভাষায় দেখাবে। যখন খুশি বদলাতে পারবে।",
+  "searchLang":"ভাষা খোঁজো...",
+  "welcomeBack":"স্বাগতম","logout":"লগ আউট","myPoints":"আমার পয়েন্ট",
+  "toVoucher":"ফুড ভাউচারের জন্য","toCertificate":"সার্টিফিকেটের জন্য",
+  "monthlyTasks":"এই মাসের কাজ","tasksResetOn":"নতুন কাজ শুরু হবে",
+  "maxMonthly":"প্রতি মাসে সর্বোচ্চ ২০ পয়েন্ট অর্জন করা যায়।","done":"সম্পন্ন",
+  "claimTitle":"প্রধান অর্জন",
+  "q1":"এই মাসে তুমি কী অর্জন করেছ?","q2":"পরের মাসে কী অর্জন করতে চাও?",
+  "q1Ph":"যেমন: পড়া ভালো হয়েছে আর বিজ্ঞান প্রজেক্ট শেষ করেছি।",
+  "q2Ph":"যেমন: দুটো বই পড়ব আর দাবা ক্লাবে যোগ দেব।",
+  "submitClaim":"উত্তর পাঠাও (+১২ পয়েন্ট)",
+  "claimDone":"+১২ পয়েন্ট! নতুন কাজ শুরু হবে {d} তারিখে।",
+  "contentHub":"ইন্টার‌্যাক্টিভ কনটেন্ট",
+  "storyTitle":"অনুপ্রেরণার গল্প","storyRead":"পড়েছি (+২ পয়েন্ট)","storyDone":"গল্প পড়া হয়েছে",
+  "factTitle":"মজার তথ্য","factGot":"পেয়েছি (+২ পয়েন্ট)","factDone":"তথ্য সংগৃহীত",
+  "riddleTitle":"সময়ের ধাঁধা",
+  "riddleDesc":"১২০ সেকেন্ডের মধ্যে সঠিক উত্তর দাও। বিজয়ীদের নাম পরের মাসের চিঠিতে থাকবে।",
+  "riddleStart":"শুরু করো","timeLeft":"সময়","riddleSubmit":"উত্তর পাঠাও",
+  "riddleCorrect":"সঠিক! +২ পয়েন্ট এবং তোমার নাম পরের মাসের চিঠিতে যাবে।",
+  "riddleWrong":"প্রায়! কাল আবার চেষ্টা করো।",
+  "riddleTimeUp":"সময় শেষ! কাল আবার চেষ্টা করো।",
+  "retryIn":"আবার চেষ্টা",
+  "feedbackTitle":"মতামত ও রিভিউ","ratePrompt":"এই মাসের চিঠি তোমাকে কেমন সাহায্য করেছে?",
+  "reviewPh":"লেখো চিঠি তোমাকে কেমন সাহায্য করেছে...",
+  "submitReview":"রিভিউ পাঠাও (+২ পয়েন্ট)",
+  "reviewDone":"ধন্যবাদ! তোমার রিভিউ এখন লাইভ।",
+  "rewardsTitle":"পুরস্কার",
+  "voucherTitle":"ফুড ভাউচার","voucherAt":"৫০ পয়েন্টে খুলবে",
+  "voucherReady":"তোমার ভাউচার তৈরি!","printVoucher":"ভাউচার প্রিন্ট করো",
+  "certTitle":"কৃতিত্বের সনদ","certAt":"১০০ পয়েন্টে খুলবে",
+  "certReady":"তোমার সনদ তৈরি!","printCertificate":"সনদ প্রিন্ট করো",
+  "liveReviews":"লাইভ রিভিউ","live":"লাইভ","noReviews":"এখনো রিভিউ নেই। প্রথম হও!",
+  "justNow":"এইমাত্র","mAgo":"{n} মি আগে","hAgo":"{n} ঘা আগে","dAgo":"{n} দি আগে",
+  "shoutouts":"শাবাশী বোর্ড",
+  "shoutoutsDesc":"ধাঁধার বিজয়ীরা যারা পরের মাসের চিঠিতে থাকবে",
+  "onTheList":"তুমি পরের মাসের তালিকায় আছ!",
+  "changeLang":"ভাষা",
+  "volunteerLogin":"ভলান্টিয়ার লগ ইন","password":"পাসওয়ার্ড",
+  "enterPassword":"ভলান্টিয়ার পাসওয়ার্ড দাও","wrongPassword":"পাসওয়ার্ড ভুল। আবার চেষ্টা করো।",
+  "voucherNote":"পুরস্কার নিতে এই ভাউচার একজন ভলান্টিয়ারকে দেখাও।",
+  "voucherFood":"ফুড ভাউচার","voucherLocker":"লকার",
+  "certPresented":"প্রদান করা হলো",
+  "certFor":"মাসিক Locker Letters কর্মসূচিতে অসাধারণ অংশগ্রহণের জন্য",
+  "certPoints":"মোট পয়েন্ট","certSignature":"ভলান্টিয়ারের স্বাক্ষর",
+  "errorLocker":"তোমার লকার নম্বর লেখো।","errorName":"তোমার নাম লেখো।",
+  "errorTaken":"এই লকার আগে থেকেই নথিভুক্ত। লগ ইন করো।",
+  "errorNotFound":"এই লকার নম্বরের কোনো শিক্ষার্থী নেই। আগে সাইন আপ করো।",
+  "errorPickLang":"চালিয়ে যেতে একটি ভাষা বাছো।",
+  "errorBoth":"দুটো প্রশ্নেরই উত্তর দাও।",
+  "errorReview":"আগে স্টার বাছো এবং ছোট রিভিউ লেখো।",
+  "pts":"পয়েন্ট",
+  "localNote":"সব ডেটা এই ব্রাউজারেই থাকে (localStorage)। ইন্টারনেট ছাড়াও চলে; শুধু ভাউচারের QR কোড লাগে।"
+},
+
+zh: {
+  "appName":"Locker Letters",
+  "tagline":"书写、阅读、赢积分、被表扬。",
+  "studentArea":"学生区",
+  "studentDesc":"用你的柜号登录，赢取积分和奖励。",
+  "volunteerArea":"志愿者面板",
+  "volunteerDesc":"给负责分发信件和奖励的志愿者使用。",
+  "continue":"继续","back":"返回","login":"登录","signup":"第一次？注册",
+  "locker":"柜号","lockerPh":"例如 42","name":"你的名字","namePh":"例如 阿米娜",
+  "choosePw":"创建一个密码","pwPh":"至少 4 个字符","lockerHint":"可用的柜号：1 到 1700","errorPw":"密码至少需要 4 个字符。","errorLockerRange":"柜号必须在 1 到 1700 之间。","errorWrongPw":"这个柜号的密码不正确。如果忘记密码，请找志愿者帮忙。","errorNeedPw":"请输入密码。","show":"显示","hide":"隐藏",
+  "chooseLangTitle":"选择你的首选语言",
+  "chooseLangSub":"界面、故事、趣闻和谜语都会用这种语言显示，随时可以更改。",
+  "searchLang":"搜索语言...",
+  "welcomeBack":"欢迎回来","logout":"退出","myPoints":"我的积分",
+  "toVoucher":"距离美食券","toCertificate":"距离证书",
+  "monthlyTasks":"本月任务","tasksResetOn":"新任务开启日期",
+  "maxMonthly":"每月最多可获得 20 积分。","done":"已完成",
+  "claimTitle":"主要成就",
+  "q1":"这个月你取得了什么成就？","q2":"下个月你计划取得什么成就？",
+  "q1Ph":"例如：我的阅读进步了，完成了科学项目。",
+  "q2Ph":"例如：我想读两本书，并加入象棋社。",
+  "submitClaim":"提交回答（+12 积分）",
+  "claimDone":"+12 积分！新任务将于 {d} 开启。",
+  "contentHub":"互动内容中心",
+  "storyTitle":"励志小故事","storyRead":"我读完了（+2 积分）","storyDone":"故事已读",
+  "factTitle":"趣闻冷知识","factGot":"收到啦（+2 积分）","factDone":"趣闻已收集",
+  "riddleTitle":"限时谜语",
+  "riddleDesc":"在 120 秒内答对即可。获胜者将在下个月的信件中被点名表扬。",
+  "riddleStart":"开始","timeLeft":"剩余时间","riddleSubmit":"提交答案",
+  "riddleCorrect":"答对了！+2 积分，你的名字会出现在下个月的信里。",
+  "riddleWrong":"差一点！明天再试一次吧。",
+  "riddleTimeUp":"时间到！明天再试一次吧。",
+  "retryIn":"重试倒计时",
+  "feedbackTitle":"反馈与评价","ratePrompt":"这个月的信对你有什么帮助？",
+  "reviewPh":"写写这封信对你的帮助...",
+  "submitReview":"提交评价（+2 积分）",
+  "reviewDone":"谢谢！你的评价已实时上线。",
+  "rewardsTitle":"奖励",
+  "voucherTitle":"美食兑换券","voucherAt":"50 积分解锁",
+  "voucherReady":"你的兑换券已就绪！","printVoucher":"打印兑换券",
+  "certTitle":"成就证书","certAt":"100 积分解锁",
+  "certReady":"你的证书已就绪！","printCertificate":"打印证书",
+  "liveReviews":"实时评价","live":"实时","noReviews":"还没有评价。来写第一条！",
+  "justNow":"刚刚","mAgo":"{n} 分钟前","hAgo":"{n} 小时前","dAgo":"{n} 天前",
+  "shoutouts":"表扬栏",
+  "shoutoutsDesc":"谜语获胜者，将出现在下个月的信件中",
+  "onTheList":"你已进入下个月的表扬名单！",
+  "changeLang":"语言",
+  "volunteerLogin":"志愿者登录","password":"密码",
+  "enterPassword":"输入志愿者密码","wrongPassword":"密码错误，请重试。",
+  "voucherNote":"领取奖励时，请把这张券出示给分发志愿者。",
+  "voucherFood":"美食兑换券","voucherLocker":"柜号",
+  "certPresented":"授予",
+  "certFor":"表彰其在 Locker Letters 月度活动中的出色表现",
+  "certPoints":"总积分","certSignature":"志愿者签名",
+  "errorLocker":"请输入你的柜号。","errorName":"请输入你的名字。",
+  "errorTaken":"该柜号已注册。请直接登录。",
+  "errorNotFound":"还没有使用这个柜号的学生，请先注册。",
+  "errorPickLang":"请选择一种语言再继续。",
+  "errorBoth":"请回答两个问题。",
+  "errorReview":"请先选星并写一段简短评价。",
+  "pts":"积分",
+  "localNote":"所有数据都保存在本浏览器中（localStorage）。无需联网即可使用；仅兑换券二维码需要网络。"
+},
+
+ja: {
+  "appName":"Locker Letters",
+  "tagline":"書いて、読んで、ポイントをためて、たたえよう。",
+  "studentArea":"生徒エリア",
+  "studentDesc":"ロッカー番号でログインして、ポイントとご褒美を集めよう。",
+  "volunteerArea":"ボランティア画面",
+  "volunteerDesc":"手紙とご褒美を管理するボランティア向けです。",
+  "continue":"つぎへ","back":"もどる","login":"ログイン","signup":"はじめての方は新規登録",
+  "locker":"ロッカー番号","lockerPh":"例: 42","name":"名前","namePh":"例: アミナ",
+  "choosePw":"パスワードを決めよう","pwPh":"4文字以上","lockerHint":"使えるロッカー番号：1〜1700","errorPw":"パスワードは4文字以上にしてください。","errorLockerRange":"ロッカー番号は1〜1700の範囲で入力してください。","errorWrongPw":"このロッカーのパスワードがちがいます。わからなくなったらボランティアに聞いてね。","errorNeedPw":"パスワードを入力してください。","show":"表示","hide":"隠す",
+  "chooseLangTitle":"好きな言語を選んでください",
+  "chooseLangSub":"アプリの表示、ストーリー、トリビア、なぞなぞがこの言語で表示されます。いつでも変えられます。",
+  "searchLang":"言語をさがす...",
+  "welcomeBack":"おかえり","logout":"ログアウト","myPoints":"わたしのポイント",
+  "toVoucher":"フード引き換え券まで","toCertificate":"賞状まで",
+  "monthlyTasks":"今月のミッション","tasksResetOn":"新しいミッションは",
+  "maxMonthly":"毎月最大20ポイントまで獲得できます。","done":"完了",
+  "claimTitle":"がんばりの記録",
+  "q1":"今月、何を達成しましたか？","q2":"来月は何を達成したいですか？",
+  "q1Ph":"例: 読書が上手になり、理科の作品を完成させました。",
+  "q2Ph":"例: 本を2冊読んで、チェスクラブに入りたいです。",
+  "submitClaim":"回答を送る（+12ポイント）",
+  "claimDone":"+12ポイント！新しいミッションは {d} に始まります。",
+  "contentHub":"インタラクティブコンテンツ",
+  "storyTitle":"応援ストーリー","storyRead":"読んだ（+2ポイント）","storyDone":"ストーリー読了",
+  "factTitle":"たのしいトリビア","factGot":"ゲット（+2ポイント）","factDone":"トリビア獲得",
+  "riddleTitle":"時間制限なぞなぞ",
+  "riddleDesc":"120秒以内に正解しよう。勝者は来月の手紙で表彰されます。",
+  "riddleStart":"スタート","timeLeft":"のこり時間","riddleSubmit":"答えを送る",
+  "riddleCorrect":"正解！+2ポイントで、来月の手紙に名前がのります。",
+  "riddleWrong":"おしい！また明日挑戦しよう。",
+  "riddleTimeUp":"時間ぎれ！また明日挑戦しよう。",
+  "retryIn":"再挑戦まで",
+  "feedbackTitle":"感想とレビュー","ratePrompt":"今月の手紙はどう役に立ちましたか？",
+  "reviewPh":"手紙がどう役に立ったか書いてみよう...",
+  "submitReview":"レビューを送る（+2ポイント）",
+  "reviewDone":"ありがとう！レビューがリアルタイムで公開されました。",
+  "rewardsTitle":"ご褒美",
+  "voucherTitle":"フード引き換え券","voucherAt":"50ポイントで解放",
+  "voucherReady":"引き換え券ができました！","printVoucher":"券を印刷する",
+  "certTitle":"がんばり賞状","certAt":"100ポイントで解放",
+  "certReady":"賞状ができました！","printCertificate":"賞状を印刷する",
+  "liveReviews":"リアルタイムレビュー","live":"ライブ","noReviews":"まだレビューがありません。最初のレビューを書こう！",
+  "justNow":"たった今","mAgo":"{n}分前","hAgo":"{n}時間前","dAgo":"{n}日前",
+  "shoutouts":"表彰ボード",
+  "shoutoutsDesc":"なぞなぞの勝者。来月の手紙にのせます",
+  "onTheList":"来月の表彰リストにのったよ！",
+  "changeLang":"言語",
+  "volunteerLogin":"ボランティアログイン","password":"パスワード",
+  "enterPassword":"ボランティアのパスワードを入力","wrongPassword":"パスワードがちがいます。もう一度。",
+  "voucherNote":"ご褒美を受け取るとき、この券をボランティアに見せてください。",
+  "voucherFood":"フード引き換え券","voucherLocker":"ロッカー",
+  "certPresented":"受賞者",
+  "certFor":"Locker Letters 月間プログラムでのすばらしい取り組みに対して",
+  "certPoints":"合計ポイント","certSignature":"ボランティア署名",
+  "errorLocker":"ロッカー番号を入力してください。","errorName":"名前を入力してください。",
+  "errorTaken":"このロッカーは登録済みです。ログインしてください。",
+  "errorNotFound":"このロッカー番号の生徒はまだいません。先に新規登録してください。",
+  "errorPickLang":"つづけるには言語を選んでください。",
+  "errorBoth":"両方の質問に答えてください。",
+  "errorReview":"まず星を選んで、短いレビューを書いてください。",
+  "pts":"pt",
+  "localNote":"データはすべてこのブラウザ内（localStorage）に保存されます。オフラインでも動作します。引き換え券のQRコードだけネットが必要です。"
+}
+};
+
+/* ==CONTENT== */
+/* Story, fun fact and riddle per language. Languages not listed here
+   automatically fall back to the English content. */
+var CONTENT = {
+
+en: {
+  story: { title: "The Slow Reader",
+    text: "Leo felt slow because he read slower than everyone in his class. Then a letter came: 'Small steps still move you forward.' He read it five times, and by next month, reading felt a little easier." },
+  fact: "Honey never spoils. Archaeologists found 3,000-year-old honey in Egyptian tombs that was still perfectly edible!",
+  riddle: { q: "What has many keys but cannot open a single door?", opts: ["A piano", "A map", "A clock", "A book"], correct: 0 }
+},
+
+es: {
+  story: { title: "El lector lento",
+    text: "Leo se sentía lento porque leía más despacio que todos en su clase. Luego llegó una carta: 'Los pasos pequeños también te hacen avanzar.' La leyó cinco veces y, al mes siguiente, leer se sintió un poco más fácil." },
+  fact: "La miel nunca se echa a perder. ¡Arqueólogos encontraron miel de 3.000 años en tumbas egipcias que seguía perfectamente comestible!",
+  riddle: { q: "¿Qué tiene muchas teclas pero no puede abrir ni una sola puerta?", opts: ["Un mapa", "Un piano", "Un reloj", "Un libro"], correct: 1 }
+},
+
+fr: {
+  story: { title: "Le lecteur lent",
+    text: "Leo se sentait lent parce qu'il lisait plus lentement que tous les élèves de sa classe. Puis une lettre est arrivée : « Les petits pas font aussi avancer. » Il l'a lue cinq fois, et le mois suivant, lire est devenu un peu plus facile." },
+  fact: "Le miel ne se périme jamais. Des archéologues ont trouvé du miel vieux de 3 000 ans dans des tombes égyptiennes, encore parfaitement comestible !",
+  riddle: { q: "Qu'est-ce qui a beaucoup de touches mais ne peut ouvrir aucune porte ?", opts: ["Une horloge", "Une carte", "Un piano", "Un livre"], correct: 2 }
+},
+
+de: {
+  story: { title: "Der langsame Leser",
+    text: "Leo fühlte sich langsam, weil er langsamer las als alle in seiner Klasse. Dann kam ein Brief: ‚Kleine Schritte bringen dich auch nach vorn.' Er las ihn fünfmal, und im nächsten Monat fiel das Lesen ein wenig leichter." },
+  fact: "Honig verdirbt nie. Archäologen fanden in ägyptischen Gräbern 3.000 Jahre alten Honig, der noch perfekt genießbar war!",
+  riddle: { q: "Was hat viele Tasten, kann aber keine einzige Tür öffnen?", opts: ["Eine Karte", "Eine Uhr", "Ein Buch", "Ein Klavier"], correct: 3 }
+},
+
+pt: {
+  story: { title: "O leitor lento",
+    text: "Leo se sentia lento porque lia mais devagar que todos na sala. Então chegou uma carta: 'Passos pequenos também te levam para frente.' Ele a leu cinco vezes e, no mês seguinte, ler ficou um pouco mais fácil." },
+  fact: "O mel nunca estraga. Arqueólogos encontraram mel de 3.000 anos em tumbas egípcias que ainda estava perfeitamente comestível!",
+  riddle: { q: "O que tem muitas teclas mas não consegue abrir nenhuma porta?", opts: ["Um piano", "Um mapa", "Um relógio", "Um livro"], correct: 0 }
+},
+
+ru: {
+  story: { title: "Медленный читатель",
+    text: "Лео чувствовал себя медлительным, потому что читал медленнее всех в классе. Однажды пришло письмо: «Маленькие шаги тоже двигают тебя вперёд». Он перечитал его пять раз, и через месяц читать стало немного легче." },
+  fact: "Мёд никогда не портится. Археологи нашли в египетских гробницах мёд возрастом 3 000 лет, который всё ещё был вполне съедобным!",
+  riddle: { q: "Что имеет много клавиш, но не может открыть ни одну дверь?", opts: ["Карта", "Пианино", "Часы", "Книга"], correct: 1 }
+},
+
+ar: {
+  story: { title: "القارئ البطيء",
+    text: "كان ليّو يشعر بالبطء لأنه كان يقرأ أبطأ من الجميع في صفه. ثم وصلته رسالة: «الخطوات الصغيرة تُقدّمك أيضًا». قرأها خمس مرات، وفي الشهر التالي صارت القراءة أسهل قليلًا." },
+  fact: "العسل لا يفسد أبدًا. عثر علماء الآثار على عسل عمره 3,000 عام في مقابر مصرية ولا يزال صالحًا للأكل تمامًا!",
+  riddle: { q: "ما هو الشيء الذي فيه مفاتيح كثيرة لكنه لا يفتح أي باب؟", opts: ["الخريطة", "البيانو", "الساعة", "الكتاب"], correct: 1 }
+},
+
+ur: {
+  story: { title: "سست قاری",
+    text: "لیو کو اپنے آپ کو سست محسوس ہوتا تھا کیونکہ وہ پوری کلاس سے دیر پڑھتا تھا۔ پھر ایک خط آیا: 'چھوٹے قدم بھی آگے بڑھاتے ہیں۔' اس نے وہ خط پانچ بار پڑھا اور اگلے مہینے پڑھنا تھوڑا آسان لگنے لگا۔" },
+  fact: "شہد کبھی خراب نہیں ہوتا۔ ماہرینِ آثارِ قدیمہ نے مصر کے مقبروں سے 3,000 سال پرانا شہد پایا جو اب بھی کھانے کے قابل تھا!",
+  riddle: { q: "وہ کون سی چیز ہے جس کے پاس بہت سی کنجیاں ہیں مگر وہ کوئی دروازہ نہیں کھول سکتی؟", opts: ["نقشہ", "گھڑی", "کتاب", "پیانو"], correct: 3 }
+},
+
+hi: {
+  story: { title: "धीमा पाठक",
+    text: "लियो खुद को धीमा महसूस करता था क्योंकि वह कक्षा में सबसे धीरे पढ़ता था। फिर एक चिट्ठी आई: 'छोटे कदम भी आगे बढ़ाते हैं।' उसने वह चिट्ठी पाँच बार पढ़ी और अगले महीने पढ़ना थोड़ा आसान लगने लगा।" },
+  fact: "शहद कभी खराब नहीं होता। पुरातत्वविदों को मिस्र की कब्रों में 3,000 साल पुराना शहद मिला जो अब भी खाने योग्य था!",
+  riddle: { q: "वह क्या है जिसमें बहुत सी चाबियाँ हैं पर वह कोई दरवाज़ा नहीं खोल सकती?", opts: ["पियानो", "नक्शा", "घड़ी", "किताब"], correct: 0 }
+},
+
+bn: {
+  story: { title: "ধীর পাঠক",
+    text: "লিও নিজেকে ধীর মনে করত, কারণ সে ক্লাসের সবার চেয়ে ধীরে পড়ত। তারপর একটি চিঠি এলো: 'ছোট পদক্ষেপও তোমাকে এগিয়ে নেয়।' সে চিঠিটি পাঁচবার পড়ল আর পরের মাসে পড়া একটু সহজ মনে হলো।" },
+  fact: "মধু কখনো নষ্ট হয় না। প্রত্নতাত্ত্বিকরা মিশরের সমাধিতে ৩,০০০ বছরের পুরনো মধু খুঁজে পেয়েছেন যা এখনও খাওয়ার উপযোগী!",
+  riddle: { q: "কোন জিনিসটিতে অনেক চাবি আছে কিন্তু কোনো দরজা খুলতে পারে না?", opts: ["মানচিত্র", "ঘড়ি", "পিয়ানো", "বই"], correct: 2 }
+},
+
+zh: {
+  story: { title: "读得慢的男孩",
+    text: "利奥觉得自己很慢，因为他读书比班里所有人都慢。后来一封信来了：'小步子也能让你前进。'他把信读了五遍，到了下个月，读书似乎变得容易了一点。" },
+  fact: "蜂蜜永远不会变质！考古学家在埃及古墓中发现过 3,000 年前的蜂蜜，居然还能吃！",
+  riddle: { q: "什么东西有很多'钥匙'，却打不开任何一扇门？", opts: ["地图", "钢琴", "时钟", "书本"], correct: 1 }
+},
+
+ja: {
+  story: { title: "ゆっくり読む男の子",
+    text: "レオは、クラスのみんなより読むのが遅いので、自分はダメだと感じていました。すると手紙が届きました。『小さな一歩でも、前へ進んでいる』。手紙を五回読んだレオ。次の月には、読むのが少し楽になっていました。" },
+  fact: "ハチミツは腐りません。考古学者はエジプトの墓から3,000年前のハチミツを見つけましたが、まだ食べられたのです！",
+  riddle: { q: "たくさんの鍵があるのに、どの扉も開けられないものは何？", opts: ["地図", "時計", "本", "ピアノ"], correct: 3 }
 }
 
-// every "+ Add to order" button on the menu cards
-document.querySelectorAll(".add-btn").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    const name = btn.dataset.item;
-    order[name] = (order[name] || 0) + 1;
-    updateOrderBar();
-  });
-});
+};
 
-clearBtn.addEventListener("click", function () {
-  Object.keys(order).forEach(function (k) { delete order[k]; });
-  updateOrderBar();
-});
+function contentFor(lang){ return CONTENT[lang] || CONTENT.en; }
+/* ==CONTENT-END== */
 
-/* ---------- 4. REVEAL-ON-SCROLL ANIMATION ---------- */
-const observer = new IntersectionObserver(function (entries) {
-  entries.forEach(function (entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target); // animate only once
+/* ---------- state ---------- */
+var DB = loadDB();
+var session = loadSession();
+var auth = { mode: "login", step: 1, locker: "", name: "", lang: null, search: "" };
+var riddleRun = null;   // active riddle attempt
+var fbStars = 0;        // selected feedback stars
+var draft = { q1: "", q2: "", review: "" };
+var toastTimer = null;
+var pwShown = {};   // volunteer panel: which student passwords are revealed
+var vIdx = [];      // volunteer panel: locker keys by table row index
+
+/* ---------- safe storage ------------------------------------
+   Some preview panes and privacy modes BLOCK localStorage.
+   Reads were already guarded, but an unguarded WRITE crashed
+   the click handler (the "Continue after language" bug).
+   Now every access is wrapped: if storage is blocked the app
+   keeps working in memory for the whole session.            */
+var MEM = {};
+var STORAGE_OK = (function(){
+  try { localStorage.setItem("__ll_probe", "1"); localStorage.removeItem("__ll_probe"); return true; }
+  catch (e) { return false; }
+})();
+function lsGet(k){
+  try { return localStorage.getItem(k); } catch (e) { return (k in MEM) ? MEM[k] : null; }
+}
+function lsSet(k, v){
+  try { localStorage.setItem(k, v); } catch (e) { MEM[k] = v; }
+}
+function lsDel(k){
+  try { localStorage.removeItem(k); } catch (e) { delete MEM[k]; }
+}
+function loadDB(){
+  try {
+    var d = JSON.parse(lsGet(DB_KEY));
+    if (d && d.students) return d;
+  } catch (e) {}
+  return { students: {}, reviews: [], shoutouts: [] };
+}
+function save(){ lsSet(DB_KEY, JSON.stringify(DB)); }
+function loadSession(){
+  try { return JSON.parse(lsGet(SES_KEY)); } catch (e) { return null; }
+}
+function setSession(s){
+  session = s;
+  if (s) lsSet(SES_KEY, JSON.stringify(s));
+  else lsDel(SES_KEY);
+}
+function stu(){
+  return (session && session.role === "student") ? DB.students[session.locker] : null;
+}
+
+/* ---------- locker + password helpers ---------- */
+function normLocker(raw){
+  var s = (raw === null || raw === undefined ? "" : String(raw)).trim();
+  if (!/^\d{1,4}$/.test(s)) return null;
+  var n = parseInt(s, 10);
+  if (n < 1 || n > MAX_LOCKER) return null;
+  return String(n);
+}
+function findLocker(raw){
+  var s = (raw === null || raw === undefined ? "" : String(raw)).trim();
+  if (s && DB.students[s]) return s; /* legacy free-form locker keys still log in */
+  var n = normLocker(s);
+  return (n && DB.students[n]) ? n : null;
+}
+function encPw(p){ try { return btoa(unescape(encodeURIComponent(p))); } catch (e) { return p; } }
+function decPw(h){ if (!h) return ""; try { return decodeURIComponent(escape(atob(h))); } catch (e) { return h; } }
+
+/* ---------- i18n ---------- */
+function t(k){
+  var st = stu();
+  var lang = st ? st.lang : ((session && session.lang) || "en");
+  var d = I18N[lang];
+  if (d && d[k] !== undefined) return d[k];
+  if (I18N.en[k] !== undefined) return I18N.en[k];
+  return k;
+}
+function tf(k, v){ return t(k).replace("{d}", v).replace("{n}", v); }
+function localeOf(l){ if (l === "tw") return "zh-TW"; if (l === "fil") return "fil-PH"; return l || "en"; }
+function fmtDate(x, lang){
+  var d = (x instanceof Date) ? x : new Date(x);
+  var o = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+  try { return d.toLocaleDateString(localeOf(lang), o); }
+  catch (e) { return d.toLocaleDateString("en", o); }
+}
+function langNative(code){
+  for (var i = 0; i < LANGUAGES.length; i++) if (LANGUAGES[i].c === code) return LANGUAGES[i].n;
+  return code;
+}
+
+/* ---------- helpers ---------- */
+function esc(s){
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function v(html){ document.getElementById("view").innerHTML = html; window.scrollTo(0, 0); }
+function toast(msg){
+  var el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove("show"); }, 3400);
+}
+function onEnt(e, fn){ if (e && e.key === "Enter" && typeof fn === "function") fn(); }
+function rel(ts){
+  var diff = Date.now() - ts;
+  if (diff < 60e3) return t("justNow");
+  if (diff < 3600e3) return tf("mAgo", Math.floor(diff / 60e3));
+  if (diff < 86400e3) return tf("hAgo", Math.floor(diff / 3600e3));
+  return tf("dAgo", Math.floor(diff / 86400e3));
+}
+function fmtDur(ms){
+  var m = Math.max(0, Math.floor(ms / 60000));
+  var d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mm = m % 60;
+  if (d >= 1) return d + "d " + h + "h";
+  if (h >= 1) return h + "h " + mm + "m";
+  return mm + "m";
+}
+function fmtClock(sec){ return Math.floor(sec / 60) + ":" + pad2(sec % 60); }
+function genCode(lk){
+  var r = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return "LL-" + lk + "-" + r;
+}
+function doneCount(s, ck){
+  var mods = ["claim", "story", "fact", "riddle", "feedback"], n = 0;
+  for (var i = 0; i < mods.length; i++) if (s.cycles[mods[i]] === ck) n++;
+  return n;
+}
+function applyDir(){
+  var st = stu();
+  document.body.dir = (st && RTL[st.lang]) ? "rtl" : "ltr";
+}
+function stashDrafts(){
+  var a = document.getElementById("q1in"); if (a) draft.q1 = a.value;
+  var b = document.getElementById("q2in"); if (b) draft.q2 = b.value;
+  var c = document.getElementById("reviewin"); if (c) draft.review = c.value;
+}
+
+/* ---------- points ---------- */
+function checkUnlocks(st){
+  if (st.points >= VOUCHER_AT && !(st.vouchers && st.vouchers.length))
+    st.vouchers = [{ code: genCode(st.locker), ts: Date.now() }];
+  if (st.points >= CERT_AT && !(st.certs && st.certs.length))
+    st.certs = [{ ts: Date.now() }];
+}
+function award(st, mod, pts){
+  st.points += pts;
+  st.cycles[mod] = cycleKeyFor();
+  st.updatedOn = Date.now();
+  checkUnlocks(st);
+  save();
+}
+
+/* ---------- render root ---------- */
+function render(){
+  stashDrafts();
+  applyDir();
+  if (session && session.role === "student" && !DB.students[session.locker]) setSession(null);
+  if (!session) viewLanding();
+  else if (session.role === "student") viewStudent();
+  else viewVolunteer();
+}
+
+/* ---------- landing ---------- */
+function viewLanding(){
+  v(
+    "<div class='landing'>" +
+    "<div class='hero'><span class='logo big'>LL</span><h1>" + esc(t("appName")) + "</h1><p class='tag'>" + esc(t("tagline")) + "</p></div>" +
+    "<div class='grid2'>" +
+    "<div class='card role' onclick='startStudentAuth()'><div class='role-ic stud'>S</div><h2>" + esc(t("studentArea")) + "</h2><p>" + esc(t("studentDesc")) + "</p><button class='btn primary' onclick='startStudentAuth()'>" + esc(t("continue")) + " &rarr;</button></div>" +
+    "<div class='card role' onclick='startVolunteerAuth()'><div class='role-ic vol'>V</div><h2>" + esc(t("volunteerArea")) + "</h2><p>" + esc(t("volunteerDesc")) + "</p><button class='btn gold' onclick='startVolunteerAuth()'>" + esc(t("continue")) + " &rarr;</button></div>" +
+    "</div>" +
+    "<div class='foot'>" + esc(t("localNote")) + "</div></div>"
+  );
+}
+function startStudentAuth(){
+  auth = { mode: "login", step: 1, locker: "", name: "", pw: "", lang: null, search: "" };
+  viewStudentAuth();
+}
+function startVolunteerAuth(){ viewVolunteerAuth(); }
+
+/* ---------- student auth ---------- */
+function viewStudentAuth(){
+  var mode = auth.mode;
+  var tabs = "<div class='tabs'>" +
+    "<button class='tab" + (mode === "login" ? " on" : "") + "' onclick='auth.mode=&quot;login&quot;;viewStudentAuth()'>" + esc(t("login")) + "</button>" +
+    "<button class='tab" + (mode === "signup" ? " on" : "") + "' onclick='auth.mode=&quot;signup&quot;;viewStudentAuth()'>" + esc(t("signup")) + "</button></div>";
+  var body;
+  if (mode === "login"){
+    body = "<label class='qlbl'>" + esc(t("locker")) + "</label>" +
+      "<input class='in' id='lockIn' placeholder='" + esc(t("lockerPh")) + "' onkeydown='onEnt(event,doLogin)'>" +
+      "<label class='qlbl'>" + esc(t("password")) + "</label>" +
+      "<input class='in' type='password' id='lPwIn' placeholder='" + esc(t("pwPh")) + "' onkeydown='onEnt(event,doLogin)'>" +
+      "<div class='btnrow'><button class='btn ghost' onclick='viewLanding()'>" + esc(t("back")) + "</button>" +
+      "<button class='btn primary' onclick='doLogin()'>" + esc(t("login")) + "</button></div>";
+  } else {
+    body = "<label class='qlbl'>" + esc(t("locker")) + "</label>" +
+      "<input class='in' id='lockIn' placeholder='" + esc(t("lockerPh")) + "'>" +
+      "<p class='muted' style='font-size:12px;margin:4px 0 0'>" + esc(t("lockerHint")) + "</p>" +
+      "<label class='qlbl'>" + esc(t("name")) + "</label>" +
+      "<input class='in' id='nameIn' placeholder='" + esc(t("namePh")) + "' onkeydown='onEnt(event,doSignupStep1)'>" +
+      "<label class='qlbl'>" + esc(t("choosePw")) + "</label>" +
+      "<input class='in' type='password' id='spwIn' placeholder='" + esc(t("pwPh")) + "' onkeydown='onEnt(event,doSignupStep1)'>" +
+      "<div class='btnrow'><button class='btn ghost' onclick='viewLanding()'>" + esc(t("back")) + "</button>" +
+      "<button class='btn primary' onclick='doSignupStep1()'>" + esc(t("continue")) + "</button></div>";
+  }
+  v("<div class='landing'>" +
+    "<div class='hero'><span class='logo big'>LL</span><h1>" + esc(t("appName")) + "</h1><p class='tag'>" + esc(t("tagline")) + "</p></div>" +
+    "<div class='card auth'>" + tabs + body + "</div>" +
+    "<div class='foot'>" + esc(t("localNote")) + "</div></div>");
+}
+function doLogin(){
+  var raw = (document.getElementById("lockIn").value || "").trim();
+  var pw = (document.getElementById("lPwIn") ? document.getElementById("lPwIn").value : "");
+  if (!raw){ toast(t("errorLocker")); return; }
+  if (!pw){ toast(t("errorNeedPw")); return; }
+  var lk = findLocker(raw);
+  if (!lk){ toast(t("errorNotFound")); return; }
+  var st = DB.students[lk];
+  if (st.pw){
+    if (decPw(st.pw) !== pw){ toast(t("errorWrongPw")); return; }
+  } else {
+    st.pw = encPw(pw); /* account made before passwords existed: this login sets it */
+  }
+  save();
+  setSession({ role: "student", locker: lk });
+  riddleRun = null; fbStars = 0;
+  render();
+  toast(t("welcomeBack") + ", " + st.name + "!");
+}
+function doSignupStep1(){
+  var raw = (document.getElementById("lockIn").value || "").trim();
+  var nm = (document.getElementById("nameIn").value || "").trim();
+  var pw = (document.getElementById("spwIn") ? document.getElementById("spwIn").value : "");
+  if (!raw){ toast(t("errorLocker")); return; }
+  var lk = normLocker(raw);
+  if (!lk){ toast(t("errorLockerRange")); return; }
+  if (DB.students[lk]){ toast(t("errorTaken")); return; }
+  if (!nm){ toast(t("errorName")); return; }
+  if (pw.length < 4){ toast(t("errorPw")); return; }
+  auth.locker = lk; auth.name = nm; auth.pw = pw; auth.step = 2;
+  viewLangPick();
+}
+function viewLangPick(){
+  v("<div class='landing'>" +
+    "<div class='card auth'><h2>" + esc(t("chooseLangTitle")) + "</h2><p class='muted'>" + esc(t("chooseLangSub")) + "</p>" +
+    "<input class='in' placeholder='" + esc(t("searchLang")) + "' oninput='authSearch(this.value)'>" +
+    "<div class='langgrid' id='langGrid'>" + langGridHTML() + "</div>" +
+    "<div class='btnrow'><button class='btn ghost' onclick='authBack()'>" + esc(t("back")) + "</button>" +
+    "<button class='btn primary' onclick='doSignup()'>" + esc(t("continue")) + "</button></div></div></div>");
+}
+function langGridHTML(){
+  var s = (auth.search || "").toLowerCase();
+  var out = "";
+  for (var i = 0; i < LANGUAGES.length; i++){
+    var L = LANGUAGES[i];
+    if (s && L.n.toLowerCase().indexOf(s) < 0 && L.e.toLowerCase().indexOf(s) < 0 && L.c.indexOf(s) < 0) continue;
+    out += "<button class='chip" + (auth.lang === L.c ? " sel" : "") + "' onclick='pickLang(" + i + ")'><b>" + esc(L.n) + "</b><small>" + esc(L.e) + "</small></button>";
+  }
+  return out || "<p class='muted'>-</p>";
+}
+function authSearch(val){ auth.search = val; var g = document.getElementById("langGrid"); if (g) g.innerHTML = langGridHTML(); }
+function pickLang(i){ auth.lang = LANGUAGES[i].c; var g = document.getElementById("langGrid"); if (g) g.innerHTML = langGridHTML(); }
+function authBack(){ auth.step = 1; viewStudentAuth(); }
+function doSignup(){
+  if (!auth.lang){ toast(t("errorPickLang")); return; }
+  DB.students[auth.locker] = {
+    locker: auth.locker, name: auth.name, lang: auth.lang, pw: encPw(auth.pw),
+    points: 0, cycles: {}, riddleLockedUntil: 0,
+    vouchers: [], certs: [],
+    createdAt: Date.now(), updatedOn: null
+  };
+  save();
+  setSession({ role: "student", locker: auth.locker });
+  riddleRun = null; fbStars = 0;
+  render();
+  toast(t("welcomeBack") + ", " + auth.name + "!");
+}
+function doLogout(){ setSession(null); riddleRun = null; fbStars = 0; render(); }
+function changeLang(code){ var st = stu(); if (!st) return; st.lang = code; save(); render(); }
+
+/* ---------- volunteer auth ---------- */
+function viewVolunteerAuth(){
+  v("<div class='landing'>" +
+    "<div class='hero'><span class='logo big'>LL</span><h1>" + esc(t("appName")) + "</h1><p class='tag'>" + esc(t("tagline")) + "</p></div>" +
+    "<div class='card auth'><h2>" + esc(t("volunteerLogin")) + "</h2>" +
+    "<label class='qlbl'>" + esc(t("password")) + "</label>" +
+    "<input class='in' type='password' id='pwIn' placeholder='" + esc(t("enterPassword")) + "' onkeydown='onEnt(event,doVolLogin)'>" +
+    "<div class='btnrow'><button class='btn ghost' onclick='viewLanding()'>" + esc(t("back")) + "</button>" +
+    "<button class='btn primary' onclick='doVolLogin()'>" + esc(t("volunteerLogin")) + "</button></div></div>" +
+    "<div class='foot'>" + esc(t("localNote")) + "</div></div>");
+}
+function doVolLogin(){
+  var pw = (document.getElementById("pwIn").value || "");
+  if (pw === VOLUNTEER_PASSWORD){ setSession({ role: "volunteer" }); render(); }
+  else toast(t("wrongPassword"));
+}
+
+/* ---------- student dashboard ---------- */
+function topbarStudent(st){
+  var opts = "";
+  for (var i = 0; i < LANGUAGES.length; i++){
+    var L = LANGUAGES[i];
+    opts += "<option value='" + L.c + "'" + (L.c === st.lang ? " selected" : "") + ">" + esc(L.n) + "</option>";
+  }
+  return "<header class='topbar'><div class='brandrow'><span class='logo'>LL</span><b>" + esc(t("appName")) + "</b></div>" +
+    "<div class='tright'><span class='muted' style='font-size:12px'>" + esc(t("changeLang")) + "</span>" +
+    "<select class='sel' onchange='changeLang(this.value)'>" + opts + "</select>" +
+    "<span class='badge brand'><b>" + st.points + "</b> " + esc(t("pts")) + "</span>" +
+    "<button class='btn ghost sm' onclick='doLogout()'>" + esc(t("logout")) + "</button></div></header>";
+}
+function reviewsWallHTML(list){
+  if (!list.length) return "<p class='muted'>" + esc(t("noReviews")) + "</p>";
+  var out = "";
+  for (var i = 0; i < list.length; i++){
+    var r = list[i];
+    var stars = "";
+    for (var s = 1; s <= 5; s++) stars += (s <= r.stars ? "★" : "☆");
+    out += "<div class='rcard'><div class='rhead'><b>" + esc(r.name) + "</b>" +
+      "<span class='rlock'>" + esc(t("voucherLocker")) + " " + esc(r.locker) + "</span>" +
+      "<span class='stars-s'>" + stars + "</span>" +
+      "<span class='rtime'>" + rel(r.ts) + "</span></div>" +
+      "<p>" + esc(r.text) + "</p></div>";
+  }
+  return out;
+}
+function viewStudent(){
+  var st = stu();
+  if (!st){ setSession(null); return viewLanding(); }
+  var ck = cycleKeyFor();
+  var nextR = nextResetDate(new Date());
+  function av(mod){ return st.cycles[mod] !== ck; }
+  var C = contentFor(st.lang);
+  var R = C.riddle;
+  var enNote = (st.lang !== "en" && !CONTENT[st.lang]) ? " <span class='badge'>EN</span>" : "";
+  var html = topbarStudent(st);
+  html += "<div class='page'>";
+
+  /* points hero */
+  var vp = st.vouchers && st.vouchers[0], ct = st.certs && st.certs[0];
+  var remV = Math.max(0, VOUCHER_AT - st.points), remC = Math.max(0, CERT_AT - st.points);
+  html += "<div class='card hero-card'><div><div class='pts-big'>" + st.points + "</div><div class='muted'>" + esc(t("myPoints")) + "</div></div>" +
+    "<div class='goals'>" +
+    "<div class='goal'><span>" + esc(t("voucherTitle")) + " · " + esc(t("voucherAt")) + "</span><span>" + (vp ? "✓" : remV + " " + esc(t("pts"))) + "</span></div>" +
+    "<div class='pbar gold'><div style='width:" + Math.min(100, Math.round(st.points / VOUCHER_AT * 100)) + "%'></div></div>" +
+    "<div class='goal'><span>" + esc(t("certTitle")) + " · " + esc(t("certAt")) + "</span><span>" + (ct ? "✓" : remC + " " + esc(t("pts"))) + "</span></div>" +
+    "<div class='pbar'><div style='width:" + Math.min(100, Math.round(st.points / CERT_AT * 100)) + "%'></div></div>" +
+    "</div></div>";
+
+  html += "<div class='cyclechip'><span class='ldot'></span>" + esc(t("tasksResetOn")) + " <b>" + fmtDate(nextR, st.lang) + "</b> · " + esc(t("maxMonthly")) + "</div>";
+
+  if (st.cycles.riddle === ck) html += "<div class='banner goldb'>★ " + esc(t("onTheList")) + "</div>";
+
+  /* monthly tasks */
+  html += "<div class='stitle'>" + esc(t("monthlyTasks")) + "</div><div class='tasks'>";
+
+  /* claim (12 pts) */
+  if (av("claim")){
+    html += "<div class='card span2'><div class='chead'><h3>" + esc(t("claimTitle")) + "</h3><span class='badge brand'>+12 " + esc(t("pts")) + "</span></div>" +
+      "<label class='qlbl'>" + esc(t("q1")) + "</label>" +
+      "<textarea class='in' id='q1in' oninput='draft.q1=this.value' placeholder='" + esc(t("q1Ph")) + "'>" + esc(draft.q1) + "</textarea>" +
+      "<label class='qlbl'>" + esc(t("q2")) + "</label>" +
+      "<textarea class='in' id='q2in' oninput='draft.q2=this.value' placeholder='" + esc(t("q2Ph")) + "'>" + esc(draft.q2) + "</textarea>" +
+      "<div class='btnrow'><button class='btn primary' onclick='submitClaim()'>" + esc(t("submitClaim")) + "</button></div></div>";
+  } else {
+    html += "<div class='card span2'><div class='chead'><h3>" + esc(t("claimTitle")) + "</h3><span class='badge green'>" + esc(t("done")) + " +12</span></div>" +
+      "<p>" + tf("claimDone", fmtDate(nextR, st.lang)) + "</p></div>";
+  }
+
+  /* story (+2) */
+  html += "<div class='card'><div class='chead'><h3>" + esc(t("storyTitle")) + enNote + "</h3><span class='badge brand'>+2 " + esc(t("pts")) + "</span></div>" +
+    "<h4>" + esc(C.story.title) + "</h4><p>" + esc(C.story.text) + "</p>" +
+    (av("story")
+      ? "<div class='btnrow'><button class='btn primary' onclick='storyRead()'>" + esc(t("storyRead")) + "</button></div>"
+      : "<p style='margin-top:10px'><span class='badge green'>" + esc(t("storyDone")) + "</span></p>") +
+    "</div>";
+
+  /* fun fact (+2) */
+  html += "<div class='card'><div class='chead'><h3>" + esc(t("factTitle")) + enNote + "</h3><span class='badge brand'>+2 " + esc(t("pts")) + "</span></div>" +
+    "<p>" + esc(C.fact) + "</p>" +
+    (av("fact")
+      ? "<div class='btnrow'><button class='btn primary' onclick='factGet()'>" + esc(t("factGot")) + "</button></div>"
+      : "<p style='margin-top:10px'><span class='badge green'>" + esc(t("factDone")) + "</span></p>") +
+    "</div>";
+
+  /* timed riddle (+2) */
+  html += "<div class='card'><div class='chead'><h3>" + esc(t("riddleTitle")) + enNote + "</h3><span class='badge brand'>+2 " + esc(t("pts")) + "</span></div>";
+  if (st.cycles.riddle === ck){
+    html += "<p><span class='badge green'>" + esc(t("done")) + "</span></p><p class='muted'>" + esc(t("riddleCorrect")) + "</p>";
+  } else if (riddleRun && riddleRun.locker === st.locker){
+    var left = Math.max(0, Math.ceil((riddleRun.ends - Date.now()) / 1000));
+    html += "<div class='timer'><span>" + esc(t("timeLeft")) + "</span><b id='riddleTime'>" + fmtClock(left) + "</b></div>" +
+      "<div class='tbar'><div id='riddleBar' style='width:" + (left / 120 * 100) + "%'></div></div>" +
+      "<p class='q'>" + esc(R.q) + "</p>";
+    for (var oi = 0; oi < R.opts.length; oi++){
+      html += "<button class='opt" + (riddleRun.sel === oi ? " sel" : "") + "' onclick='pickOpt(" + oi + ")'>" + String.fromCharCode(65 + oi) + ". " + esc(R.opts[oi]) + "</button>";
     }
-  });
-}, { threshold: 0.12 });
+    html += "<div class='btnrow'><button class='btn primary' id='riddleGo' onclick='riddleSubmit()'" + (riddleRun.sel === null ? " disabled" : "") + ">" + esc(t("riddleSubmit")) + "</button></div>";
+  } else if ((st.riddleLockedUntil || 0) > Date.now()){
+    html += "<div class='lockbox'>" + esc(t("retryIn")) + " <b id='retryCd'>" + fmtDur(st.riddleLockedUntil - Date.now()) + "</b></div>";
+  } else {
+    html += "<p class='muted'>" + esc(t("riddleDesc")) + "</p>" +
+      "<div class='btnrow'><button class='btn primary' onclick='startRiddle()'>" + esc(t("riddleStart")) + " · 120s</button></div>";
+  }
+  html += "</div>";
 
-document.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
+  /* feedback (+2) */
+  if (av("feedback")){
+    var sb = "";
+    for (var fi = 1; fi <= 5; fi++) sb += "<button class='st" + (fbStars >= fi ? " on" : "") + "' onclick='setStar(" + fi + ")'>★</button>";
+    html += "<div class='card'><div class='chead'><h3>" + esc(t("feedbackTitle")) + "</h3><span class='badge brand'>+2 " + esc(t("pts")) + "</span></div>" +
+      "<p class='muted'>" + esc(t("ratePrompt")) + "</p>" +
+      "<div class='stars' id='fbStars'>" + sb + "</div>" +
+      "<textarea class='in' id='reviewin' oninput='draft.review=this.value' placeholder='" + esc(t("reviewPh")) + "'>" + esc(draft.review) + "</textarea>" +
+      "<div class='btnrow'><button class='btn primary' onclick='submitReview()'>" + esc(t("submitReview")) + "</button></div></div>";
+  } else {
+    html += "<div class='card'><div class='chead'><h3>" + esc(t("feedbackTitle")) + "</h3><span class='badge green'>" + esc(t("done")) + "</span></div>" +
+      "<p>" + esc(t("reviewDone")) + "</p></div>";
+  }
+  html += "</div>"; /* tasks grid */
 
-/* ---------- 5. CURRENT YEAR IN THE FOOTER ---------- */
-document.getElementById("year").textContent = new Date().getFullYear();
+  /* rewards */
+  html += "<div class='stitle'>" + esc(t("rewardsTitle")) + "</div><div class='rewgrid'>";
+  html += "<div class='card'><div class='chead'><h3>" + esc(t("voucherTitle")) + "</h3><span class='badge gold'>50 " + esc(t("pts")) + "</span></div>";
+  if (vp){
+    html += "<p><span class='badge green'>" + esc(t("voucherReady")) + "</span></p>" +
+      "<div class='code'>" + esc(vp.code) + "</div>" +
+      "<div class='btnrow'><button class='btn gold' onclick='printVoucher()'>" + esc(t("printVoucher")) + "</button></div>";
+  } else {
+    html += "<p class='muted'>" + esc(t("voucherAt")) + "</p>" +
+      "<div class='pbar gold'><div style='width:" + Math.min(100, Math.round(st.points / VOUCHER_AT * 100)) + "%'></div></div>" +
+      "<p class='muted'>" + remV + " " + esc(t("pts")) + " " + esc(t("toVoucher")) + "</p>";
+  }
+  html += "</div>";
+  html += "<div class='card'><div class='chead'><h3>" + esc(t("certTitle")) + "</h3><span class='badge gold'>100 " + esc(t("pts")) + "</span></div>";
+  if (ct){
+    html += "<p><span class='badge green'>" + esc(t("certReady")) + "</span></p>" +
+      "<div class='btnrow'><button class='btn gold' onclick='printCertificate()'>" + esc(t("printCertificate")) + "</button></div>";
+  } else {
+    html += "<p class='muted'>" + esc(t("certAt")) + "</p>" +
+      "<div class='pbar'><div style='width:" + Math.min(100, Math.round(st.points / CERT_AT * 100)) + "%'></div></div>" +
+      "<p class='muted'>" + remC + " " + esc(t("pts")) + " " + esc(t("toCertificate")) + "</p>";
+  }
+  html += "</div></div>";
+
+  /* live reviews */
+  html += "<div class='stitle'><span class='ldot red'></span>" + esc(t("liveReviews")) + "<span class='badge red'>" + esc(t("live")) + "</span></div>" +
+    "<div class='revwall'>" + reviewsWallHTML(DB.reviews.slice(0, 12)) + "</div>";
+
+  /* shout-outs */
+  if (DB.shoutouts.length){
+    html += "<div class='stitle'>" + esc(t("shoutouts")) + "</div><p class='muted'>" + esc(t("shoutoutsDesc")) + "</p><div class='sochips'>";
+    for (var si = 0; si < DB.shoutouts.length && si < 8; si++){
+      var so = DB.shoutouts[si];
+      html += "<span class='sochip'>" + esc(t("voucherLocker")) + " " + esc(so.locker) + " · " + esc(so.name) + " <small>" + rel(so.ts) + "</small></span>";
+    }
+    html += "</div>";
+  }
+
+  html += "<div class='foot'>" + esc(t("localNote")) + "</div></div>";
+  v(html);
+}
+
+/* ---------- volunteer dashboard ---------- */
+function viewVolunteer(){
+  var studs = [];
+  for (var k in DB.students) if (DB.students.hasOwnProperty(k)) studs.push(DB.students[k]);
+  studs.sort(function(a, b){ return b.points - a.points; });
+  var tot = 0;
+  for (var i = 0; i < studs.length; i++) tot += studs[i].points;
+  var ck = cycleKeyFor();
+
+  var html = "<header class='topbar'><div class='brandrow'><span class='logo'>LL</span><b>" + esc(t("appName")) + "</b><span class='badge gold'>" + esc(t("volunteerArea")) + "</span></div>" +
+    "<div class='tright'><button class='btn ghost sm' onclick='doLogout()'>" + esc(t("logout")) + "</button></div></header>";
+  html += "<div class='page'>";
+  html += "<h2>" + esc(t("vTitle")) + "</h2>";
+  html += "<div class='stats'>" +
+    "<div class='stat'><b>" + studs.length + "</b><span>" + esc(t("vStatStudents")) + "</span></div>" +
+    "<div class='stat'><b>" + tot + "</b><span>" + esc(t("vStatPoints")) + "</span></div>" +
+    "<div class='stat'><b>" + DB.reviews.length + "</b><span>" + esc(t("vStatReviews")) + "</span></div>" +
+    "<div class='stat'><b>" + DB.shoutouts.length + "</b><span>" + esc(t("vStatShoutouts")) + "</span></div></div>";
+
+  html += "<div class='stitle'>" + esc(t("vTable")) + "</div><div class='vwrap'><table class='vt'><thead><tr>" +
+    "<th>" + esc(t("vLocker")) + "</th><th>" + esc(t("vName")) + "</th><th>" + esc(t("vLang")) + "</th><th>" + esc(t("vPoints")) + "</th><th>" + esc(t("vCycleTasks")) + "</th><th>" + esc(t("vLastActive")) + "</th><th>" + esc(t("password")) + "</th></tr></thead><tbody>";
+  if (!studs.length) html += "<tr><td colspan='7' class='muted'>" + esc(t("vNoStudents")) + "</td></tr>";
+  vIdx = [];
+  for (var j = 0; j < studs.length; j++){
+    var s = studs[j];
+    vIdx[j] = s.locker;
+    var pwCell = !s.pw ? "<span class='muted'>&mdash;</span>"
+      : "<span class='pwv'>" + (pwShown[s.locker] ? esc(decPw(s.pw)) : "&bull;&bull;&bull;&bull;") + "</span>" +
+        "<button class='btn ghost sm' style='margin-left:6px' onclick='togglePw(" + j + ")'>" + esc(pwShown[s.locker] ? t("hide") : t("show")) + "</button>";
+    html += "<tr><td><b>" + esc(s.locker) + "</b></td><td>" + esc(s.name) + "</td><td>" + esc(langNative(s.lang)) + "</td><td><b>" + s.points + "</b></td><td>" + doneCount(s, ck) + "/5</td><td class='muted'>" + (s.updatedOn ? rel(s.updatedOn) : esc(t("vNever"))) + "</td><td>" + pwCell + "</td></tr>";
+  }
+  html += "</tbody></table></div>";
+
+  html += "<div class='stitle'><span class='ldot red'></span>" + esc(t("vReviews")) + "</div>";
+  html += "<div class='revwall'>" + reviewsWallHTML(DB.reviews.slice(0, 30)) + "</div>";
+
+  html += "<div class='stitle'>" + esc(t("vShoutouts")) + "</div>";
+  if (DB.shoutouts.length){
+    html += "<div class='sochips'>";
+    for (var m = 0; m < DB.shoutouts.length; m++){
+      var so = DB.shoutouts[m];
+      html += "<span class='sochip'>" + esc(t("voucherLocker")) + " " + esc(so.locker) + " · " + esc(so.name) + " <small>" + rel(so.ts) + "</small></span>";
+    }
+    html += "</div>";
+  } else html += "<p class='muted'>" + esc(t("vNoShoutouts")) + "</p>";
+
+  html += "<div class='stitle' style='color:var(--red)'>" + esc(t("vReset")) + "</div>" +
+    "<div id='resetZone' class='btnrow'><button class='btn danger' onclick='armReset()'>" + esc(t("vReset")) + "</button></div>";
+  html += "</div><div class='foot'>" + esc(t("localNote")) + "</div>";
+  v(html);
+}
+function armReset(){
+  document.getElementById("resetZone").innerHTML =
+    "<span class='muted'>" + esc(t("vConfirm")) + "</span>" +
+    "<button class='btn danger sm' onclick='doReset()'>" + esc(t("vYes")) + "</button>" +
+    "<button class='btn ghost sm' onclick='cancelReset()'>" + esc(t("vNo")) + "</button>";
+}
+function cancelReset(){ render(); }
+function togglePw(i){
+  var lk = vIdx[i];
+  if (!lk) return;
+  pwShown[lk] = !pwShown[lk];
+  render();
+}
+function doReset(){
+  DB = { students: {}, reviews: [], shoutouts: [] };
+  save();
+  toast(t("vResetDone"));
+  render();
+}
+
+/* ---------- task actions ---------- */
+function submitClaim(){
+  var st = stu(); if (!st) return;
+  var q1 = (draft.q1 || "").trim(), q2 = (draft.q2 || "").trim();
+  if (!q1 || !q2){ toast(t("errorBoth")); return; }
+  award(st, "claim", POINTS.claim);
+  draft.q1 = ""; draft.q2 = "";
+  toast(tf("claimDone", fmtDate(nextResetDate(new Date()), st.lang)));
+  render();
+}
+function storyRead(){ var st = stu(); if (!st) return; award(st, "story", POINTS.story); toast(t("storyDone")); render(); }
+function factGet(){ var st = stu(); if (!st) return; award(st, "fact", POINTS.fact); toast(t("factDone")); render(); }
+function startRiddle(){
+  var st = stu(); if (!st) return;
+  riddleRun = { locker: st.locker, lang: st.lang, ends: Date.now() + 120000, sel: null };
+  render();
+}
+function pickOpt(i){
+  if (!riddleRun) return;
+  riddleRun.sel = i;
+  var opts = document.querySelectorAll(".opt");
+  for (var j = 0; j < opts.length; j++) opts[j].classList.toggle("sel", j === i);
+  var go = document.getElementById("riddleGo");
+  if (go) go.disabled = false;
+}
+function riddleFail(msg){
+  var st = stu();
+  riddleRun = null;
+  if (st){ st.riddleLockedUntil = Date.now() + 86400000; save(); }
+  toast(msg);
+  render();
+}
+function timeUp(){ riddleFail(t("riddleTimeUp")); }
+function riddleSubmit(){
+  var st = stu();
+  if (!st || !riddleRun) return;
+  if (Date.now() > riddleRun.ends){ timeUp(); return; }
+  var R = contentFor(riddleRun.lang).riddle;
+  if (riddleRun.sel === R.correct){
+    award(st, "riddle", POINTS.riddle);
+    DB.shoutouts.unshift({ locker: st.locker, name: st.name, ts: Date.now(), cycle: cycleKeyFor() });
+    if (DB.shoutouts.length > 100) DB.shoutouts.length = 100;
+    riddleRun = null;
+    save();
+    toast(t("riddleCorrect"));
+    render();
+  } else {
+    riddleFail(t("riddleWrong"));
+  }
+}
+function setStar(i){
+  fbStars = i;
+  var ss = document.querySelectorAll("#fbStars .st");
+  for (var j = 0; j < ss.length; j++) ss[j].classList.toggle("on", j < i);
+}
+function submitReview(){
+  var st = stu(); if (!st) return;
+  var txt = (draft.review || "").trim();
+  if (fbStars < 1 || !txt){ toast(t("errorReview")); return; }
+  DB.reviews.unshift({ locker: st.locker, name: st.name, stars: fbStars, text: txt, ts: Date.now(), lang: st.lang });
+  if (DB.reviews.length > 200) DB.reviews.length = 200;
+  award(st, "feedback", POINTS.feedback);
+  draft.review = ""; fbStars = 0;
+  toast(t("reviewDone"));
+  render();
+}
+
+/* ---------- printing ---------- */
+function printVoucher(){
+  var st = stu();
+  if (!st || !(st.vouchers && st.vouchers[0])) return;
+  var vch = st.vouchers[0];
+  var pa = document.getElementById("printArea");
+  pa.innerHTML = "<div class='vdoc'><div class='vhead'>" + esc(t("voucherFood")) + "</div>" +
+    "<div class='vbody'><div id='vqr'></div>" +
+    "<div class='vcode'>" + esc(vch.code) + "</div>" +
+    "<div class='vrow'>" + esc(t("voucherLocker")) + ": <b>" + esc(st.locker) + "</b> · " + esc(t("certPoints")) + ": <b>" + st.points + "</b></div>" +
+    "<div class='vnote'>" + esc(t("voucherNote")) + "</div>" +
+    "<div class='vdate'>" + fmtDate(Date.now(), st.lang) + "</div></div></div>";
+  if (window.QRCode){
+    try { new QRCode(document.getElementById("vqr"), { text: vch.code, width: 110, height: 110 }); } catch (e) {}
+  }
+  setTimeout(function(){ window.print(); }, 250);
+}
+function printCertificate(){
+  var st = stu();
+  if (!st || !(st.certs && st.certs[0])) return;
+  var pa = document.getElementById("printArea");
+  pa.innerHTML = "<div class='cdoc'><div class='cinner'>" +
+    "<div class='cbrand'>" + esc(t("appName")) + "</div>" +
+    "<div class='ctitle'>" + esc(t("certTitle")) + "</div>" +
+    "<div class='cpres'>" + esc(t("certPresented")) + "</div>" +
+    "<div class='cname'>" + esc(st.name) + "</div>" +
+    "<div class='clock'>" + esc(t("voucherLocker")) + " " + esc(st.locker) + "</div>" +
+    "<p class='cfor'>" + esc(t("certFor")) + "</p>" +
+    "<div class='cpts'>" + esc(t("certPoints")) + ": <b>" + st.points + "</b></div>" +
+    "<div class='cfoot'><span>" + fmtDate(Date.now(), st.lang) + "</span><span class='csig'>" + esc(t("certSignature")) + " _______________</span></div>" +
+    "</div></div>";
+  setTimeout(function(){ window.print(); }, 250);
+}
+
+/* ---------- ticking timer (riddle + retry cooldown) ---------- */
+function onTick(){
+  var el = document.getElementById("riddleTime");
+  if (riddleRun && el){
+    var left = Math.max(0, Math.ceil((riddleRun.ends - Date.now()) / 1000));
+    el.textContent = fmtClock(left);
+    var bar = document.getElementById("riddleBar");
+    if (bar) bar.style.width = (left / 120 * 100) + "%";
+    if (left <= 0) timeUp();
+  }
+  var rc = document.getElementById("retryCd");
+  if (rc){
+    var st = stu();
+    if (st && (st.riddleLockedUntil || 0) > Date.now()) rc.textContent = fmtDur(st.riddleLockedUntil - Date.now());
+    else if (st) render();
+  }
+}
+
+/* ---------- go ---------- */
+render();
+setInterval(onTick, 1000);
+window.addEventListener("afterprint", function(){ document.getElementById("printArea").innerHTML = ""; });
+window.addEventListener("error", function(ev){
+  try { toast("Error: " + ((ev && ev.message) || "unknown") ); } catch (e) {}
+});
+if (!STORAGE_OK)
+  toast("Preview mode: this view blocks saving, so data lasts only this session. Download the file and open it in your browser to keep data.");
 </script>
-
 </body>
 </html>
-
-
-
